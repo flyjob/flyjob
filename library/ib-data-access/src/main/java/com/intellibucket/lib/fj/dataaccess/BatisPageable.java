@@ -1,6 +1,7 @@
 package com.intellibucket.lib.fj.dataaccess;
 
 import java.security.PublicKey;
+import java.util.Objects;
 
 public final class BatisPageable {
     private final Integer limit;
@@ -13,16 +14,10 @@ public final class BatisPageable {
     }
 
     public static BatisPageable of(Integer size,Integer page){
-        if(validate(size, page))return null;
-        int offset = calculateOffset(size,page);
-        return new BatisPageable(size,offset);
+        size = Math.abs(Objects.requireNonNullElse(size,1));
+        page = Math.abs(Objects.requireNonNullElse(page,1));
+        return new BatisPageable(size,(page - 1) * size);
     }
-
-    private static boolean validate(Integer size, Integer page) {
-        return page <= 0 || size <= 0;
-    }
-
-
 
     public Integer getLimit() {
         return limit;
@@ -32,8 +27,4 @@ public final class BatisPageable {
         return offset;
     }
 
-
-    private static int calculateOffset(int size, int page) {
-        return  (page - 1) * size;
-    }
 }
