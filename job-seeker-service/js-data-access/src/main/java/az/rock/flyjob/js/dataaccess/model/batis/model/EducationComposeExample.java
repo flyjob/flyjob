@@ -2,6 +2,7 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 
 import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
 import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
 
@@ -30,7 +31,8 @@ public class EducationComposeExample {
         var educationId = educationCriteria.getEducationId();
         var accessModifiers = educationCriteria.getAccessModifiers();
         criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name())
+                .andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
         if (Objects.nonNull(educationId))
             criteria.andUuidEqualTo(educationCriteria.getEducationId());
         if (Objects.nonNull(accessModifiers))
@@ -44,7 +46,8 @@ public class EducationComposeExample {
         var educationId = educationCriteria.getEducationId();
         var accessModifiers = educationCriteria.getAccessModifiers();
         criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name());
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name())
+                .andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
         if (Objects.nonNull(educationId))
             criteria.andUuidEqualTo(educationCriteria.getEducationId());
         if (Objects.nonNull(accessModifiers))

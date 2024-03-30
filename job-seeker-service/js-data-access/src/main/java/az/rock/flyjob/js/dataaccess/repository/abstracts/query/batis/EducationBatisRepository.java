@@ -28,4 +28,5 @@ public interface EducationBatisRepository {
     int updateByPrimaryKeySelective(EducationCompose record);
 
     int updateByPrimaryKey(EducationCompose record);
+
 }
