@@ -4,8 +4,10 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
 import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
 
 
 import java.util.ArrayList;
@@ -22,43 +24,7 @@ public class InterestComposeExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Pageable pageable;
-
-
-    public static class Pageable {
-        private int offset;
-        private int limit;
-
-        private Pageable(int offset, int limit) {
-            this.offset = offset;
-            this.limit = limit;
-        }
-
-        public Pageable() {
-        }
-
-        private void setOffset(int offset) {
-            this.offset = offset;
-        }
-
-        private void setLimit(int limit) {
-            this.limit = limit;
-        }
-
-        public static Pageable createPageable(SimplePageableRequest request) throws InterestOverLimit {
-
-            if (!(request.getSize() <= 0) && !(request.getPage() <= 0) ) {
-                Pageable pageable = new Pageable();
-                pageable.setLimit(request.getSize());
-                pageable.setOffset((request.getPage() - 1) * pageable.limit);
-
-                return pageable;
-
-            } else {
-                throw new InterestOverLimit();
-            }
-        }
-    }
+    protected BatisPageable pageable;
 
 
     public InterestComposeExample() {
@@ -85,13 +51,13 @@ public class InterestComposeExample {
         return oredCriteria;
     }
 
-    public Pageable getPageable() {
+    public BatisPageable getPageable() {
         return pageable;
     }
 
-    public Pageable addPageable(Pageable pageable) {
+    public InterestComposeExample addPageable(BatisPageable pageable) {
         this.pageable = pageable;
-        return this.pageable;
+        return this;
     }
 
     public void or(Criteria criteria) {
@@ -109,6 +75,7 @@ public class InterestComposeExample {
         example.addOrderConstraints("order_number");
         var criteria = example.createCriteria();
         criteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        criteria.andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
         if (Optional.ofNullable(interestCriteria.getResume()).isPresent()) {
             criteria.andResumeUuidEqualTo(interestCriteria.getResume().getAbsoluteID());
 

@@ -22,6 +22,7 @@ public interface AbstractInterestQueryRepositoryAdapter extends AbstractQueryRep
 
     Optional<InterestRoot> fetchAnyById(InterestCriteria criteria) ;
 
+
     List<InterestRoot> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest pageableRequest) throws Exception;
 
     List<InterestRoot> fetchAllAnySimpleInterest(InterestCriteria criteria,SimplePageableRequest request) throws Exception;
