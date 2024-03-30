@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractPageableDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.CourseBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
@@ -25,10 +26,13 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     private final CourseBatisRepository courseQueryBatisRepository;
     private final AbstractCourseDataAccessMapper courseDataAccessMapper;
 
-    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, CourseBatisRepository courseQueryBatisRepository, AbstractCourseDataAccessMapper courseDataAccessMapper) {
+    private final AbstractPageableDataAccessMapper pageableDataAccessMapper;
+
+    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, CourseBatisRepository courseQueryBatisRepository, AbstractCourseDataAccessMapper courseDataAccessMapper, AbstractPageableDataAccessMapper pageableDataAccessMapper) {
         this.courseQueryJPARepository = courseQueryJPARepository;
         this.courseQueryBatisRepository = courseQueryBatisRepository;
         this.courseDataAccessMapper = courseDataAccessMapper;
+        this.pageableDataAccessMapper = pageableDataAccessMapper;
     }
 
     @Override
@@ -60,7 +64,7 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     @Override
     public List<CourseRoot> fetchAllCourses(CourseCriteria criteria, SimplePageableRequest pageableRequest) {
-        var courseComposeExample = CourseComposeExample.of(criteria,"order_number",CourseComposeExample.Pageable.of(pageableRequest));
+        var courseComposeExample = CourseComposeExample.of(criteria,"order_number",pageableDataAccessMapper.toBatisPageable(pageableRequest));
         return courseQueryBatisRepository.selectByExample(courseComposeExample)
                 .stream()
                 .map(courseDataAccessMapper::toRoot)

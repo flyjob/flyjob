@@ -2,8 +2,10 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 
 import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.SimplePageableRequest;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
 
 import java.util.*;
 
@@ -17,7 +19,7 @@ public class CourseComposeExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Pageable pageable;
+    protected BatisPageable pageable;
 
 
     public static CourseComposeExample of(CourseCriteria criteria){
@@ -25,7 +27,7 @@ public class CourseComposeExample {
         return addCriteria(example,criteria);
     }
 
-    public static CourseComposeExample of(CourseCriteria criteria,String orderByClause,Pageable pageable){
+    public static CourseComposeExample of(CourseCriteria criteria, String orderByClause, BatisPageable pageable){
         var example = new CourseComposeExample(orderByClause,pageable);
         return addCriteria(example,criteria);
     }
@@ -33,24 +35,25 @@ public class CourseComposeExample {
     private static CourseComposeExample addCriteria(CourseComposeExample example,CourseCriteria criteria){
         var newCriteria = example.createCriteria();
         newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        newCriteria.andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
         if(Optional.ofNullable(criteria.getResumeID()).isPresent())newCriteria.andResumeUuidEqualTo(criteria.getResumeID().getRootID());
         if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId().getRootID());
         if(Optional.ofNullable(criteria.getAccessModifiers()).isPresent())newCriteria.andAccessModifierIn(criteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
         return example;
     }
 
-    public Pageable getPageable() {
+    public BatisPageable getPageable() {
         return pageable;
     }
 
-    public void setPageable(Pageable pageable) {
+    public void setPageable(BatisPageable pageable) {
         this.pageable = pageable;
     }
 
     public CourseComposeExample() {
         oredCriteria = new ArrayList<>();
     }
-    public CourseComposeExample(String orderByClause, Pageable pageable) {
+    public CourseComposeExample(String orderByClause, BatisPageable pageable) {
         this.orderByClause = orderByClause;
         this.pageable = pageable;
         oredCriteria = new ArrayList<>();
@@ -103,64 +106,6 @@ public class CourseComposeExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
-    }
-
-    public static class Pageable {
-        int offset;
-        int limit;
-
-        private Pageable(Builder builder) {
-            setOffset(builder.offset);
-            setLimit(builder.limit);
-        }
-
-        public static Pageable of(SimplePageableRequest request){
-            if(request.getPage()<=0 || request.getSize()<=0)return null;
-            int offset = (request.getPage()-1) * request.getSize();
-            return Builder.builder().offset(offset).limit(request.getSize()).build();
-        }
-
-        public int getOffset() {
-            return offset;
-        }
-
-        public void setOffset(int offset) {
-            this.offset = offset;
-        }
-
-        public int getLimit() {
-            return limit;
-        }
-
-        public void setLimit(int limit) {
-            this.limit = limit;
-        }
-
-        public static final class Builder {
-            private int offset;
-            private int limit;
-
-            private Builder() {
-            }
-
-            public static Builder builder() {
-                return new Builder();
-            }
-
-            public Builder offset(int val) {
-                offset = val;
-                return this;
-            }
-
-            public Builder limit(int val) {
-                limit = val;
-                return this;
-            }
-
-            public Pageable build() {
-                return new Pageable(this);
-            }
-        }
     }
 
 
