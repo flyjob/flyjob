@@ -19,6 +19,8 @@ public interface CourseBatisRepository {
 
     List<CourseCompose> selectByExample(CourseComposeExample example);
 
+    CourseCompose selectFirstByExample(CourseComposeExample example);
+
     CourseCompose selectByPrimaryKey(Object uuid);
 
     int updateByExampleSelective(@Param("record") CourseCompose record, @Param("example") CourseComposeExample example);

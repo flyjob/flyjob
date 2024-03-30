@@ -72,9 +72,7 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     @Override
     public Optional<CourseRoot> fetchCourseById(CourseCriteria criteria) {
         var courseComposeExample = CourseComposeExample.of(criteria);
-        return courseQueryBatisRepository.selectByExample(courseComposeExample)
-                .stream()
-                .findFirst()
+        return Optional.ofNullable(courseQueryBatisRepository.selectFirstByExample(courseComposeExample))
                 .map(courseDataAccessMapper::toRoot)
                 .filter(Optional::isPresent)
                 .map(Optional::get);

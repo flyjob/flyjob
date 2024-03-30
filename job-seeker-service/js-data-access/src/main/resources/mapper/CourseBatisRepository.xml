@@ -109,6 +109,18 @@
             FETCH NEXT #{pageable.limit} ROWS ONLY
         </if>
     </select>
+    <select id="selectFirstByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from resume.courses
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
