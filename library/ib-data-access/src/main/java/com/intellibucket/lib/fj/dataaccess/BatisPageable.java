@@ -1,6 +1,5 @@
 package com.intellibucket.lib.fj.dataaccess;
 
-import java.security.PublicKey;
 import java.util.Objects;
 
 public final class BatisPageable {

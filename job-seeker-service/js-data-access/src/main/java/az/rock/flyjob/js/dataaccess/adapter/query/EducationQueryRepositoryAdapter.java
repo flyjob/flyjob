@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractEducationDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.mapper.concretes.PageableDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.EducationBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.EducationQueryJpaRepository;
@@ -10,6 +11,7 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.Abstr
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.SimplePageableRequest;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -39,8 +41,9 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
 
     @Override
     public List<EducationRoot> fetchAllEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var educationComposeExample = EducationComposeExample.of(educationCriteria, orderByOrderNumber, EducationComposeExample.pageable(simplePageableRequest));
+        var educationComposeExample = EducationComposeExample.of(educationCriteria, orderByOrderNumber, BatisPageable.of(simplePageableRequest.getSize(), simplePageableRequest.getPage()));
         var composes = educationBatisRepository.selectByExample(educationComposeExample);
+        System.out.println(composes);
         return composes
                 .stream()
                 .map(educationDataAccessMapper::composeToRoot)

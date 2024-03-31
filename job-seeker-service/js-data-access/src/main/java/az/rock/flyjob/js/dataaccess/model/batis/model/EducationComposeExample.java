@@ -4,7 +4,7 @@ import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
-import az.rock.lib.valueObject.SimplePageableRequest;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
 
 import java.util.*;
 
@@ -16,14 +16,14 @@ public class EducationComposeExample {
 
     protected List<Criteria> oredCriteria;
 
-    protected Pageable pageable;
+    private BatisPageable pageable;
 
 
     public EducationComposeExample() {
         oredCriteria = new ArrayList<>();
     }
 
-    public static EducationComposeExample of(EducationCriteria educationCriteria, String orderByClause, Pageable pageable) {
+    public static EducationComposeExample of(EducationCriteria educationCriteria, String orderByClause, BatisPageable pageable) {
         var educationComposeExample = of(educationCriteria);
         educationComposeExample.setOrderByClause(orderByClause);
         educationComposeExample.setPageable(pageable);
@@ -43,17 +43,12 @@ public class EducationComposeExample {
         return educationComposeExample;
     }
 
-    public static Pageable pageable(SimplePageableRequest simplePageableRequest) {
-        return Pageable.of(simplePageableRequest);
+    public BatisPageable getPageable() {
+        return this.pageable;
     }
 
-    public Pageable setPageable(Pageable pageable) {
-        this.pageable = pageable;
-        return pageable;
-    }
-
-    public Pageable getPageable() {
-        return pageable;
+    public void setPageable(BatisPageable batisPageable) {
+        this.pageable = batisPageable;
     }
 
     public String getOrderByClause() {
@@ -1339,31 +1334,6 @@ public class EducationComposeExample {
             super();
         }
     }
-
-    public static class Pageable {
-        private int offset;
-        private int limit;
-
-        private Pageable(int offset, int limit) {
-            this.offset = offset;
-            this.limit = limit;
-        }
-
-        public static Pageable of(SimplePageableRequest request) {
-            if (request.getPage() <= 0 || request.getSize() <= 0) return null;
-            int offset = (request.getPage() - 1) * request.getSize();
-            return new Pageable(offset, request.getSize());
-        }
-
-        public int getOffset() {
-            return offset;
-        }
-
-        public int getLimit() {
-            return limit;
-        }
-    }
-
 
     public static class Criterion {
         private String condition;
