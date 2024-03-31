@@ -21,6 +21,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/article-sync-service/pom.xml" />
+        <option value="$PROJECT_DIR$/currency-service/pom.xml" />
         <option value="$PROJECT_DIR$/job-seeker-analytic-service/pom.xml" />
         <option value="$PROJECT_DIR$/library/ib-rpc/authorization-proto/pom.xml" />
         <option value="$PROJECT_DIR$/stream-service/pom.xml" />

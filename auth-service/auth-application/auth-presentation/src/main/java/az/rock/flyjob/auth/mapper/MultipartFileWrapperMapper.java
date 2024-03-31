@@ -1,6 +1,6 @@
 package az.rock.flyjob.auth.mapper;
 
-import az.rock.lib.valueObject.ContentType;
+import az.rock.lib.valueObject.FileContentType;
 import az.rock.lib.valueObject.MultipartFileWrapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +14,7 @@ public class MultipartFileWrapperMapper {
                 .builder()
                 .originalFileName(multipartFile.getName())
                 .absolutePath(multipartFile.getOriginalFilename())
-                .contentType(ContentType.fromValue(multipartFile.getContentType()))
+                .contentType(FileContentType.fromValue(multipartFile.getContentType()))
                 .content(multipartFile.getResource().getInputStream())
                 .size(multipartFile.getSize())
                 .build();

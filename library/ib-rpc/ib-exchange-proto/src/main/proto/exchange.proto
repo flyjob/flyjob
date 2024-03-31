@@ -1,0 +1,74 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.intellibucket.lib.proto;
+
+
+enum CurrencyCode {
+  EUR = 0;
+  USD = 1;
+  AZN = 2;
+  TRY = 3;
+  JPY = 4;
+  BGN = 5;
+  CZK = 6;
+  DKK = 7;
+  GBP = 8;
+  HUF = 9;
+  PLN = 10;
+  RON = 11;
+  SEK = 12;
+  CHF = 13;
+  ISK = 14;
+  NOK = 15;
+  HRK = 16;
+  RUB = 17;
+  AUD = 18;
+  BRL = 19;
+  CAD = 20;
+  CNY = 21;
+  HKD = 22;
+  IDR = 23;
+  ILS = 24;
+  INR = 25;
+  KRW = 26;
+  MXN = 27;
+  MYR = 28;
+  NZD = 29;
+  PHP = 30;
+  SGD = 31;
+  THB = 32;
+  ZAR = 33;
+}
+
+
+message ExchangeRequest {
+  CurrencyCode code = 1;
+}
+
+
+message CurrentExchangeRateResponse {
+  string uuid = 1;
+  string baseCurrency = 2;
+  string targetCurrency = 3;
+  double exchangeRate = 4;
+  int64 timestamp = 5;
+}
+
+service ExchangeRateService {
+
+  rpc GetCurrentExchangeRate (ExchangeRequest) returns (CurrentExchangeRateResponse);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

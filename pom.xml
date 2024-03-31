@@ -57,10 +57,10 @@
         <module>sound-processor-service</module>
         <module>video-processor-service</module>
         <module>document-processor-service</module>
-        <module>currency-service</module>
         <module>sdp-service</module>
         <module>report-service</module>
         <module>video-streaming-service</module>
+        <module>exchange-service</module>
     </modules>
 
     <properties>
