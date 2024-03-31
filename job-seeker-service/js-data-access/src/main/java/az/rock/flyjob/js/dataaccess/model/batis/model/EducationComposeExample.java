@@ -24,34 +24,22 @@ public class EducationComposeExample {
     }
 
     public static EducationComposeExample of(EducationCriteria educationCriteria, String orderByClause, Pageable pageable) {
-        var educationComposeExample = new EducationComposeExample();
+        var educationComposeExample = of(educationCriteria);
         educationComposeExample.setOrderByClause(orderByClause);
         educationComposeExample.setPageable(pageable);
-        var criteria = educationComposeExample.createCriteria();
-        var educationId = educationCriteria.getEducationId();
-        var accessModifiers = educationCriteria.getAccessModifiers();
-        criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
-                .andRowStatusEqualTo(RowStatus.ACTIVE.name())
-                .andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
-        if (Objects.nonNull(educationId))
-            criteria.andUuidEqualTo(educationCriteria.getEducationId());
-        if (Objects.nonNull(accessModifiers))
-            criteria.andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
         return educationComposeExample;
     }
 
     public static EducationComposeExample of(EducationCriteria educationCriteria) {
         var educationComposeExample = new EducationComposeExample();
         var criteria = educationComposeExample.createCriteria();
-        var educationId = educationCriteria.getEducationId();
-        var accessModifiers = educationCriteria.getAccessModifiers();
-        criteria.andResumeUuidEqualTo(educationCriteria.getResumeID())
+        if (Objects.nonNull(educationCriteria.getResumeID())) criteria.andResumeUuidEqualTo(educationCriteria.getResumeID());
+        if (Objects.nonNull(educationCriteria.getEducationId())) criteria.andUuidEqualTo(educationCriteria.getEducationId());
+        if (Objects.nonNull(educationCriteria.getAccessModifiers()))
+            criteria.andAccessModifierIn(educationCriteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
+        criteria
                 .andRowStatusEqualTo(RowStatus.ACTIVE.name())
                 .andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
-        if (Objects.nonNull(educationId))
-            criteria.andUuidEqualTo(educationCriteria.getEducationId());
-        if (Objects.nonNull(accessModifiers))
-            criteria.andAccessModifierIn(accessModifiers.stream().map(AccessModifier::name).toList());
         return educationComposeExample;
     }
 

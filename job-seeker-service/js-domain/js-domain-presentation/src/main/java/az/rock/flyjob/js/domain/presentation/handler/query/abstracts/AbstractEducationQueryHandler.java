@@ -7,9 +7,12 @@ import az.rock.flyjob.js.domain.presentation.dto.response.resume.education.simpl
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.education.simple.SimpleMyEducationResponseModel;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public interface AbstractEducationQueryHandler {
 
     SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) throws EducationDomainException;

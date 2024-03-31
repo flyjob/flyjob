@@ -18,6 +18,7 @@ public interface EducationBatisRepository {
     int insertSelective(EducationCompose record);
 
     List<EducationCompose> selectByExample(EducationComposeExample example);
+    EducationCompose selectFirstByExample(EducationComposeExample example);
 
     EducationCompose selectByPrimaryKey(Object uuid);
 

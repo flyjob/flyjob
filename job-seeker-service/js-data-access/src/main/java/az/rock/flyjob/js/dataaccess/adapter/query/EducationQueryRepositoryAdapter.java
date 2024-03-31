@@ -19,6 +19,7 @@ import java.util.UUID;
 @Component
 public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRepositoryAdapter {
 
+    private final static String orderByOrderNumber = "order_number";
     private final EducationQueryJpaRepository educationQueryJpaRepository;
     private final AbstractEducationDataAccessMapper educationDataAccessMapper;
     private final EducationBatisRepository educationBatisRepository;
@@ -38,7 +39,7 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
 
     @Override
     public List<EducationRoot> fetchAllEducations(EducationCriteria educationCriteria, SimplePageableRequest simplePageableRequest) {
-        var educationComposeExample = EducationComposeExample.of(educationCriteria, "order_number", EducationComposeExample.pageable(simplePageableRequest));
+        var educationComposeExample = EducationComposeExample.of(educationCriteria, orderByOrderNumber, EducationComposeExample.pageable(simplePageableRequest));
         var composes = educationBatisRepository.selectByExample(educationComposeExample);
         return composes
                 .stream()
@@ -51,13 +52,8 @@ public class EducationQueryRepositoryAdapter implements AbstractEducationQueryRe
     @Override
     public Optional<EducationRoot> fetchEducation(EducationCriteria educationCriteria) {
         var educationComposeExample = EducationComposeExample.of(educationCriteria);
-        var composes = educationBatisRepository.selectByExample(educationComposeExample);
-        return composes
-                .stream()
-                .findFirst()
-                .map(educationDataAccessMapper::composeToRoot)
-                .filter(Optional::isPresent)
-                .map(Optional::get);
+        var educationCompose = educationBatisRepository.selectFirstByExample(educationComposeExample);
+        return educationDataAccessMapper.composeToRoot(educationCompose);
     }
 
 
