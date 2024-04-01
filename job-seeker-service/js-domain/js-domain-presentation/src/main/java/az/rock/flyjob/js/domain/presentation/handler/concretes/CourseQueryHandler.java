@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -56,8 +57,10 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(AnyCourseResponseModel::of)
-                .toList();
-        var payload =  SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(),courses);
+                .collect(Collectors.toList());
+        Boolean hasMore = courses.size() + 1 > pageableRequest.getSize();
+        if(hasMore)courses.remove(courses.size()-1);
+        var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),hasMore,courses);
         return payload;
     }
 
