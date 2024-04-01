@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseQueryHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.dfs.AbstractFileStorageAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;

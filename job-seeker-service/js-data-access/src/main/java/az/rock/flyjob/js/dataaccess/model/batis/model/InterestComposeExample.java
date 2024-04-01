@@ -1,8 +1,21 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
+
+import az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.InterestCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.SimplePageableRequest;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
+
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+
 @SuppressWarnings("all")
 public class InterestComposeExample {
     protected String orderByClause;
@@ -11,11 +24,14 @@ public class InterestComposeExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected BatisPageable pageable;
+
+
     public InterestComposeExample() {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
+    public void addOrderConstraints(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
@@ -35,6 +51,15 @@ public class InterestComposeExample {
         return oredCriteria;
     }
 
+    public BatisPageable getPageable() {
+        return pageable;
+    }
+
+    public InterestComposeExample addPageable(BatisPageable pageable) {
+        this.pageable = pageable;
+        return this;
+    }
+
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
     }
@@ -43,6 +68,32 @@ public class InterestComposeExample {
         Criteria criteria = createCriteriaInternal();
         oredCriteria.add(criteria);
         return criteria;
+    }
+
+    public static InterestComposeExample of(InterestCriteria interestCriteria) {
+        InterestComposeExample example = new InterestComposeExample();
+        example.addOrderConstraints("order_number");
+        var criteria = example.createCriteria();
+        criteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        criteria.andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
+        if (Optional.ofNullable(interestCriteria.getResume()).isPresent()) {
+            criteria.andResumeUuidEqualTo(interestCriteria.getResume().getAbsoluteID());
+
+        }
+
+        if (Optional.ofNullable(interestCriteria.getId()).isPresent()) {
+            criteria.andUuidEqualTo(interestCriteria.getId());
+
+        }
+        Optional<List<AccessModifier>> accessModifiersOptional = Optional.ofNullable(interestCriteria.getAccessModifier());
+        if (accessModifiersOptional.isPresent()) {
+            final AccessModifier accessModifier = accessModifiersOptional.get().stream()
+                    .findAny().get();
+            criteria.andAccessModifierEqualTo(accessModifier.name());
+
+        }
+        return example;
+
     }
 
     public Criteria createCriteria() {
