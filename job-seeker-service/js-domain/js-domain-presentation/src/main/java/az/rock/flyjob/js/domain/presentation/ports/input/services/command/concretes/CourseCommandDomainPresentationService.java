@@ -10,6 +10,7 @@ import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstra
 import az.rock.lib.annotation.InputPort;
 import az.rock.lib.jexception.JRuntimeException;
 import az.rock.lib.valueObject.MultipartFileWrapper;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -19,56 +20,37 @@ import java.util.UUID;
 @InputPort
 @Slf4j
 public class CourseCommandDomainPresentationService implements AbstractCourseCommandDomainPresentationService {
-    private  AbstractCourseCommandHandler commandHandler;
+    private AbstractCourseCommandHandler commandHandler;
 
     public CourseCommandDomainPresentationService(AbstractCourseCommandHandler commandHandler) {
         this.commandHandler = commandHandler;
     }
 
-
+    @SneakyThrows
     @Override
     public void create(CreateRequest<CourseCommandModel> command) {
-        try {
-            var courseCreatedEvent = commandHandler.create(command.getModel());
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(), e);
-        }
+        var courseCreatedEvent = commandHandler.create(command.getModel());
     }
-
+    @SneakyThrows
     @Override
     public void update(UpdateRequest<CourseCommandModel> command) {
-        try {
-            var courseUpdatedEvent = commandHandler.merge(command.getModel(), command.getTargetId());
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(), e);
-        }
+        var courseUpdatedEvent = commandHandler.merge(command.getModel(), command.getTargetId());
     }
-
+    @SneakyThrows
     @Override
     public void delete(UUID courseId) {
-        try {
-            var courseDeleteEvent = commandHandler.delete(courseId);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(), e);
-        }
+        var courseDeleteEvent = commandHandler.delete(courseId);
     }
 
+    @SneakyThrows
     @Override
     public void reorder(ReorderCommandModel command) {
-        try {
-            var reorderEvent = commandHandler.reorder(command);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(), e);
-        }
+        var reorderEvent = commandHandler.reorder(command);
     }
 
+    @SneakyThrows
     @Override
     public void uploadCertificate(UUID courseId, MultipartFileWrapper file) {
-        try {
-            var certificateEvent = commandHandler.uploadCertificate(courseId, file);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(), e);
-        }
-
+        var certificateEvent = commandHandler.uploadCertificate(courseId, file);
     }
 }
