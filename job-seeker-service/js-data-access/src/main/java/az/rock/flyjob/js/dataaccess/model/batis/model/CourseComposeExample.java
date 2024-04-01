@@ -1,18 +1,61 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.SimplePageableRequest;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
+
+import java.util.*;
+
 @SuppressWarnings("all")
 public class CourseComposeExample {
+
+
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
+    protected BatisPageable pageable;
+
+
+    public static CourseComposeExample of(CourseCriteria criteria){
+        var example = new CourseComposeExample();
+        return addCriteria(example,criteria);
+    }
+
+    public static CourseComposeExample of(CourseCriteria criteria, String orderByClause, BatisPageable pageable){
+        var example = new CourseComposeExample(orderByClause,pageable);
+        return addCriteria(example,criteria);
+    }
+
+    private static CourseComposeExample addCriteria(CourseComposeExample example,CourseCriteria criteria){
+        var newCriteria = example.createCriteria();
+        newCriteria.andRowStatusEqualTo(RowStatus.ACTIVE.name());
+        newCriteria.andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
+        if(Optional.ofNullable(criteria.getResumeID()).isPresent())newCriteria.andResumeUuidEqualTo(criteria.getResumeID().getRootID());
+        if(Optional.ofNullable(criteria.getId()).isPresent())newCriteria.andUuidEqualTo(criteria.getId().getRootID());
+        if(Optional.ofNullable(criteria.getAccessModifiers()).isPresent())newCriteria.andAccessModifierIn(criteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
+        return example;
+    }
+
+    public BatisPageable getPageable() {
+        return pageable;
+    }
+
+    public void setPageable(BatisPageable pageable) {
+        this.pageable = pageable;
+    }
+
     public CourseComposeExample() {
+        oredCriteria = new ArrayList<>();
+    }
+    public CourseComposeExample(String orderByClause, BatisPageable pageable) {
+        this.orderByClause = orderByClause;
+        this.pageable = pageable;
         oredCriteria = new ArrayList<>();
     }
 
@@ -64,6 +107,7 @@ public class CourseComposeExample {
         orderByClause = null;
         distinct = false;
     }
+
 
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
