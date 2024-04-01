@@ -18,7 +18,7 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
     private final AbstractContactQueryJPARepository contactQueryJPARepository;
     private final AbstractContactDataAccessMapper contactMapper;
 
-    public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository abstractContactQueryJPARepository,
+    public ContactQueryRepositoryAdapter(@Qualifier(value = "abstractContactQueryJPARepository") AbstractContactQueryJPARepository abstractContactQueryJPARepository,
                                          @Qualifier(value = "contactDataAccessMapper") AbstractContactDataAccessMapper abstractContactDataAccessMapper) {
         this.contactQueryJPARepository = abstractContactQueryJPARepository;
         this.contactMapper = abstractContactDataAccessMapper;
@@ -31,7 +31,8 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public Optional<ContactRoot> findOwnByID(ResumeID resumeID, ContactID contactID) {
-        var entity = contactQueryJPARepository.findResumeIDandContactID(resumeID.getRootID(), contactID.getRootID());
+        var entity = contactQueryJPARepository.findResumeIDandContactID(resumeID.getAbsoluteID(), contactID.getAbsoluteID());
+        System.out.println("debug"+entity);
         if (entity.isEmpty()) return Optional.empty();
         return this.contactMapper.toRoot(entity.get());
     }

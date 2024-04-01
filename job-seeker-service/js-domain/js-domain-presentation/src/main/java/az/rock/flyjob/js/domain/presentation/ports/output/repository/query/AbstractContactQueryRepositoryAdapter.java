@@ -4,7 +4,7 @@ import az.rock.lib.adapter.repository.AbstractQueryRepositoryAdapter;
 import az.rock.lib.annotation.DomainOutputPort;
 import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 
 @DomainOutputPort
 public interface AbstractContactQueryRepositoryAdapter extends AbstractQueryRepositoryAdapter<ContactRoot, ContactID, ResumeID> {

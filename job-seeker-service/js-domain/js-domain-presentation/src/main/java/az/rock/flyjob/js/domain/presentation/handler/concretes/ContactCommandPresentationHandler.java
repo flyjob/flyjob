@@ -75,7 +75,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         var resumeID = contextHolder.availableResumeID();
         var allSavedContacts = abstractContactQueryRepositoryAdapter.findAllByPID(resumeID);
         var contactRoot = this.contactCommandDomainMapper.toRoot(updateRequest.getModel(), resumeID);
-        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findById(contactRoot.getRootID());
+        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findOwnByID(resumeID,contactRoot.getRootID());
         if (foundContact.isPresent()) {
             var newRoot = contactRoot.changeFormatType(updateRequest.getModel().getFormatType())
                     .changeData(updateRequest.getModel().getData())
