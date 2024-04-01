@@ -3,7 +3,6 @@ package az.rock.flyjob.js.dataaccess.model.compose;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import com.intellibucket.lib.fj.dataaccess.annotations.Compose;
-
 import java.sql.Timestamp;
 import java.util.UUID;
 
