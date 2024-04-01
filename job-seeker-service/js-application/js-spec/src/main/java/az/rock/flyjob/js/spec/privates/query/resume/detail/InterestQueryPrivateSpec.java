@@ -19,6 +19,7 @@ public interface InterestQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyInterestResponseModel>>> queryAllMySimpleInterests(SimplePageableRequest pageableRequest);
 
+
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<MyInterestResponseModel>> findMyInterestById(UUID id);

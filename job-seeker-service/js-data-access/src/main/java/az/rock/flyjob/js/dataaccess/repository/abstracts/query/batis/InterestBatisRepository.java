@@ -5,8 +5,10 @@ import az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InterestBatisRepository {
+
     long countByExample(InterestComposeExample example);
 
     int deleteByExample(InterestComposeExample example);
@@ -18,6 +20,7 @@ public interface InterestBatisRepository {
     int insertSelective(InterestCompose record);
 
     List<InterestCompose> selectByExample(InterestComposeExample example);
+    Optional<InterestCompose> selectFirstByExample(InterestComposeExample example);
 
     InterestCompose selectByPrimaryKey(Object uuid);
 
