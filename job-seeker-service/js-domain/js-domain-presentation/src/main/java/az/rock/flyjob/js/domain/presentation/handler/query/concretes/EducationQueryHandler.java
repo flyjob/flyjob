@@ -30,6 +30,11 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
         this.educationQueryRepositoryAdapter = educationQueryRepositoryAdapter;
     }
 
+    private SimplePageableResponse simplePageableResponse(SimplePageableRequest pageableRequest, List educationsResponseList) {
+        var hasMore = educationsResponseList.size() > pageableRequest.getSize();
+        if (hasMore) educationsResponseList.remove(educationsResponseList.size() - 1);
+        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(), hasMore, educationsResponseList);
+    }
 
     @Override
     public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) throws EducationDomainException {
@@ -37,7 +42,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
         var educationCriteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).build();
         var myEducationsRootList = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         var myEducationsResponseList = myEducationsRootList.stream().map(MyEducationResponseModel::of).toList();
-        return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), myEducationsResponseList);
+        return simplePageableResponse(pageableRequest, myEducationsResponseList);
     }
 
     @Override
@@ -45,7 +50,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
         var educationCriteria = EducationCriteria.builder().resumeID(targetResumeId).build();
         var anyEducationRootList = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         var anyEducationResponseList = anyEducationRootList.stream().map(AnyEducationResponseModel::of).toList();
-        return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), anyEducationResponseList);
+        return simplePageableResponse(pageableRequest, anyEducationResponseList);
     }
 
     @Override
@@ -54,7 +59,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
         var educationCriteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).build();
         var simpleEducationRoots = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         var simpleEducationResponseList = simpleEducationRoots.stream().map(SimpleMyEducationResponseModel::of).toList();
-        return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), simpleEducationResponseList);
+        return simplePageableResponse(pageableRequest, simpleEducationResponseList);
     }
 
     @Override
@@ -62,7 +67,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
         var educationCriteria = EducationCriteria.builder().resumeID(targetResumeId).build();
         var anySimpleEducationRoots = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         var simpleAnyEducationResponseList = anySimpleEducationRoots.stream().map(SimpleAnyEducationResponseModel::of).toList();
-        return SimplePageableResponse.ofHasMore(pageableRequest.getSize(), pageableRequest.getPage(), simpleAnyEducationResponseList);
+        return simplePageableResponse(pageableRequest, simpleAnyEducationResponseList);
     }
 
     @Override
