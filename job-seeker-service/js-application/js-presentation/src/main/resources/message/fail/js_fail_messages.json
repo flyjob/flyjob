@@ -79,6 +79,15 @@
     "tr": "Daha fazla ilgi alanı ekleyemezsiniz.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000010",
+    "az": "Dəyər müəyyən edilmiş diapazonda olmalıdır.",
+    "en": "The value must be within the specified range.",
+    "ru": "Значение должно находиться в указанном диапазоне.",
+    "tr": "Değer belirtilen aralıkta olmalıdır.",
+    "hasRegex": false,
+    "regex": ""
   }
 
 ]

@@ -1,5 +1,6 @@
 package az.rock.lib.valueObject;
 
+
 public class SimplePageableRequest {
     private int page;
     private int size;
