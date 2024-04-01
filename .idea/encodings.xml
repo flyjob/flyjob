@@ -99,6 +99,7 @@
     <file url="file://$PROJECT_DIR$/document-processor-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/email-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/exchange-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file-system-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file-system-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-container/src/main/java" charset="UTF-8" />
