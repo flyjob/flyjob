@@ -48,7 +48,7 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
     public Optional<ContactEntity> toEntity(ContactRoot root) {
         var optionalRoot = Optional.ofNullable(root);
         if (optionalRoot.isEmpty()) return Optional.empty();
-        var resume = ResumeEntity.referenceOf(optionalRoot.get().getResume().getRootID());
+
         return Optional.of(ContactEntity.Builder
                 .builder()
                 .uuid(root.getRootID().getAbsoluteID())
@@ -63,7 +63,7 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
                 .orderNumber(root.getOrderNumber())
                 .version(root.getVersionValue())
                 .data(root.getData())
-                .resume(resume)
+                .resume(ResumeEntity.referenceOf(root.getResume().getRootID()))
                 .build());
 
     }

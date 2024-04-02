@@ -17,10 +17,10 @@ import java.util.UUID;
 public class ContactDomainMapper implements AbstractContactCommandDomainMapper {
 
     @Override
-    public ContactRoot toRoot(ContactCommandModel commandModel, ResumeID resumeID) {
-        var contactId = ContactID.of(UUID.randomUUID());
+    public ContactRoot toNewRoot(ContactCommandModel commandModel, ResumeID resumeID) {
+
         return ContactRoot.Builder.builder()
-                .id(contactId)
+                .id(ContactID.of(UUID.randomUUID()))
                 .data(commandModel.getData())
                 .liveType(commandModel.getLiveType())
                 .formatType(commandModel.getFormatType())
@@ -32,4 +32,16 @@ public class ContactDomainMapper implements AbstractContactCommandDomainMapper {
                 .orderNumber(-1)
                 .build();
     }
+
+    @Override
+    public ContactRoot isExistRoot(ContactCommandModel contactCommandModel, ContactRoot contactRoot) {
+        return ContactRoot.Builder.builder()
+                .build()
+                .changeData(contactCommandModel.getData())
+                .changeOrderNumber(contactCommandModel.getOrderNumber())
+                .changeFormatType(contactCommandModel.getFormatType())
+                .changeLiveType(contactCommandModel.getLiveType());
+
+    }
+
 }

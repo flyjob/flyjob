@@ -19,7 +19,7 @@ public interface AbstractContactQueryJPARepository extends JpaRepository<Contact
     Boolean existByContact(ContactRoot resume);
 
     @Query("SELECT  e FROM ContactEntity  e WHERE e.resume.uuid=:resume AND e.uuid=:uuid AND e.rowStatus='ACTIVE'")
-    Optional<ContactEntity> findResumeIDandContactID(@Param(value = "resume") UUID resume, @Param(value = "uuid") UUID uuid);
+    Optional<ContactEntity> findResumeIAndContactID(@Param(value = "resume") UUID resume, @Param(value = "uuid") UUID uuid);
 
     @Query("SELECT e FROM ContactEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' order by e.orderNumber")
     Optional<ContactEntity> findByPID(@Param("resumeID") UUID resumeID);
