@@ -23,6 +23,7 @@ import com.intellibucket.lib.payload.payload.ContactPayload;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLOutput;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.UUID;
@@ -61,7 +62,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest) {
         var currentResumeId = this.contextHolder.availableResumeID();
         var allSavedContacts = this.abstractContactQueryRepositoryAdapter.findAllByPID(currentResumeId);
-        var contactRoot = this.contactCommandDomainMapper.toRoot(createRequest.getModel(), currentResumeId);
+        var contactRoot = this.contactCommandDomainMapper.toNewRoot(createRequest.getModel(), currentResumeId);
         var validateContact = this.domainService.validateContactDuplication(allSavedContacts, contactRoot);
         var optionalContactRoot = this.abstractContactCommandRepositoryAdapter.create(validateContact);
         if (optionalContactRoot.isEmpty())
@@ -73,18 +74,11 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     @Override
     public ContactUpdateEvent updateContact(UpdateRequest<ContactCommandModel> updateRequest) {
         var resumeID = contextHolder.availableResumeID();
-        var allSavedContacts = abstractContactQueryRepositoryAdapter.findAllByPID(resumeID);
-        var contactRoot = this.contactCommandDomainMapper.toRoot(updateRequest.getModel(), resumeID);
-        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findById(contactRoot.getRootID());
+        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findContact(resumeID,updateRequest.getTargetId());
         if (foundContact.isPresent()) {
-            var newRoot = contactRoot.changeFormatType(updateRequest.getModel().getFormatType())
-                    .changeData(updateRequest.getModel().getData())
-                    .changeLiveType(updateRequest.getModel().getLiveType());
-            var validatedContact = this.domainService.validateContactDuplication(allSavedContacts, newRoot);
-            var isExistContact = this.abstractContactQueryRepositoryAdapter.isExistContact(validatedContact);
-            if (isExistContact) throw new ContactAlreadyExistException();
-            this.abstractContactCommandRepositoryAdapter.update(validatedContact);
-            var payload = this.toPayload(validatedContact);
+            var newRoot = contactCommandDomainMapper.isExistRoot(updateRequest.getModel(),foundContact.get());
+            this.abstractContactCommandRepositoryAdapter.update(newRoot);
+            var payload = this.toPayload(newRoot);
             return ContactUpdateEvent.of(payload);
 
         } else throw new ContactNotFoundException();

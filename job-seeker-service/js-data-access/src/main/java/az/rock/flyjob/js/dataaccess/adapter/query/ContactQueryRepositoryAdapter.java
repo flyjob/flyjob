@@ -1,7 +1,6 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractContactDataAccessMapper;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractContactQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
@@ -12,13 +11,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class ContactQueryRepositoryAdapter implements AbstractContactQueryRepositoryAdapter {
     private final AbstractContactQueryJPARepository contactQueryJPARepository;
     private final AbstractContactDataAccessMapper contactMapper;
 
-    public ContactQueryRepositoryAdapter(AbstractContactQueryJPARepository abstractContactQueryJPARepository,
+    public ContactQueryRepositoryAdapter( AbstractContactQueryJPARepository abstractContactQueryJPARepository,
                                          @Qualifier(value = "contactDataAccessMapper") AbstractContactDataAccessMapper abstractContactDataAccessMapper) {
         this.contactQueryJPARepository = abstractContactQueryJPARepository;
         this.contactMapper = abstractContactDataAccessMapper;
@@ -30,8 +30,15 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
     }
 
     @Override
+    public Optional<ContactRoot> findContact(ResumeID resumeID, UUID uuid) {
+        var entity = contactQueryJPARepository.findResumeIAndContactID(resumeID.getRootID(), uuid);
+        if (entity.isEmpty()) return Optional.empty();
+        return this.contactMapper.toRoot(entity.get());
+    }
+
+    @Override
     public Optional<ContactRoot> findOwnByID(ResumeID resumeID, ContactID contactID) {
-        var entity = contactQueryJPARepository.findResumeIDandContactID(resumeID.getRootID(), contactID.getRootID());
+        var entity = contactQueryJPARepository.findResumeIAndContactID(resumeID.getRootID(), contactID.getRootID());
         if (entity.isEmpty()) return Optional.empty();
         return this.contactMapper.toRoot(entity.get());
     }
