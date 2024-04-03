@@ -13,13 +13,6 @@ import java.util.Optional;
 
 @Component
 public class ContactDataAccessMapper implements AbstractContactDataAccessMapper {
-
-    private final ResumeDataAccessMapper resumeDataAccessMapper;
-
-    public ContactDataAccessMapper(ResumeDataAccessMapper resumeDataAccessMapper) {
-        this.resumeDataAccessMapper = resumeDataAccessMapper;
-    }
-
     @Override
     public Optional<ContactRoot> toRoot(ContactEntity entity) {
         var optionalEntity = Optional.ofNullable(entity);
@@ -46,9 +39,9 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
 
     @Override
     public Optional<ContactEntity> toEntity(ContactRoot root) {
-        var optionalRoot = Optional.ofNullable(root);
-        if (optionalRoot.isEmpty()) return Optional.empty();
 
+
+        System.out.printf("-----------with rootid -----"+root.getRootID());
         return Optional.of(ContactEntity.Builder
                 .builder()
                 .uuid(root.getRootID().getAbsoluteID())
