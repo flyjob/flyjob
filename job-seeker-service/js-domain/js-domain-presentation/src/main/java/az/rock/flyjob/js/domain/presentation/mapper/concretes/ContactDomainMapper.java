@@ -41,7 +41,5 @@ public class ContactDomainMapper implements AbstractContactCommandDomainMapper {
                 .changeOrderNumber(contactCommandModel.getOrderNumber())
                 .changeFormatType(contactCommandModel.getFormatType())
                 .changeLiveType(contactCommandModel.getLiveType());
-
     }
-
 }

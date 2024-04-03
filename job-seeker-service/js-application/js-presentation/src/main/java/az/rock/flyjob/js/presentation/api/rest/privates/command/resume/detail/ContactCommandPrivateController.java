@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin("*")
@@ -48,11 +49,13 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-//    @Override
-//    @DeleteMapping("/delete/all")
-//    public ResponseEntity<JSuccessResponse> deleteAll() {
-//        return null;
-//    }
+    @Override
+    @PatchMapping("/delete/all")
+    public ResponseEntity<JSuccessResponse> deleteAll(List<UUID> uuids) {
+        this.abstractContactCommandDomainPresentationService.deleteAll( uuids);
+        return ResponseEntity.ok(new JSuccessResponse());
+    }
+
 
     @Override
     @PatchMapping("/reorder")

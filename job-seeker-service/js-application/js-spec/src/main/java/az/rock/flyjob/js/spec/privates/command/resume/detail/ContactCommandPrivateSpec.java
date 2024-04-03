@@ -9,6 +9,7 @@ import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.rmi.server.UID;
+import java.util.List;
 import java.util.UUID;
 
 public interface ContactCommandPrivateSpec {
@@ -18,9 +19,7 @@ public interface ContactCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> delete(UUID contactId);
 
-    default ResponseEntity<JSuccessResponse> deleteAll() {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
+     ResponseEntity<JSuccessResponse> deleteAll(List<UUID> uuids);
 
     ResponseEntity<JSuccessResponse> reorder(ReorderRequest<ContactCommandModel> request);
 }

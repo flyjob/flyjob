@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.rmi.server.UID;
+import java.util.List;
 import java.util.UUID;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -22,6 +23,7 @@ public interface AbstractContactCommandHandler {
     ContactUpdateEvent updateContact (UpdateRequest<ContactCommandModel> commandModel);
 
     ContactDeleteEvent deleteContact(UUID uid);
+    ContactDeleteEvent deleteAllContact(List<UUID> uuids);
 
     ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel);
 

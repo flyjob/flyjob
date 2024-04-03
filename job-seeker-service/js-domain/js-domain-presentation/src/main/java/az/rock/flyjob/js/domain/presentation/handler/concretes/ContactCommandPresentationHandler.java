@@ -1,6 +1,4 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
-
-import az.rock.flyjob.js.domain.core.exception.ContactAlreadyExistException;
 import az.rock.flyjob.js.domain.core.exception.ContactNotFoundException;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractContactDomainService;
@@ -20,11 +18,11 @@ import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import com.intellibucket.lib.payload.payload.ContactPayload;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLOutput;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -92,6 +90,11 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
             this.abstractContactCommandRepositoryAdapter.inActive(contactIDNumber);
             return ContactDeleteEvent.of(toPayload(contactIDNumber));
         } else throw new ContactNotFoundException();
+    }
+
+    @Override
+    public ContactDeleteEvent deleteAllContact(List<UUID> uuids) {
+        return null;
     }
 
     @Override
