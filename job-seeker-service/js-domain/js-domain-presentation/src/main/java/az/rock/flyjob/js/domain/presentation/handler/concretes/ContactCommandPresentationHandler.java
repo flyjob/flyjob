@@ -80,7 +80,6 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
             this.abstractContactCommandRepositoryAdapter.update(newRoot);
             var payload = this.toPayload(newRoot);
             return ContactUpdateEvent.of(payload);
-
         } else throw new ContactNotFoundException();
     }
 
