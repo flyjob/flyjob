@@ -30,4 +30,7 @@ public final class BatisPageable {
         return offset;
     }
 
+    public BatisPageable changeLimit(Integer limit){
+        return new BatisPageable(limit,this.offset);
+    }
 }
