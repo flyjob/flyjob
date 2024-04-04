@@ -37,7 +37,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) throws EducationDomainException {
+    public SimplePageableResponse<MyEducationResponseModel> queryAllMyEducations(SimplePageableRequest pageableRequest) {
         var currentResumeId = securityContextHolder.availableResumeID();
         var educationCriteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).build();
         var myEducationsRootList = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
@@ -46,7 +46,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<AnyEducationResponseModel> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) throws EducationDomainException {
+    public SimplePageableResponse<AnyEducationResponseModel> queryAllAnyEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         var educationCriteria = EducationCriteria.builder().resumeID(targetResumeId).build();
         var anyEducationRootList = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         var anyEducationResponseList = anyEducationRootList.stream().map(AnyEducationResponseModel::of).toList();
@@ -54,7 +54,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<SimpleMyEducationResponseModel> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) throws EducationDomainException {
+    public SimplePageableResponse<SimpleMyEducationResponseModel> queryAllMySimpleEducations(SimplePageableRequest pageableRequest) {
         var currentResumeId = securityContextHolder.availableResumeID();
         var educationCriteria = EducationCriteria.builder().resumeID(currentResumeId.getRootID()).build();
         var simpleEducationRoots = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
@@ -63,7 +63,7 @@ public class EducationQueryHandler implements AbstractEducationQueryHandler {
     }
 
     @Override
-    public SimplePageableResponse<SimpleAnyEducationResponseModel> queryAllAnySimpleEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) throws EducationDomainException {
+    public SimplePageableResponse<SimpleAnyEducationResponseModel> queryAllAnySimpleEducations(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         var educationCriteria = EducationCriteria.builder().resumeID(targetResumeId).build();
         var anySimpleEducationRoots = educationQueryRepositoryAdapter.fetchAllEducations(educationCriteria, pageableRequest);
         var simpleAnyEducationResponseList = anySimpleEducationRoots.stream().map(SimpleAnyEducationResponseModel::of).toList();
