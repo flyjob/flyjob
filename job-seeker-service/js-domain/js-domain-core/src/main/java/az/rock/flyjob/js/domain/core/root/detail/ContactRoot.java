@@ -46,20 +46,20 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         return resume;
     }
 
-    public ContactRoot changeFormatType(ContactFormatType formatType){
-        this.formatType=formatType;
-        return this;
-    }
-    public ContactRoot changeLiveType(ContactLiveType liveAType){
-        this.liveType=liveType;
+    public ContactRoot changeOrderNumber(Integer orderNumber){
+        this.orderNumber=orderNumber;
         return this;
     }
     public ContactRoot changeData(String data){
         this.data=data;
         return this;
     }
-    public ContactRoot changeOrderNumber(Integer orderNumber){
-        orderNumber=this.orderNumber;
+    public ContactRoot changeFormatType(ContactFormatType formatType){
+        this.formatType=formatType;
+        return this;
+    }
+    public ContactRoot changeLiveType(ContactLiveType contactLiveType){
+        this.liveType=contactLiveType;
         return this;
     }
     public Boolean isValid() {
@@ -276,5 +276,7 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         public ContactRoot build() {
             return new ContactRoot(this);
         }
+
+
     }
 }

@@ -7,12 +7,14 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandMode
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommandDomainPresentationService;
 import az.rock.flyjob.js.spec.privates.command.resume.detail.ContactCommandPrivateSpec;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin("*")
@@ -48,11 +50,13 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
         return ResponseEntity.ok(new JSuccessResponse());
     }
 
-//    @Override
-//    @DeleteMapping("/delete/all")
-//    public ResponseEntity<JSuccessResponse> deleteAll() {
-//        return null;
-//    }
+    @Override
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<JSuccessResponse> deleteAll() {
+        this.abstractContactCommandDomainPresentationService.deleteAll();
+        return ResponseEntity.ok(new JSuccessResponse());
+    }
+
 
     @Override
     @PatchMapping("/reorder")

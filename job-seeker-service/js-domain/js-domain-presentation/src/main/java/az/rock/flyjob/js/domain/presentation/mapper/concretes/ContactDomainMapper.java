@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.mapper.concretes;
 
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
+import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractContactCommandDomainMapper;
 import az.rock.lib.domain.id.js.ContactID;
@@ -35,13 +36,10 @@ public class ContactDomainMapper implements AbstractContactCommandDomainMapper {
 
     @Override
     public ContactRoot isExistRoot(ContactCommandModel contactCommandModel, ContactRoot contactRoot) {
-        return ContactRoot.Builder.builder()
-                .build()
+        return contactRoot
                 .changeData(contactCommandModel.getData())
                 .changeOrderNumber(contactCommandModel.getOrderNumber())
                 .changeFormatType(contactCommandModel.getFormatType())
                 .changeLiveType(contactCommandModel.getLiveType());
-
     }
-
 }

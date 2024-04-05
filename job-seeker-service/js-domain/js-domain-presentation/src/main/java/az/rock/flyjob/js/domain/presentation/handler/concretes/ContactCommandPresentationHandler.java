@@ -1,6 +1,5 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
-import az.rock.flyjob.js.domain.core.exception.ContactAlreadyExistException;
 import az.rock.flyjob.js.domain.core.exception.ContactNotFoundException;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractContactDomainService;
@@ -15,15 +14,14 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.ContactID;
+import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import com.intellibucket.lib.payload.payload.ContactPayload;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLOutput;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.UUID;
@@ -58,6 +56,14 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
                 .build();
     }
 
+    private ContactPayload toPayload(ResumeID resumeID) {
+        return ContactPayload.Builder
+                .builder()
+                .id(resumeID.getAbsoluteID())
+                .build();
+    }
+
+
     @Override
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest) {
         var currentResumeId = this.contextHolder.availableResumeID();
@@ -74,13 +80,12 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     @Override
     public ContactUpdateEvent updateContact(UpdateRequest<ContactCommandModel> updateRequest) {
         var resumeID = contextHolder.availableResumeID();
-        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findContact(resumeID,updateRequest.getTargetId());
+        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findContact(resumeID, updateRequest.getTargetId());
         if (foundContact.isPresent()) {
-            var newRoot = contactCommandDomainMapper.isExistRoot(updateRequest.getModel(),foundContact.get());
+            var newRoot = contactCommandDomainMapper.isExistRoot(updateRequest.getModel(), foundContact.get());
             this.abstractContactCommandRepositoryAdapter.update(newRoot);
             var payload = this.toPayload(newRoot);
             return ContactUpdateEvent.of(payload);
-
         } else throw new ContactNotFoundException();
     }
 
@@ -93,6 +98,14 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
             this.abstractContactCommandRepositoryAdapter.inActive(contactIDNumber);
             return ContactDeleteEvent.of(toPayload(contactIDNumber));
         } else throw new ContactNotFoundException();
+    }
+
+    @Override
+    public ContactDeleteEvent deleteAllContact() {
+        var resumeId = contextHolder.availableResumeID();
+        var contactRoots = abstractContactQueryRepositoryAdapter.findAllByPID(resumeId);
+        abstractContactCommandRepositoryAdapter.deleteAll(contactRoots);
+        return ContactDeleteEvent.of(toPayload(resumeId));
     }
 
     @Override
