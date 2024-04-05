@@ -6,9 +6,8 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractContactCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommandDomainPresentationService;
+import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -37,8 +36,8 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
     }
 
     @Override
-    public void deleteAll(List<UUID> contactID) {
-        var contactDeleteEvent= abstractContactCommandHandler.deleteAllContact(contactID);
+    public void deleteAll(ResumeID resumeID) {
+        var contactDeleteEvent= abstractContactCommandHandler.deleteAllContact(resumeID);
     }
 
     @Override

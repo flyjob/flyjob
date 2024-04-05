@@ -5,6 +5,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderReques
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.ResponseEntity;
 
@@ -19,7 +20,7 @@ public interface ContactCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> delete(UUID contactId);
 
-     ResponseEntity<JSuccessResponse> deleteAll(List<UUID> uuids);
+     ResponseEntity<JSuccessResponse> deleteAll(ResumeID resumeID);
 
     ResponseEntity<JSuccessResponse> reorder(ReorderRequest<ContactCommandModel> request);
 }

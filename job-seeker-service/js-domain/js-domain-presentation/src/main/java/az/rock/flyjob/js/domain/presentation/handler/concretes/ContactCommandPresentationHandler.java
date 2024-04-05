@@ -13,16 +13,14 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.Abs
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractContactQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.ContactID;
+import az.rock.lib.domain.id.js.ResumeID;
 import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import com.intellibucket.lib.payload.payload.ContactPayload;
 import org.springframework.stereotype.Component;
-
-import java.sql.SQLOutput;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -93,7 +91,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactDeleteEvent deleteAllContact(List<UUID> uuids) {
+    public ContactDeleteEvent deleteAllContact(ResumeID resumeID) {
         return null;
     }
 
