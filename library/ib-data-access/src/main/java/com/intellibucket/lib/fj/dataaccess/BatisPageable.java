@@ -16,12 +16,6 @@ public final class BatisPageable {
         page = Math.abs(Objects.requireNonNullElse(page, 1));
         return new BatisPageable(size, (page - 1) * size);
     }
-
-    public BatisPageable changeLimit(Integer limit) {
-        this.limit = limit;
-        return this;
-    }
-
     public Integer getLimit() {
         return limit;
     }
