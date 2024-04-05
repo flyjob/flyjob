@@ -51,9 +51,9 @@ public class ContactCommandPrivateController implements ContactCommandPrivateSpe
     }
 
     @Override
-    @PatchMapping("/delete/all")
-    public ResponseEntity<JSuccessResponse> deleteAll(ResumeID resumeID) {
-        this.abstractContactCommandDomainPresentationService.deleteAll(resumeID);
+    @DeleteMapping("/delete/all")
+    public ResponseEntity<JSuccessResponse> deleteAll() {
+        this.abstractContactCommandDomainPresentationService.deleteAll();
         return ResponseEntity.ok(new JSuccessResponse());
     }
 

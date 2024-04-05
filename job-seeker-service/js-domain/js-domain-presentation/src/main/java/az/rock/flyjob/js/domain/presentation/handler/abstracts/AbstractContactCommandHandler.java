@@ -22,7 +22,7 @@ public interface AbstractContactCommandHandler {
     ContactUpdateEvent updateContact (UpdateRequest<ContactCommandModel> commandModel);
 
     ContactDeleteEvent deleteContact(UUID uid);
-    ContactDeleteEvent deleteAllContact(ResumeID resumeID);
+    ContactDeleteEvent deleteAllContact();
 
     ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel);
 

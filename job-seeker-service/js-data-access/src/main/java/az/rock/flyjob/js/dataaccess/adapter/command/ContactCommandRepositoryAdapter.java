@@ -5,6 +5,7 @@ import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ContactEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.AbstractContactCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractContactCommandRepositoryAdapter;
+import az.rock.lib.domain.id.js.ResumeID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -50,6 +51,18 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
     }
 
     @Override
+    public void deleteAll(List<ContactRoot> roots) {
+        var entityList = roots
+                .stream()
+                .map(abstractContactDataAccessMapper::toEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+        repository.deleteAll(entityList);
+
+    }
+
+    @Override
     public void updateAll(List<ContactRoot> contactRoots) {
         var entityList = contactRoots
                 .stream()
@@ -65,7 +78,6 @@ public class ContactCommandRepositoryAdapter implements AbstractContactCommandRe
         var entity = this.abstractContactDataAccessMapper.toEntity(root);
         entity.ifPresent(this.repository::delete);
     }
-
 
 
     @Override

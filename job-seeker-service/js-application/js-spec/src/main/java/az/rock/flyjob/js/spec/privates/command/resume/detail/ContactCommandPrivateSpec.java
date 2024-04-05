@@ -20,7 +20,7 @@ public interface ContactCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> delete(UUID contactId);
 
-     ResponseEntity<JSuccessResponse> deleteAll(ResumeID resumeID);
+     ResponseEntity<JSuccessResponse> deleteAll();
 
     ResponseEntity<JSuccessResponse> reorder(ReorderRequest<ContactCommandModel> request);
 }

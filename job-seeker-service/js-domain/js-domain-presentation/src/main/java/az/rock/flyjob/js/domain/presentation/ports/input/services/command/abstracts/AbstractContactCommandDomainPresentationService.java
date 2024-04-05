@@ -13,6 +13,6 @@ public interface AbstractContactCommandDomainPresentationService {
     void create(CreateRequest<ContactCommandModel> request);
     void update(UpdateRequest<ContactCommandModel> request);
     void delete(UUID contactId);
-    void deleteAll(ResumeID resumeID);
+    void deleteAll();
     void reorder(ReorderRequest<ContactCommandModel> request);
 }

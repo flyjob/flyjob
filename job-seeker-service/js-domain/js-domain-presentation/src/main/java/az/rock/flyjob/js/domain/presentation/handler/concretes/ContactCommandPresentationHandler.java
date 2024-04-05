@@ -1,4 +1,5 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
+
 import az.rock.flyjob.js.domain.core.exception.ContactNotFoundException;
 import az.rock.flyjob.js.domain.core.root.detail.ContactRoot;
 import az.rock.flyjob.js.domain.core.service.abstracts.AbstractContactDomainService;
@@ -20,6 +21,7 @@ import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
 import com.intellibucket.lib.payload.payload.ContactPayload;
 import org.springframework.stereotype.Component;
+
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,6 +56,14 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
                 .build();
     }
 
+    private ContactPayload toPayload(ResumeID resumeID) {
+        return ContactPayload.Builder
+                .builder()
+                .id(resumeID.getAbsoluteID())
+                .build();
+    }
+
+
     @Override
     public ContactCreatedEvent createContact(CreateRequest<ContactCommandModel> createRequest) {
         var currentResumeId = this.contextHolder.availableResumeID();
@@ -70,9 +80,9 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     @Override
     public ContactUpdateEvent updateContact(UpdateRequest<ContactCommandModel> updateRequest) {
         var resumeID = contextHolder.availableResumeID();
-        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findContact(resumeID,updateRequest.getTargetId());
+        Optional<ContactRoot> foundContact = this.abstractContactQueryRepositoryAdapter.findContact(resumeID, updateRequest.getTargetId());
         if (foundContact.isPresent()) {
-            var newRoot = contactCommandDomainMapper.isExistRoot(updateRequest.getModel(),foundContact.get());
+            var newRoot = contactCommandDomainMapper.isExistRoot(updateRequest.getModel(), foundContact.get());
             this.abstractContactCommandRepositoryAdapter.update(newRoot);
             var payload = this.toPayload(newRoot);
             return ContactUpdateEvent.of(payload);
@@ -91,8 +101,11 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactDeleteEvent deleteAllContact(ResumeID resumeID) {
-        return null;
+    public ContactDeleteEvent deleteAllContact() {
+        var resumeId = contextHolder.availableResumeID();
+        var contactRoots = abstractContactQueryRepositoryAdapter.findAllByPID(resumeId);
+        abstractContactCommandRepositoryAdapter.deleteAll(contactRoots);
+        return ContactDeleteEvent.of(toPayload(resumeId));
     }
 
     @Override

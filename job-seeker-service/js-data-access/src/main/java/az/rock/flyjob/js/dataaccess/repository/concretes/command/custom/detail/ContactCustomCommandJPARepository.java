@@ -28,11 +28,11 @@ public class ContactCustomCommandJPARepository implements AbstractContactCommand
         this.entityManager.persist(entity);
         return entity;
     }
+
     @Override
     public <S extends ContactEntity> S merge(S entity) {
         var userContactReference = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
         entity.setResume(userContactReference);
         return this.entityManager.merge(entity);
     }
-
 }
