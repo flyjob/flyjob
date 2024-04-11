@@ -78,8 +78,6 @@ public class InterestCreateCommandHandler implements AbstractInterestCreateComma
                 InterestID.of(interestCommandModelUpdateRequest.getTargetId()),modifierList);
         if (ownByID.isPresent()) {
             var oldInterestRoot = ownByID.get();
-            final InterestRoot newRoot = this.interestDomainMapper.toNewRoot(resumeID, interestCommandModelUpdateRequest.getModel());
-
             var newInterestRoot = oldInterestRoot
                     .changeName(interestCommandModelUpdateRequest.getModel().getName())
                     .changeHobby(interestCommandModelUpdateRequest.getModel().getHobby())
