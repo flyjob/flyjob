@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.handler.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
+import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
@@ -18,6 +19,7 @@ import com.intellibucket.lib.payload.event.query.CourseFetchEvent;
 import com.intellibucket.lib.payload.payload.query.CourseFetchPayload;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -45,8 +47,8 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(MyCourseResponseModel::of)
-                .toList();
-        var payload = SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(),courses);
+                .collect(Collectors.toList());
+        var payload = convertSimplePageableResponse(courses,pageableRequest);
         return payload;
 
     }
@@ -58,12 +60,9 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
                 .stream()
                 .map(AnyCourseResponseModel::of)
                 .collect(Collectors.toList());
-        Boolean hasMore = courses.size() + 1 > pageableRequest.getSize();
-        if(hasMore)courses.remove(courses.size()-1);
-        var payload =  SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(),hasMore,courses);
+        var payload =  convertSimplePageableResponse(courses,pageableRequest);
         return payload;
     }
-
     @Override
     public MyCourseResponseModel myCourseById(UUID id) throws CourseNotFoundException {
         var resumeId = securityContextHolder.availableResumeID();
@@ -90,8 +89,8 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,simplePageableRequest)
                 .stream()
                 .map(SimpleMyCourseResponseModel::of)
-                .toList();
-        var payload = SimplePageableResponse.ofNoMore(simplePageableRequest.getSize(), simplePageableRequest.getPage(),courses);
+                .collect(Collectors.toList());
+        var payload = convertSimplePageableResponse(courses,simplePageableRequest);
         return payload;
     }
 
@@ -101,8 +100,15 @@ public class CourseQueryHandler implements AbstractCourseQueryHandler{
         var courses = courseQueryRepositoryAdapter.fetchAllCourses(criteria,pageableRequest)
                 .stream()
                 .map(SimpleAnyCourseResponseModel::of)
-                .toList();
-        var payload =  SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(),courses);
+                .collect(Collectors.toList());
+        var payload =  convertSimplePageableResponse(courses,pageableRequest);
         return payload;
     }
+
+    private SimplePageableResponse convertSimplePageableResponse(List courses,SimplePageableRequest simplePageableRequest){
+        Boolean hasMore = courses.size()  > simplePageableRequest.getSize();
+        if(hasMore)courses.remove(courses.size()-1);
+        return SimplePageableResponse.of(simplePageableRequest.getSize(), simplePageableRequest.getPage(),hasMore,courses);
+    }
 }
+
