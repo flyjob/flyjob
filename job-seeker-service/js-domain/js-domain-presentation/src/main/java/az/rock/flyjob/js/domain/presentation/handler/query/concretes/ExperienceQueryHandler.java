@@ -1,53 +1,48 @@
-package az.rock.flyjob.js.domain.presentation.ports.input.services.query.concretes;
+package az.rock.flyjob.js.domain.presentation.handler.query.concretes;
 
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.AnyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.MyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.simple.SimpleAnyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.simple.SimpleMyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractExperienceQueryHandler;
-import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractExperienceQueryDomainPresentationService;
+import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Service
-public class ExperienceQueryDomainPresentationService implements AbstractExperienceQueryDomainPresentationService {
-
-    private final AbstractExperienceQueryHandler abstractExperienceQueryHandler;
-
-    public ExperienceQueryDomainPresentationService(AbstractExperienceQueryHandler abstractExperienceQueryHandler) {
-        this.abstractExperienceQueryHandler = abstractExperienceQueryHandler;
-    }
+@Component
+public class ExperienceQueryHandler implements AbstractExperienceQueryHandler {
+    private final AbstractSecurityContextHolder securityContextHolder;
 
     @Override
     public SimplePageableResponse<MyExperienceResponseModel> allMyExperiences(SimplePageableRequest pageableRequest) {
-        return abstractExperienceQueryHandler.allMyExperiences(pageableRequest);
+        return null;
     }
 
     @Override
     public SimplePageableResponse<AnyExperienceResponseModel> allAnyExperiences(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return abstractExperienceQueryHandler.allAnyExperiences(targetResumeId,pageableRequest);
+        return null;
     }
 
     @Override
     public MyExperienceResponseModel myExperienceById(UUID id) {
-        return abstractExperienceQueryHandler.myExperienceById(id);
+        return null;
     }
 
     @Override
     public SimplePageableResponse<SimpleMyExperienceResponseModel> allMySimpleExperiences(SimplePageableRequest pageableRequest) {
-        return abstractExperienceQueryHandler.allMySimpleExperiences(pageableRequest);
+        return null;
     }
 
     @Override
     public SimplePageableResponse<SimpleAnyExperienceResponseModel> allAnySimpleExperiences(UUID targetResumeId, SimplePageableRequest pageableRequest) {
-        return abstractExperienceQueryHandler.allAnySimpleExperiences(targetResumeId,pageableRequest);
+        return null;
     }
 
     @Override
     public AnyExperienceResponseModel anyExperienceById(UUID id) {
-        return abstractExperienceQueryHandler.anyExperienceById(id);
+        return null;
     }
 }

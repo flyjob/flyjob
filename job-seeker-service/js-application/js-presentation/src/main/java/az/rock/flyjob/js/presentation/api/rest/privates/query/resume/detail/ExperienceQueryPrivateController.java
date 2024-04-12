@@ -1,10 +1,5 @@
 package az.rock.flyjob.js.presentation.api.rest.privates.query.resume.detail;
 
-
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
-import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleMyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.AnyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.MyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.simple.SimpleAnyExperienceResponseModel;
@@ -33,42 +28,42 @@ public class ExperienceQueryPrivateController implements ExperienceQueryPrivateS
     @Override
     @GetMapping("/get-my-all")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyExperienceResponseModel>>> queryAllMyExperiences(@ModelAttribute SimplePageableRequest pageableRequest) {
-        var allMyExperiences = abstractExperienceQueryDomainPresentationService.queryAllMyExperiences(pageableRequest);
+        var allMyExperiences = abstractExperienceQueryDomainPresentationService.allMyExperiences(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(allMyExperiences));
     }
 
     @Override
     @GetMapping("/get-any-all/{resumeId}")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyExperienceResponseModel>>> queryAllAnyExperiences(@PathVariable("resumeId") UUID targetResumeId,@ModelAttribute SimplePageableRequest pageableRequest) {
-        var allAnyExperiences = abstractExperienceQueryDomainPresentationService.queryAllAnyExperiences(targetResumeId,pageableRequest);
+        var allAnyExperiences = abstractExperienceQueryDomainPresentationService.allAnyExperiences(targetResumeId,pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(allAnyExperiences));
     }
 
     @Override
     @GetMapping("/get-my/{experienceUUID}")
     public ResponseEntity<JSuccessDataResponse<MyExperienceResponseModel>> findMyExperienceById(@PathVariable("experienceUUID") UUID id) {
-        var myExperience = abstractExperienceQueryDomainPresentationService.findMyExperienceById(id);
+        var myExperience = abstractExperienceQueryDomainPresentationService.myExperienceById(id);
         return ResponseEntity.ok(new JSuccessDataResponse<>(myExperience));
     }
 
     @Override
     @GetMapping("/get-my-simple/all")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyExperienceResponseModel>>> queryAllMySimpleExperiences(@ModelAttribute SimplePageableRequest pageableRequest) {
-        var allMySimpleExperiences = abstractExperienceQueryDomainPresentationService.queryAllMySimpleExperiences(pageableRequest);
+        var allMySimpleExperiences = abstractExperienceQueryDomainPresentationService.allMySimpleExperiences(pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(allMySimpleExperiences));
     }
 
     @Override
     @GetMapping("/get-any-simple/{resumeID}")
     public ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyExperienceResponseModel>>> queryAllAnySimpleExperiences(@PathVariable("resumeID") UUID targetResumeId,@ModelAttribute SimplePageableRequest pageableRequest) {
-        var allAnySimpleExperiences = abstractExperienceQueryDomainPresentationService.queryAllAnySimpleExperiences(targetResumeId,pageableRequest);
+        var allAnySimpleExperiences = abstractExperienceQueryDomainPresentationService.allAnySimpleExperiences(targetResumeId,pageableRequest);
         return ResponseEntity.ok(new JSuccessDataResponse<>(allAnySimpleExperiences));
     }
 
     @Override
     @GetMapping("/get-any/{id}")
     public ResponseEntity<JSuccessDataResponse<AnyExperienceResponseModel>> findAnyExperienceById(@PathVariable("id") UUID id) {
-        var anyExperience = abstractExperienceQueryDomainPresentationService.findAnyExperienceById(id);
+        var anyExperience = abstractExperienceQueryDomainPresentationService.anyExperienceById(id);
         return ResponseEntity.ok(new JSuccessDataResponse<>(anyExperience));
     }
 }
