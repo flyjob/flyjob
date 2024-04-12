@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @DomainOutputPort
 public interface AbstractPersonalSummaryCommandRepositoryAdapter  {
-    Optional<InterestRoot> changeSummary(PersonalSummaryRoot root);
+    void changeSummary(PersonalSummaryRoot root);
 
 }

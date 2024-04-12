@@ -1,10 +1,12 @@
 package az.rock.flyjob.js.dataaccess.adapter.command.detail;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractPersonalSummaryDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.entity.resume.details.PersonalSummaryEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractPersonalSummaryCustomCommandJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.root.detail.PersonalSummaryRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractPersonalSummaryCommandRepositoryAdapter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -14,15 +16,19 @@ public class PersonalSummaryCommandRepositoryAdapter implements AbstractPersonal
     private final AbstractPersonalSummaryCustomCommandJPARepository interestCustomCommandJPARepository;
     private final AbstractPersonalSummaryDataAccessMapper interestDataAccessMapper;
 
-    public PersonalSummaryCommandRepositoryAdapter(AbstractPersonalSummaryCustomCommandJPARepository interestCustomCommandJPARepository,
+    public PersonalSummaryCommandRepositoryAdapter(@Qualifier(value = "abstractPersonalSummaryCustomCommandJPARepository") AbstractPersonalSummaryCustomCommandJPARepository interestCustomCommandJPARepository,
                                                    AbstractPersonalSummaryDataAccessMapper interestDataAccessMapper) {
         this.interestCustomCommandJPARepository = interestCustomCommandJPARepository;
         this.interestDataAccessMapper = interestDataAccessMapper;
     }
 
     @Override
-    public Optional<InterestRoot> changeSummary(PersonalSummaryRoot root) {
-        return Optional.empty();
+    public void changeSummary(PersonalSummaryRoot root) {
+       var entity = this.interestDataAccessMapper.toEntity(root);
+       entity.ifPresent(this.interestCustomCommandJPARepository::merge);
+
+
+
     }
 
 

@@ -22,7 +22,6 @@ import java.util.UUID;
 @Component
 public class InterestQueryHandler implements AbstractInterestQueryHandler {
     private final List<AccessModifier> modifierList = List.of(AccessModifier.values());
-
     private final AbstractSecurityContextHolder contextHolder;
     private final AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter;
 

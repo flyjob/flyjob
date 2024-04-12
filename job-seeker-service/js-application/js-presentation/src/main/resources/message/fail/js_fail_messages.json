@@ -79,6 +79,14 @@
     "tr": "Daha fazla ilgi alanı ekleyemezsiniz.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000010",
+    "az": "Məzmun tapılmadı.",
+    "en": "Summary not found.",
+    "ru": "Сводка не найдена.",
+    "tr": "Özet bulunamadı.",
+    "hasRegex": false,
+    "regex": ""
   }
-
 ]
