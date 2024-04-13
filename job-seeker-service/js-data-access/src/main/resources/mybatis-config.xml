@@ -71,6 +71,7 @@
         <mapper resource="mapper/CourseBatisRepository.xml"/>
         <mapper resource="mapper/InterestBatisRepository.xml"/>
         <mapper resource="mapper/EducationBatisRepository.xml"/>
+        <mapper resource="mapper/ExperienceBatisRepository.xml"/>
     </mappers>
 
 </configuration>
