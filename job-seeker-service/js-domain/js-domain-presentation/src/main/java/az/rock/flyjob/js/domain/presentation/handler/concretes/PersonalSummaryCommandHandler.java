@@ -6,10 +6,12 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractPersonalSu
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractPersonalSummaryCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractPersonalSummaryQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.PersonalSummaryID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimpleContext;
 import com.intellibucket.lib.payload.event.command.update.PersonalSummaryChangedEvent;
+import com.intellibucket.lib.payload.payload.command.SummaryChangePayload;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +27,8 @@ public class PersonalSummaryCommandHandler implements AbstractPersonalSummaryCom
     private final List<AccessModifier> modifierList = List.of(AccessModifier.values());
 
 
-    public PersonalSummaryCommandHandler(AbstractSecurityContextHolder contextHolder, @Qualifier(value = "personalSummaryQueryRepositoryAdapter") AbstractPersonalSummaryQueryRepositoryAdapter summaryQueryRepositoryAdapter,
+    public PersonalSummaryCommandHandler(AbstractSecurityContextHolder contextHolder,
+                                         @Qualifier(value = "personalSummaryQueryRepositoryAdapter") AbstractPersonalSummaryQueryRepositoryAdapter summaryQueryRepositoryAdapter,
                                          @Qualifier(value = "personalSummaryCommandRepositoryAdapter") AbstractPersonalSummaryCommandRepositoryAdapter summaryCommandRepositoryAdapter,
                                          AbstractPersonalSummaryDomainMapper personalSummaryDomainMapper) {
         this.contextHolder = contextHolder;
@@ -38,12 +41,15 @@ public class PersonalSummaryCommandHandler implements AbstractPersonalSummaryCom
     @Transactional
     public PersonalSummaryChangedEvent changeSummary(SimpleContext context) throws SummaryNotFound {
         var resumeID = this.contextHolder.availableResumeID();
-        var oldSummaryRoot = this.summaryQueryRepositoryAdapter.findByPID(ResumeID.of(context.getTargetId()));
+        var oldSummaryRoot = this.summaryQueryRepositoryAdapter.findByPID(resumeID, PersonalSummaryID.of(context.getTargetId()), modifierList);
         if (oldSummaryRoot.isPresent()) {
+
             var personalSummaryRoot = oldSummaryRoot.get();
             var updatedSummaryRoot = this.personalSummaryDomainMapper.toRoot(personalSummaryRoot, context);
             this.summaryCommandRepositoryAdapter.changeSummary(updatedSummaryRoot);
-            return PersonalSummaryChangedEvent.of(updatedSummaryRoot);
+
+            var summaryChangePayload = SummaryChangePayload.of(context.getTargetId());
+            return PersonalSummaryChangedEvent.of(summaryChangePayload);
         } else throw new SummaryNotFound();
 
 

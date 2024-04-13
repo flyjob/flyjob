@@ -16,8 +16,8 @@ public class PersonalSummaryCommandRepositoryAdapter implements AbstractPersonal
     private final AbstractPersonalSummaryCustomCommandJPARepository interestCustomCommandJPARepository;
     private final AbstractPersonalSummaryDataAccessMapper interestDataAccessMapper;
 
-    public PersonalSummaryCommandRepositoryAdapter(@Qualifier(value = "abstractPersonalSummaryCustomCommandJPARepository") AbstractPersonalSummaryCustomCommandJPARepository interestCustomCommandJPARepository,
-                                                   AbstractPersonalSummaryDataAccessMapper interestDataAccessMapper) {
+    public PersonalSummaryCommandRepositoryAdapter(@Qualifier(value = "personalSummaryCustomCommandJPARepository") AbstractPersonalSummaryCustomCommandJPARepository interestCustomCommandJPARepository,
+                                                   @Qualifier(value = "personalSummaryDataAccessMapper") AbstractPersonalSummaryDataAccessMapper interestDataAccessMapper) {
         this.interestCustomCommandJPARepository = interestCustomCommandJPARepository;
         this.interestDataAccessMapper = interestDataAccessMapper;
     }

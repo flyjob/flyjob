@@ -22,7 +22,8 @@ public class PersonalSummaryQueryRepositoryAdapter implements AbstractPersonalSu
 
     private final AbstractPersonalSummaryDataAccessMapper personalSummaryDataAccessMapper;
 
-    public PersonalSummaryQueryRepositoryAdapter(AbstractPersonalSummaryQueryJPARepository abstractPersonalSummaryQueryJPARepository, AbstractPersonalSummaryDataAccessMapper personalSummaryDataAccessMapper) {
+    public PersonalSummaryQueryRepositoryAdapter(AbstractPersonalSummaryQueryJPARepository abstractPersonalSummaryQueryJPARepository,
+                                                 AbstractPersonalSummaryDataAccessMapper personalSummaryDataAccessMapper) {
         this.abstractPersonalSummaryQueryJPARepository = abstractPersonalSummaryQueryJPARepository;
         this.personalSummaryDataAccessMapper = personalSummaryDataAccessMapper;
     }
@@ -35,16 +36,14 @@ public class PersonalSummaryQueryRepositoryAdapter implements AbstractPersonalSu
         return Optional.empty();
     }
 
-    @Override
-    public Optional<PersonalSummaryRoot> findOwnByID(ResumeID parentID, PersonalSummaryID rootId, List<AccessModifier> accessModifiers) {
-        this.
-        return Optional.empty();
-    }
 
     @Override
-    public Optional<PersonalSummaryRoot> findByPID(ResumeID parentID, PersonalSummaryID rootId,List<AccessModifier> modifierList) {
-        var summaryEntity = abstractPersonalSummaryQueryJPARepository.findSummaryByResumeID(parentID.getAbsoluteID(), rootId.getAbsoluteID(),modifierList);
-        if (summaryEntity.isPresent()) return this.personalSummaryDataAccessMapper.toRoot(summaryEntity.get());
+    public Optional<PersonalSummaryRoot> findByPID(ResumeID parentID, PersonalSummaryID rootId, List<AccessModifier> modifierList) {
+        var summaryEntity = abstractPersonalSummaryQueryJPARepository.findSummaryByResumeID(parentID.getAbsoluteID(), rootId.getAbsoluteID(), modifierList);
+        if (summaryEntity.isPresent()){
+            return this.personalSummaryDataAccessMapper.toRoot(summaryEntity.get());
+        }
+
         return Optional.empty();
 
     }

@@ -17,7 +17,7 @@ public class PersonalSummaryDomainMapper implements AbstractPersonalSummaryDomai
                 .accessModifier(root.getAccessModifier())
                 .createdDate(root.getCreatedDate())
                 .processStatus(root.getProcessStatus())
-                .resume(ResumeID.of(personalContext.getTargetId()))
+                .resume(ResumeID.of(root.getResume().getRootID()))
                 .version(root.getVersion())
                 .rowStatus(root.getRowStatus())
                 .build();
