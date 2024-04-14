@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.batis.ExperienceBatisRepository">
+<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.ExperienceBatisRepository">
   <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.ExperienceCompose">
     <id column="uuid" property="uuid"
         typeHandler="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler"/>
