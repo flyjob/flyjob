@@ -13,11 +13,11 @@
                         userId="postgres"
                         password="123456"/>
         <javaModelGenerator targetPackage="az.rock.flyjob.js.dataaccess.model.batis.model"
-                            targetProject="/Users/vugarmammadli/Desktop/Projects/flyjob/job-seeker-service/js-data-access/src/main/java"/>
+                            targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="resources.mapper"
-                         targetProject="/Users/vugarmammadli/Desktop/Projects/flyjob/job-seeker-service/js-data-access/src/main"/>
+                         targetProject="src/main"/>
         <javaClientGenerator type="XMLMAPPER" targetPackage="az.rock.flyjob.js.dataaccess.repository.abstracts.batis"
-                             targetProject="/Users/vugarmammadli/Desktop/Projects/flyjob/job-seeker-service/js-data-access/src/main/java"/>
+                             targetProject="src/main/java"/>
 
 
         <table schema="resume"
@@ -36,6 +36,10 @@
                tableName="contacts"
                domainObjectName="ContactCompose"
                mapperName="ContactBatisRepository"/>
+        <table schema="resume"
+               tableName="experiences"
+               domainObjectName="ExperienceCompose"
+               mapperName="ExperienceBatisRepository"/>
 
     </context>
 </generatorConfiguration>
