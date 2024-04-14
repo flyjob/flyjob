@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractExp
 import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractExperienceQueryDomainPresentationService;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -31,6 +32,7 @@ public class ExperienceQueryDomainPresentationService implements AbstractExperie
         return abstractExperienceQueryHandler.allAnyExperiences(targetResumeId,pageableRequest);
     }
 
+    @SneakyThrows
     @Override
     public MyExperienceResponseModel myExperienceById(UUID id) {
         return abstractExperienceQueryHandler.myExperienceById(id);
@@ -45,7 +47,7 @@ public class ExperienceQueryDomainPresentationService implements AbstractExperie
     public SimplePageableResponse<SimpleAnyExperienceResponseModel> allAnySimpleExperiences(UUID targetResumeId, SimplePageableRequest pageableRequest) {
         return abstractExperienceQueryHandler.allAnySimpleExperiences(targetResumeId,pageableRequest);
     }
-
+    @SneakyThrows
     @Override
     public AnyExperienceResponseModel anyExperienceById(UUID id) {
         return abstractExperienceQueryHandler.anyExperienceById(id);
