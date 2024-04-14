@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.dataaccess.adapter.query.detail;
 
+import az.rock.flyjob.js.dataaccess.mapper.concretes.ExperienceDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.mapper.concretes.PageableDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.ExperienceComposeExample;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.ExperienceBatisRepository;
@@ -19,9 +20,12 @@ public class ExperienceQueryRepositoryAdapter implements AbstractExperienceQuery
 
     private final PageableDataAccessMapper pageableDataAccessMapper;
 
-    public ExperienceQueryRepositoryAdapter(ExperienceBatisRepository experienceBatisRepository, PageableDataAccessMapper pageableDataAccessMapper) {
+    private final ExperienceDataAccessMapper experienceDataAccessMapper;
+
+    public ExperienceQueryRepositoryAdapter(ExperienceBatisRepository experienceBatisRepository, PageableDataAccessMapper pageableDataAccessMapper, ExperienceDataAccessMapper experienceDataAccessMapper) {
         this.experienceBatisRepository = experienceBatisRepository;
         this.pageableDataAccessMapper = pageableDataAccessMapper;
+        this.experienceDataAccessMapper = experienceDataAccessMapper;
     }
 
     @Override

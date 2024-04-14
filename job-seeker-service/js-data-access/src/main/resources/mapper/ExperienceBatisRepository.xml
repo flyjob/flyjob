@@ -2,13 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.batis.ExperienceBatisRepository">
   <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.ExperienceCompose">
-    <id column="uuid" jdbcType="OTHER" property="uuid" />
+    <id column="uuid" property="uuid"
+        typeHandler="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler"/>
     <result column="version" jdbcType="BIGINT" property="version" />
     <result column="process_status" jdbcType="VARCHAR" property="processStatus" />
     <result column="row_status" jdbcType="VARCHAR" property="rowStatus" />
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
     <result column="modification_date" jdbcType="TIMESTAMP" property="modificationDate" />
-    <result column="resume_uuid" jdbcType="OTHER" property="resumeUuid" />
+    <result column="resume_uuid" property="resumeUuid"
+            typeHandler="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler"/>
     <result column="access_modifier" jdbcType="VARCHAR" property="accessModifier" />
     <result column="order_number" jdbcType="INTEGER" property="orderNumber" />
     <result column="employer" jdbcType="VARCHAR" property="employer" />
@@ -118,7 +120,7 @@
     select 
     <include refid="Base_Column_List" />
     from resume.experiences
-    where uuid = #{uuid,jdbcType=OTHER}
+    where uuid = #{uuid,typeHandler=az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Object">
     delete from resume.experiences

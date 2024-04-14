@@ -1,12 +1,16 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 public class ExperienceCompose {
-    private Object uuid;
+    private UUID uuid;
 
     private Long version;
 
@@ -18,7 +22,7 @@ public class ExperienceCompose {
 
     private Date modificationDate;
 
-    private Object resumeUuid;
+    private UUID resumeUuid;
 
     private String accessModifier;
 
@@ -30,7 +34,7 @@ public class ExperienceCompose {
 
     private String jobTitle;
 
-    private Object cityId;
+    private UUID cityId;
 
     private String workingType;
 
@@ -38,8 +42,10 @@ public class ExperienceCompose {
 
     private String description;
 
-    private Date startDate;
+    @Temporal(value = TemporalType.DATE)
+    private Timestamp startDate;
 
-    private Date endDate;
+    @Temporal(value = TemporalType.DATE)
+    private Timestamp endDate;
 
 }
