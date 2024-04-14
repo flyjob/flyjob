@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.handler.query.abstracts;
 
+import az.rock.flyjob.js.domain.core.exception.experience.ExperienceNotFoundException;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.AnyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.MyExperienceResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.experience.simple.SimpleAnyExperienceResponseModel;
@@ -17,11 +18,11 @@ public interface AbstractExperienceQueryHandler {
 
     SimplePageableResponse<AnyExperienceResponseModel> allAnyExperiences(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
-    MyExperienceResponseModel myExperienceById(UUID id);
+    MyExperienceResponseModel myExperienceById(UUID id) throws ExperienceNotFoundException;
 
     SimplePageableResponse<SimpleMyExperienceResponseModel> allMySimpleExperiences(SimplePageableRequest pageableRequest);
 
     SimplePageableResponse<SimpleAnyExperienceResponseModel> allAnySimpleExperiences(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
-    AnyExperienceResponseModel anyExperienceById(UUID id);
+    AnyExperienceResponseModel anyExperienceById(UUID id) throws ExperienceNotFoundException;
 }
