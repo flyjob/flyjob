@@ -32,10 +32,6 @@ public class ExperienceCommandPrivateController implements ExperienceCommandPriv
         return null;
     }
 
-    @Override
-    public ResponseEntity<JSuccessResponse> deleteAll() {
-        return ExperienceCommandPrivateSpec.super.deleteAll();
-    }
 
     @Override
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
