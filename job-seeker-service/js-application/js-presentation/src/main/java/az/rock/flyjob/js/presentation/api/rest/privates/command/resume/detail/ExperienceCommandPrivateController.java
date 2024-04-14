@@ -17,6 +17,11 @@ import java.util.UUID;
 @RequestMapping(value = "/js/1.0/private/command/experience",produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExperienceCommandPrivateController implements ExperienceCommandPrivateSpec {
     private AbstractExperienceCommandDomainPresentationService abstractExperienceCommandDomainPresentationService;
+
+    public ExperienceCommandPrivateController(AbstractExperienceCommandDomainPresentationService abstractExperienceCommandDomainPresentationService) {
+        this.abstractExperienceCommandDomainPresentationService = abstractExperienceCommandDomainPresentationService;
+    }
+
     @Override
     @PostMapping("create")
     public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<ExperienceCommandModel> request) {
@@ -39,6 +44,7 @@ public class ExperienceCommandPrivateController implements ExperienceCommandPriv
     }
 
     @Override
+    @DeleteMapping("/delete/all")
     public ResponseEntity<JSuccessResponse> deleteAll() {
         this.abstractExperienceCommandDomainPresentationService.deleteAll();
         return ResponseEntity.ok(JSuccessResponse.success());
