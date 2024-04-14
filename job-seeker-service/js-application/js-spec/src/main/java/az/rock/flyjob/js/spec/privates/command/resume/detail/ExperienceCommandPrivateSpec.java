@@ -16,9 +16,7 @@ public interface ExperienceCommandPrivateSpec {
 
     ResponseEntity<JSuccessResponse> delete(UUID experienceId);
 
-    default ResponseEntity<JSuccessResponse> deleteAll() {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
+    ResponseEntity<JSuccessResponse> deleteAll();
 
     ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

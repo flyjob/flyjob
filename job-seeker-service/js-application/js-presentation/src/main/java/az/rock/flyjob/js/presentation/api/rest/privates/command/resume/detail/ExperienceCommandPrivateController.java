@@ -4,37 +4,51 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ExperienceCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractExperienceCommandDomainPresentationService;
 import az.rock.flyjob.js.spec.privates.command.resume.detail.ExperienceCommandPrivateSpec;
 import az.rock.lib.jresponse.response.success.JSuccessResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/js/1.0/private/command/experience",produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExperienceCommandPrivateController implements ExperienceCommandPrivateSpec {
+    private AbstractExperienceCommandDomainPresentationService abstractExperienceCommandDomainPresentationService;
     @Override
-    public ResponseEntity<JSuccessResponse> create(CreateRequest<ExperienceCommandModel> request) {
-        return null;
+    @PostMapping("create")
+    public ResponseEntity<JSuccessResponse> create(@RequestBody CreateRequest<ExperienceCommandModel> request) {
+        this.abstractExperienceCommandDomainPresentationService.create(request);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
-    public ResponseEntity<JSuccessResponse> update(UpdateRequest<ExperienceCommandModel> request) {
-        return null;
+    @PutMapping("/update")
+    public ResponseEntity<JSuccessResponse> update(@RequestBody UpdateRequest<ExperienceCommandModel> request) {
+        this.abstractExperienceCommandDomainPresentationService.update(request);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
     @Override
-    public ResponseEntity<JSuccessResponse> delete(UUID experienceId) {
-        return null;
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<JSuccessResponse> delete(@PathVariable UUID id) {
+        this.abstractExperienceCommandDomainPresentationService.delete(id);
+        return ResponseEntity.ok(JSuccessResponse.success());
+    }
+
+    @Override
+    public ResponseEntity<JSuccessResponse> deleteAll() {
+        this.abstractExperienceCommandDomainPresentationService.deleteAll();
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 
 
     @Override
+    @PatchMapping( "/reorder")
     public ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request) {
-        return null;
+        this.abstractExperienceCommandDomainPresentationService.reorder(request);
+        return ResponseEntity.ok(JSuccessResponse.success());
     }
 }
