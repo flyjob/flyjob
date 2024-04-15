@@ -18,9 +18,11 @@ public class ExperienceCompose {
 
     private String rowStatus;
 
-    private Date createdDate;
+    @Temporal(value = TemporalType.DATE)
+    private Timestamp createdDate;
 
-    private Date modificationDate;
+    @Temporal(value = TemporalType.DATE)
+    private Timestamp modificationDate;
 
     private UUID resumeUuid;
 

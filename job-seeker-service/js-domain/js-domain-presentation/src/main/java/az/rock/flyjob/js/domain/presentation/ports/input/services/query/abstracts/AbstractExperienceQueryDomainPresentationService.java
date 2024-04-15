@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @InputPort
-//@Transactional(readOnly = true)
 public interface AbstractExperienceQueryDomainPresentationService {
     SimplePageableResponse<MyExperienceResponseModel> allMyExperiences(SimplePageableRequest pageableRequest);
 
