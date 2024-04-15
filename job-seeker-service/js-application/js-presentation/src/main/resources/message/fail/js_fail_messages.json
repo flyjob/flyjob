@@ -88,5 +88,16 @@
     "tr": "Özet bulunamadı.",
     "hasRegex": false,
     "regex": ""
+  },
+
+  {
+    "code": "F0000000011",
+    "az": "Məzmun artıq mövcuddur.",
+    "en": "Summary already exist.",
+    "ru": "Сводка уже существует.",
+    "tr": "Özet zaten mevcut.",
+    "hasRegex": false,
+    "regex": ""
   }
+
 ]

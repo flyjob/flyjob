@@ -12,7 +12,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AbstractPersonalSummaryQueryRepositoryAdapter  extends AbstractQueryRepositoryAdapter<PersonalSummaryRoot, PersonalSummaryID, ResumeID> {
-
-
     Optional<PersonalSummaryRoot> findByPID(ResumeID parentID,PersonalSummaryID rootId, List<AccessModifier> accessModifiers);
 }

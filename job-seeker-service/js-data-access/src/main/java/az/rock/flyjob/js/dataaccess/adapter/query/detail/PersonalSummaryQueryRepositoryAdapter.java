@@ -39,8 +39,8 @@ public class PersonalSummaryQueryRepositoryAdapter implements AbstractPersonalSu
 
     @Override
     public Optional<PersonalSummaryRoot> findByPID(ResumeID parentID, PersonalSummaryID rootId, List<AccessModifier> modifierList) {
-        var summaryEntity = abstractPersonalSummaryQueryJPARepository.findSummaryByResumeID(parentID.getAbsoluteID(), rootId.getAbsoluteID(), modifierList);
-        if (summaryEntity.isPresent()){
+        var summaryEntity = abstractPersonalSummaryQueryJPARepository.findSummaryByResumeIdAndSumId(parentID.getAbsoluteID(), rootId.getAbsoluteID(), modifierList);
+        if (summaryEntity.isPresent()) {
             return this.personalSummaryDataAccessMapper.toRoot(summaryEntity.get());
         }
 
@@ -48,5 +48,13 @@ public class PersonalSummaryQueryRepositoryAdapter implements AbstractPersonalSu
 
     }
 
+    @Override
+    public Optional<PersonalSummaryRoot> findByPID(ResumeID parentID) {
+        var summaryEntity = abstractPersonalSummaryQueryJPARepository.findByResumeId(parentID.getAbsoluteID());
+        if (summaryEntity.isPresent()) {
+            return this.personalSummaryDataAccessMapper.toRoot(summaryEntity.get());
+        }
+        return Optional.empty();
 
+    }
 }

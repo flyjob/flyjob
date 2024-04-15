@@ -3,7 +3,6 @@ package az.rock.flyjob.js.dataaccess.adapter.command.detail;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractPersonalSummaryDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.PersonalSummaryEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractPersonalSummaryCustomCommandJPARepository;
-import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
 import az.rock.flyjob.js.domain.core.root.detail.PersonalSummaryRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractPersonalSummaryCommandRepositoryAdapter;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +26,18 @@ public class PersonalSummaryCommandRepositoryAdapter implements AbstractPersonal
        var entity = this.interestDataAccessMapper.toEntity(root);
        entity.ifPresent(this.interestCustomCommandJPARepository::merge);
 
+    }
+
+    @Override
+    public void createSummary(PersonalSummaryRoot root) {
+        final Optional<PersonalSummaryEntity> entity = this.interestDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.interestCustomCommandJPARepository::persist);
+    }
+
+    @Override
+    public void deleteSummary(PersonalSummaryRoot root) {
+        final Optional<PersonalSummaryEntity> entity = this.interestDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.interestCustomCommandJPARepository::delete);
 
 
     }

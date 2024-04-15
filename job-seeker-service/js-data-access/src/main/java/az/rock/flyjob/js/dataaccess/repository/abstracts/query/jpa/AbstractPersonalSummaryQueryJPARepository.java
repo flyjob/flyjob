@@ -14,7 +14,10 @@ import java.util.UUID;
 @Repository
 public interface AbstractPersonalSummaryQueryJPARepository extends JpaRepository<PersonalSummaryEntity, UUID> {
     @Query("select p from PersonalSummaryEntity p where p.resume.uuid=:resumeId  AND p.uuid=:summaryId AND p.accessModifier IN :access AND p.rowStatus='ACTIVE'")
-    Optional<PersonalSummaryEntity> findSummaryByResumeID(@Param(value = "resumeId") UUID resumeID,@Param(value = "summaryId" ) UUID summaryId, @Param(value = "access") List<AccessModifier> modifierList);
+    Optional<PersonalSummaryEntity> findSummaryByResumeIdAndSumId(@Param(value = "resumeId") UUID resumeID,@Param(value = "summaryId" ) UUID summaryId, @Param(value = "access") List<AccessModifier> modifierList);
+
+    @Query("select p from PersonalSummaryEntity p where p.resume.uuid=:resumeId  AND p.rowStatus='ACTIVE'")
+    Optional<PersonalSummaryEntity> findByResumeId(@Param(value = "resumeId") UUID resumeID);
 
 
 }
