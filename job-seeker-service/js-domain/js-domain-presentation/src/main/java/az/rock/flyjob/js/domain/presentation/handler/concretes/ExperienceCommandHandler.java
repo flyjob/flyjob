@@ -43,6 +43,7 @@ public class ExperienceCommandHandler implements AbstractExperienceCommandHandle
     @Override
     public ExperienceMergeEvent update(UpdateRequest<ExperienceCommandModel> request) {
         var resumeId=this.securityContextHolder.availableResumeID();
+//        var experienceDb=this.experienceQueryRepositoryAdapter.findById(request.)
                 return null;
     }
 
