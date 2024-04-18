@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+
 @EnableDiscoveryClient
 @SpringBootApplication(
         scanBasePackages = {

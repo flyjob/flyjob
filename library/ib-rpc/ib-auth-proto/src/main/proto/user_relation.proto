@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.intellibucket.lib.proto;
+
+message UserRelationLevelRequest {
+  string sourceUserId = 1;
+  string targetUserId = 2;
+}
+
+message UserRelationLevelResponse {
+  string relationLevel = 1;
+}
+
+service UserRelationLevelService {
+  rpc fetchUserRelationLevel(UserRelationLevelRequest) returns (UserRelationLevelResponse);
+}

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.EducationBatisRepository">
+    <resultMap id="BaseResultMap" type="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose">
+        <id column="uuid" property="uuid"
+            typeHandler="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="process_status" jdbcType="VARCHAR" property="processStatus"/>
+        <result column="row_status" jdbcType="VARCHAR" property="rowStatus"/>
+        <result column="created_date" jdbcType="TIMESTAMP" property="createdDate"/>
+        <result column="modification_date" jdbcType="TIMESTAMP" property="modificationDate"/>
+        <result column="resume_uuid" property="resumeUuid"
+                typeHandler="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler"/>
+        <result column="access_modifier" jdbcType="VARCHAR" property="accessModifier"/>
+        <result column="order_number" jdbcType="INTEGER" property="orderNumber"/>
+        <result column="degree" jdbcType="VARCHAR" property="degree"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="link" jdbcType="VARCHAR" property="link"/>
+        <result column="establishment_uuid" jdbcType="OTHER" property="establishmentUuid"/>
+        <result column="establishment_name" jdbcType="VARCHAR" property="establishmentName"/>
+        <result column="city_id" jdbcType="OTHER" property="cityId"/>
+        <result column="start_date" jdbcType="DATE" property="startDate"/>
+        <result column="end_date" jdbcType="DATE" property="endDate"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        uuid
+        , version, process_status, row_status, created_date, modification_date, resume_uuid,
+    access_modifier, order_number, degree, state, link, establishment_uuid, establishment_name, 
+    city_id, start_date, end_date, description
+    </sql>
+    <select id="selectByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from resume.educations
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from resume.educations
+        where uuid = #{uuid,typeHandler=az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Object">
+        delete
+        from resume.educations
+        where uuid = #{uuid,typeHandler=az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler}
+    </delete>
+    <delete id="deleteByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample">
+        delete from resume.educations
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose">
+        insert into resume.educations (uuid, version, process_status,
+                                       row_status, created_date, modification_date,
+                                       resume_uuid, access_modifier, order_number,
+                                       degree, state, link,
+                                       establishment_uuid, establishment_name, city_id,
+                                       start_date, end_date, description)
+        values (#{uuid,jdbcType=OTHER}, #{version,jdbcType=BIGINT}, #{processStatus,jdbcType=VARCHAR},
+                #{rowStatus,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP},
+                #{modificationDate,jdbcType=TIMESTAMP},
+                #{resumeUuid,jdbcType=OTHER}, #{accessModifier,jdbcType=VARCHAR}, #{orderNumber,jdbcType=INTEGER},
+                #{degree,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR},
+                #{establishmentUuid,jdbcType=OTHER}, #{establishmentName,jdbcType=VARCHAR}, #{cityId,jdbcType=OTHER},
+                #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{description,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose">
+        insert into resume.educations
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="processStatus != null">
+                process_status,
+            </if>
+            <if test="rowStatus != null">
+                row_status,
+            </if>
+            <if test="createdDate != null">
+                created_date,
+            </if>
+            <if test="modificationDate != null">
+                modification_date,
+            </if>
+            <if test="resumeUuid != null">
+                resume_uuid,
+            </if>
+            <if test="accessModifier != null">
+                access_modifier,
+            </if>
+            <if test="orderNumber != null">
+                order_number,
+            </if>
+            <if test="degree != null">
+                degree,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="link != null">
+                link,
+            </if>
+            <if test="establishmentUuid != null">
+                establishment_uuid,
+            </if>
+            <if test="establishmentName != null">
+                establishment_name,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="startDate != null">
+                start_date,
+            </if>
+            <if test="endDate != null">
+                end_date,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">
+                #{uuid,jdbcType=OTHER},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+            <if test="processStatus != null">
+                #{processStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="rowStatus != null">
+                #{rowStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="createdDate != null">
+                #{createdDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificationDate != null">
+                #{modificationDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resumeUuid != null">
+                #{resumeUuid,jdbcType=OTHER},
+            </if>
+            <if test="accessModifier != null">
+                #{accessModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNumber != null">
+                #{orderNumber,jdbcType=INTEGER},
+            </if>
+            <if test="degree != null">
+                #{degree,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="establishmentUuid != null">
+                #{establishmentUuid,jdbcType=OTHER},
+            </if>
+            <if test="establishmentName != null">
+                #{establishmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=OTHER},
+            </if>
+            <if test="startDate != null">
+                #{startDate,jdbcType=DATE},
+            </if>
+            <if test="endDate != null">
+                #{endDate,jdbcType=DATE},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample"
+            resultType="java.lang.Long">
+        select count(*) from resume.educations
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update resume.educations
+        <set>
+            <if test="record.uuid != null">
+                uuid = #{record.uuid,jdbcType=OTHER},
+            </if>
+            <if test="record.version != null">
+                version = #{record.version,jdbcType=BIGINT},
+            </if>
+            <if test="record.processStatus != null">
+                process_status = #{record.processStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="record.rowStatus != null">
+                row_status = #{record.rowStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createdDate != null">
+                created_date = #{record.createdDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.modificationDate != null">
+                modification_date = #{record.modificationDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.resumeUuid != null">
+                resume_uuid = #{record.resumeUuid,jdbcType=OTHER},
+            </if>
+            <if test="record.accessModifier != null">
+                access_modifier = #{record.accessModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="record.orderNumber != null">
+                order_number = #{record.orderNumber,jdbcType=INTEGER},
+            </if>
+            <if test="record.degree != null">
+                degree = #{record.degree,jdbcType=VARCHAR},
+            </if>
+            <if test="record.state != null">
+                state = #{record.state,jdbcType=VARCHAR},
+            </if>
+            <if test="record.link != null">
+                link = #{record.link,jdbcType=VARCHAR},
+            </if>
+            <if test="record.establishmentUuid != null">
+                establishment_uuid = #{record.establishmentUuid,jdbcType=OTHER},
+            </if>
+            <if test="record.establishmentName != null">
+                establishment_name = #{record.establishmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cityId != null">
+                city_id = #{record.cityId,jdbcType=OTHER},
+            </if>
+            <if test="record.startDate != null">
+                start_date = #{record.startDate,jdbcType=DATE},
+            </if>
+            <if test="record.endDate != null">
+                end_date = #{record.endDate,jdbcType=DATE},
+            </if>
+            <if test="record.description != null">
+                description = #{record.description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update resume.educations
+        set uuid = #{record.uuid,jdbcType=OTHER},
+        version = #{record.version,jdbcType=BIGINT},
+        process_status = #{record.processStatus,jdbcType=VARCHAR},
+        row_status = #{record.rowStatus,jdbcType=VARCHAR},
+        created_date = #{record.createdDate,jdbcType=TIMESTAMP},
+        modification_date = #{record.modificationDate,jdbcType=TIMESTAMP},
+        resume_uuid = #{record.resumeUuid,jdbcType=OTHER},
+        access_modifier = #{record.accessModifier,jdbcType=VARCHAR},
+        order_number = #{record.orderNumber,jdbcType=INTEGER},
+        degree = #{record.degree,jdbcType=VARCHAR},
+        state = #{record.state,jdbcType=VARCHAR},
+        link = #{record.link,jdbcType=VARCHAR},
+        establishment_uuid = #{record.establishmentUuid,jdbcType=OTHER},
+        establishment_name = #{record.establishmentName,jdbcType=VARCHAR},
+        city_id = #{record.cityId,jdbcType=OTHER},
+        start_date = #{record.startDate,jdbcType=DATE},
+        end_date = #{record.endDate,jdbcType=DATE},
+        description = #{record.description,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose">
+        update resume.educations
+        <set>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+            <if test="processStatus != null">
+                process_status = #{processStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="rowStatus != null">
+                row_status = #{rowStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="createdDate != null">
+                created_date = #{createdDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificationDate != null">
+                modification_date = #{modificationDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="resumeUuid != null">
+                resume_uuid = #{resumeUuid,jdbcType=OTHER},
+            </if>
+            <if test="accessModifier != null">
+                access_modifier = #{accessModifier,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber,jdbcType=INTEGER},
+            </if>
+            <if test="degree != null">
+                degree = #{degree,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                link = #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="establishmentUuid != null">
+                establishment_uuid = #{establishmentUuid,jdbcType=OTHER},
+            </if>
+            <if test="establishmentName != null">
+                establishment_name = #{establishmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=OTHER},
+            </if>
+            <if test="startDate != null">
+                start_date = #{startDate,jdbcType=DATE},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate,jdbcType=DATE},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where uuid = #{uuid,jdbcType=OTHER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose">
+        update resume.educations
+        set version            = #{version,jdbcType=BIGINT},
+            process_status     = #{processStatus,jdbcType=VARCHAR},
+            row_status         = #{rowStatus,jdbcType=VARCHAR},
+            created_date       = #{createdDate,jdbcType=TIMESTAMP},
+            modification_date  = #{modificationDate,jdbcType=TIMESTAMP},
+            resume_uuid        = #{resumeUuid,jdbcType=OTHER},
+            access_modifier    = #{accessModifier,jdbcType=VARCHAR},
+            order_number       = #{orderNumber,jdbcType=INTEGER},
+            degree             = #{degree,jdbcType=VARCHAR},
+            state              = #{state,jdbcType=VARCHAR},
+            link               = #{link,jdbcType=VARCHAR},
+            establishment_uuid = #{establishmentUuid,jdbcType=OTHER},
+            establishment_name = #{establishmentName,jdbcType=VARCHAR},
+            city_id            = #{cityId,jdbcType=OTHER},
+            start_date         = #{startDate,jdbcType=DATE},
+            end_date           = #{endDate,jdbcType=DATE},
+            description        = #{description,jdbcType=VARCHAR}
+        where uuid = #{uuid,jdbcType=OTHER}
+    </update>
+</mapper>

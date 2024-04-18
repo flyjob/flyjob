@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="az.rock.flyjob.auth.dataAccess.repository.abstracts.query.batis.AbstractUserComposeQueryBatisRepository">
 
-    <sql id="user_profile_result_sql">
-        usr.uuid as uuid,
+    <sql id="user_profile_result_sql"><![CDATA[
+        select usr.uuid as uuid,
        usr.version as version,
        usr.row_status as rowStatus,
        usr.process_status as trxProcessStatus,
@@ -17,7 +17,7 @@
        usr.timezone as timezone,
        count(fr.uuid) as followCount,
        count(nr.uuid) as networkCount
-    </sql>
+        ]]></sql>
 
 
     <resultMap id="my_profile_result_map"

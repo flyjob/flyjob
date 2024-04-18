@@ -84,7 +84,7 @@ public class CompanyWebsiteCommandHandler implements AbstractCompanyWebsiteComma
     }
 
     private void updateWebsiteRootIfExists(WebsiteRoot websiteRoot,CompanyWebsiteCommand command) {
-        if (websiteRoot.getRowStatus().isDeleted()) {
+        if (websiteRoot.isDeleted()) {
             var newWebsiteRoot = this.companyWebsiteDomainMapper.mapToWebsiteRoot(websiteRoot, command);
             this.companyWebsiteCommandRepositoryAdapter.update(newWebsiteRoot);
         } else {

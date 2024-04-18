@@ -16,8 +16,13 @@ public class ContactRoot extends AggregateRoot<ContactID> {
     private ContactLiveType liveType;
     private String data;
 
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
     private ContactRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.formatType = builder.formatType;

@@ -1,6 +1,6 @@
 package az.rock.flyjob.js.domain.presentation.dto.request.abstracts;
 
-public class CreateRequest <T extends AbstractCommandModel>{
+public class CreateRequest<T extends AbstractCommandModel> {
     private T model;
 
     public CreateRequest(T model) {

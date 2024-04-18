@@ -5,7 +5,8 @@ import az.rock.flyjob.js.domain.presentation.dto.response.MyBaseResponseModel;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
+
 
 @Getter
 @SuperBuilder
@@ -16,8 +17,8 @@ public class MyCourseResponseModel extends MyBaseResponseModel {
     private Boolean isOnline;
     private String city;
     private String country;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
     private Boolean isVerified;
     private String certificateUrl;

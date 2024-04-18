@@ -15,11 +15,12 @@ public interface InterestQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<MyInterestResponseModel>>> queryAllMyInterests(SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(SimplePageableRequest pageableRequest);
+    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<AnyInterestResponseModel>>> queryAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleMyInterestResponseModel>>> queryAllMySimpleInterests(SimplePageableRequest pageableRequest);
 
-    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(SimplePageableRequest pageableRequest);
+
+    ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyInterestResponseModel>>> queryAllAnySimpleInterests(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
     ResponseEntity<JSuccessDataResponse<MyInterestResponseModel>> findMyInterestById(UUID id);
 

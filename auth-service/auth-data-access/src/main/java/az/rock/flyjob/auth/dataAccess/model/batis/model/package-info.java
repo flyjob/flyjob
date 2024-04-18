@@ -1,0 +1,1 @@
+package az.rock.flyjob.auth.dataAccess.model.batis.model;

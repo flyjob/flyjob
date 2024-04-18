@@ -1,6 +1,7 @@
 package az.rock.flyjob.js.domain.presentation.dto.request.item;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.AbstractCommandModel;
+import com.intellibucket.ws.validation.annotation.GNotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseCommandModel  extends AbstractCommandModel {
+    @GNotNull
     private String courseTitle;
     private String institution;
     private Boolean isOnline;

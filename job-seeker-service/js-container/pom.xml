@@ -85,6 +85,16 @@
             <artifactId>rock-exception</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <version>1.62.2</version>
+        </dependency>
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-client-spring-boot-starter</artifactId>
+            <version>3.0.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
 

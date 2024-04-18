@@ -30,7 +30,6 @@ public class CompanyCommandHandler implements AbstractCreateCompanyCommandHandle
 
     private final AbstractCompanyQueryRepositoryAdapter companyQueryRepositoryAdapter;
 
-    //TODO query cagirilmalidir
 
     public CompanyCommandHandler(AbstractSecurityContextHolder securityContextHolder,
                                  AbstractsCompanyDomainMapper companyDomainMapper,

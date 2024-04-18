@@ -1,7 +1,6 @@
 package az.rock.flyjob.js.dataaccess.repository.concretes.command.custom;
 
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.main.InformationEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.AbstractResumeCustomCommandJPARepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

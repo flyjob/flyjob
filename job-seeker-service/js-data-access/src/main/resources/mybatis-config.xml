@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <setting name="defaultStatementTimeout" value="45"/>
+        <setting name="defaultFetchSize" value="100"/>
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <setting name="safeResultHandlerEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="jdbcTypeForNull" value="OTHER"/>
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+        <setting name="defaultScriptingLanguage" value="org.apache.ibatis.scripting.xmltags.XMLLanguageDriver"/>
+        <setting name="defaultEnumTypeHandler" value="org.apache.ibatis.type.EnumTypeHandler"/>
+        <setting name="callSettersOnNulls" value="false"/>
+        <setting name="returnInstanceForEmptyRow" value="false"/>
+        <setting name="logPrefix" value="MYBATIS_"/>
+        <setting name="logImpl" value="SLF4J"/>
+        <setting name="proxyFactory" value="JAVASSIST"/>
+        <!--        <setting name="vfsImpl" value="org.mybatis.example.YourselfVfsImpl"/>-->
+        <setting name="useActualParamName" value="true"/>
+        <!--        <setting name="configurationFactory" value="org.mybatis.example.ConfigurationFactory"/>-->
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler" alias="UUIDTypeHandler"/>
+
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactCompose" alias="ContactCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.ContactComposeExample"
+                   alias="ContactComposeExample"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.CourseCompose" alias="CourseCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample"
+                   alias="CourseComposeExample"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose" alias="EducationCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample"
+                   alias="EducationComposeExample"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose" alias="InterestCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample"
+                   alias="InterestComposeExample"/>
+    </typeAliases>
+
+    <typeHandlers>
+        <typeHandler handler="az.rock.flyjob.js.dataaccess.model.type.handler.UUIDTypeHandler"/>
+    </typeHandlers>
+
+    <environments default="pre-develop">
+        <environment id="pre-develop">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${DB_DRIVER}"/>
+                <property name="url" value="${JS_DB_URL}"/>
+                <property name="username" value="${DS-USERNAME}"/>
+                <property name="password" value="${DS-PASS}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/ContactBatisRepository.xml"/>
+        <mapper resource="mapper/CourseBatisRepository.xml"/>
+        <mapper resource="mapper/InterestBatisRepository.xml"/>
+        <mapper resource="mapper/EducationBatisRepository.xml"/>
+    </mappers>
+
+</configuration>

@@ -16,7 +16,6 @@ public class InformationRoot extends AggregateRoot<InformationID> {
 
     private String lastName;
 
-    //TODO
     private String midName;
 
     private Gender gender;

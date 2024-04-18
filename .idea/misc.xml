@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -15,7 +14,19 @@
         <option value="$PROJECT_DIR$/company-command-service/company-command-messaging/pom.xml" />
         <option value="$PROJECT_DIR$/company-query-service/pom.xml" />
         <option value="$PROJECT_DIR$/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/library/authorization-rpc/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/article-sync-service/pom.xml" />
+        <option value="$PROJECT_DIR$/currency-service/pom.xml" />
+        <option value="$PROJECT_DIR$/job-seeker-analytic-service/pom.xml" />
+        <option value="$PROJECT_DIR$/library/ib-rpc/authorization-proto/pom.xml" />
+        <option value="$PROJECT_DIR$/stream-service/pom.xml" />
+        <option value="$PROJECT_DIR$/system-analytic-service/pom.xml" />
+        <option value="$PROJECT_DIR$/vacancy-sync-service/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">

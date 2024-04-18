@@ -299,7 +299,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="degree" type="VARCHAR(255)"/>
-            <column name="trxProcessStatus" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
             <column name="link" type="VARCHAR(255)"/>
             <column name="establishment_uuid" type="UUID"/>
             <column name="establishment_name" type="VARCHAR(255)">

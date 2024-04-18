@@ -8,6 +8,7 @@ import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 
@@ -20,8 +21,8 @@ public class CourseRoot extends AggregateRoot<CourseID> {
     private Boolean isOnline;
     private String city;
     private String country;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
     private String certificateFilePath;
     private String verificationAddress;
@@ -75,11 +76,11 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         return country;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -99,6 +100,16 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         return accessModifier;
     }
 
+    public CourseRoot changeCertificateFilePath(String certificateFilePath){
+        this.certificateFilePath=certificateFilePath;
+        return this;
+    }
+
+    public CourseRoot changeOrderNumber(Integer orderNumber){
+        this.orderNumber = orderNumber;
+        return this;
+    }
+
     public static final class Builder {
         private CourseID id;
         private Version version;
@@ -115,8 +126,8 @@ public class CourseRoot extends AggregateRoot<CourseID> {
         private Boolean isOnline;
         private String city;
         private String country;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
         private String certificateFilePath;
         private String verificationAddress;
@@ -199,12 +210,12 @@ public class CourseRoot extends AggregateRoot<CourseID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }
@@ -228,4 +239,6 @@ public class CourseRoot extends AggregateRoot<CourseID> {
             return new CourseRoot(this);
         }
     }
+
+
 }

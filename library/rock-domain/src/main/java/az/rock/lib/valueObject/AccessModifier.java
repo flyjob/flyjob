@@ -10,13 +10,14 @@ import java.util.List;
 public enum AccessModifier {
     PUBLIC(0),
     AUTHENTICATED(1),
-    ONLY_FOLLOWERS_AND_NETWORK(2),
-    ONLY_NETWORK(3),
-    PRIVATE(4),
-    UNKNOWN(5);
+    ONLY_FOLLOWERS(2),
+    ONLY_FOLLOWERS_AND_NETWORK(3),
+    ONLY_NETWORK(4),
+    PRIVATE(5),
+    UNKNOWN(6);
     private final Integer senstivity;
-    private
-    AccessModifier(Integer senstivity) {
+
+    private AccessModifier(Integer senstivity) {
         this.senstivity = senstivity;
     }
 

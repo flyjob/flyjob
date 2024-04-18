@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: ${PROFILE:pre-develop}
+  config:
+    fail-fast: true
+    retry:
+      maxAttempts: 200
+      maxInterval: 10000
+    import: configserver:http://62.72.45.66:8012
+  application:
+    name: messaging-service
+server:
+  servlet:
+    context-path: /messaging-context
+logging:
+  level:
+    org.springframework.transaction.interceptor: TRACE
+grpc:
+  server:
+    port: ${GRPC_SERVER_PORT:9091}

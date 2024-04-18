@@ -50,6 +50,10 @@ public class BaseEntity {
         this.rowStatus = RowStatus.DELETED;
     }
 
+    public void hide() {
+        this.rowStatus = RowStatus.HIDDEN;
+    }
+
     public void rollback() {
         this.rowStatus = RowStatus.ROLLBACK;
     }

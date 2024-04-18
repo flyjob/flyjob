@@ -12,8 +12,8 @@ import java.util.List;
 public class MessageBundle {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static final String FAIL_MESSAGE_BUNDLE_PATH = "message/fail/auth_fail_messages.json";
-    private static final String SUCCESS_MESSAGE_BUNDLE_PATH = "message/success/auth_success_messages.json";
+    private static final String FAIL_MESSAGE_BUNDLE_PATH = "message/fail/js_fail_messages.json";
+    private static final String SUCCESS_MESSAGE_BUNDLE_PATH = "message/success/js_success_messages.json";
     public static List<Message> FAIL_MESSAGE_LIST;
     public static List<Message> SUCCESS_MESSAGE_LIST;
 

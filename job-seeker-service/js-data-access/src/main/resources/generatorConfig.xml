@@ -1,0 +1,41 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="generator_config" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL=""
+                        userId="postgres"
+                        password="123456"/>
+        <javaModelGenerator targetPackage="az.rock.flyjob.js.dataaccess.model.batis.model"
+                            targetProject="/Users/vugarmammadli/Desktop/Projects/flyjob/job-seeker-service/js-data-access/src/main/java"/>
+        <sqlMapGenerator targetPackage="resources.mapper"
+                         targetProject="/Users/vugarmammadli/Desktop/Projects/flyjob/job-seeker-service/js-data-access/src/main"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="az.rock.flyjob.js.dataaccess.repository.abstracts.batis"
+                             targetProject="/Users/vugarmammadli/Desktop/Projects/flyjob/job-seeker-service/js-data-access/src/main/java"/>
+
+
+        <table schema="resume"
+               tableName="interests"
+               domainObjectName="InterestCompose"
+               mapperName="InterestBatisRepository"/>
+        <table schema="resume"
+               tableName="educations"
+               domainObjectName="EducationCompose"
+               mapperName="EducationBatisRepository"/>
+        <table schema="resume"
+               tableName="courses"
+               domainObjectName="CourseCompose"
+               mapperName="CourseBatisRepository"/>
+        <table schema="resume"
+               tableName="contacts"
+               domainObjectName="ContactCompose"
+               mapperName="ContactBatisRepository"/>
+
+    </context>
+</generatorConfiguration>

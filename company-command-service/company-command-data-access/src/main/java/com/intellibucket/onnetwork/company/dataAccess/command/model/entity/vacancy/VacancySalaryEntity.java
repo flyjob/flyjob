@@ -1,7 +1,7 @@
 package com.intellibucket.onnetwork.company.dataAccess.command.model.entity.vacancy;
 
 import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.valueObject.Currency;
+import az.rock.lib.valueObject.CurrencyCode;
 import az.rock.lib.valueObject.vacancy.Payment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class VacancySalaryEntity extends BaseEntity {
     private Boolean hasSalary;
 
     @Column(name = "currency")
-    private Currency currency;
+    private CurrencyCode currencyCode;
 
     @Column(name = "start_amount")
     private BigDecimal startAmount;

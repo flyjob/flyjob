@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GJpaRepository<E extends BaseEntity, ID> extends JpaRepository<E, ID> {
 
+
     default void active(ID id) {
         var optionalEntity = this.findById(id);
         optionalEntity.ifPresent(BaseEntity::active);

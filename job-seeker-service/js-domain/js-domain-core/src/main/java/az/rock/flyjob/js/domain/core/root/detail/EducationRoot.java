@@ -1,8 +1,6 @@
 package az.rock.flyjob.js.domain.core.root.detail;
 
 import az.rock.lib.domain.AggregateRoot;
-import az.rock.lib.domain.BaseEntity;
-import az.rock.lib.domain.id.js.AwardID;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
@@ -12,13 +10,13 @@ import az.rock.lib.valueObject.Version;
 import az.rock.lib.valueObject.js.EducationDegree;
 import az.rock.lib.valueObject.js.EducationState;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
 
 public class EducationRoot extends AggregateRoot<EducationID> {
-    private ResumeID resume;
+    private final ResumeID resumeID;
     private AccessModifier accessModifier;
     private Integer orderNumber;
     private EducationDegree degree;
@@ -27,14 +25,14 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     private UUID establishmentUUID;
     private String establishmentName;
     private UUID cityId;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
 
     private EducationRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
-        this.resume = builder.resume;
+        this.resumeID = builder.resume;
         this.orderNumber = builder.orderNumber;
         this.degree = builder.degree;
         this.state = builder.state;
@@ -47,8 +45,53 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         this.description = builder.description;
     }
 
-    public ResumeID getResume() {
-        return resume;
+    @Override
+    public String toString() {
+        return "EducationRoot{" +
+               "orderNumber=" + orderNumber +
+               '}';
+    }
+
+    public EducationRoot changeEducationDegree(EducationDegree educationDegree) {
+        this.degree = educationDegree;
+        return this;
+    }
+
+    public EducationRoot changeEducationState(EducationState educationState) {
+        this.state = educationState;
+        return this;
+    }
+
+    public EducationRoot changeEducationDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public EducationRoot changeEducationStartDate(LocalDate educationStartDate) {
+        this.startDate = educationStartDate;
+        return this;
+
+    }
+
+    public EducationRoot changeEducationEndDate(LocalDate educationEndDate) {
+        this.startDate = educationEndDate;
+        return this;
+    }
+    public EducationRoot changeOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+        return this;
+    }
+    public EducationRoot changeLink(String link) {
+        this.link = link;
+        return this;
+    }
+    public EducationRoot changeEstablishmentName(String establishmentName) {
+        this.establishmentName = establishmentName;
+        return this;
+    }
+
+    public ResumeID getResumeID() {
+        return resumeID;
     }
 
     public AccessModifier getAccessModifier() {
@@ -58,6 +101,8 @@ public class EducationRoot extends AggregateRoot<EducationID> {
     public Integer getOrderNumber() {
         return orderNumber;
     }
+
+
 
     public EducationDegree getDegree() {
         return degree;
@@ -79,15 +124,17 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         return establishmentName;
     }
 
+
+
     public UUID getCityId() {
         return cityId;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -112,8 +159,8 @@ public class EducationRoot extends AggregateRoot<EducationID> {
         private UUID establishmentUUID;
         private String establishmentName;
         private UUID cityId;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
 
         private Builder() {
@@ -123,7 +170,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return new Builder();
         }
 
-        public Builder id(EducationID val) {
+        public Builder uuid(EducationID val) {
             id = val;
             return this;
         }
@@ -158,7 +205,7 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier accessModifier){
+        public Builder accessModifier(AccessModifier accessModifier) {
             this.accessModifier = accessModifier;
             return this;
         }
@@ -198,12 +245,12 @@ public class EducationRoot extends AggregateRoot<EducationID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }

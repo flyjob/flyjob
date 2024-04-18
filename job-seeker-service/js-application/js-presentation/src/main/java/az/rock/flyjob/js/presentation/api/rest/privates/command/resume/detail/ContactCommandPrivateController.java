@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/js/1.0/private/command/contact", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ContactCommandPrivateController implements ContactCommandPrivateSpec {

@@ -40,6 +40,7 @@ public class AuthorityEntity extends BaseEntity {
     @Column(name = "permission", nullable = false, unique = true)
     private String permission;
 
+
     @Column(name = "description", nullable = false)
     private String description;
 

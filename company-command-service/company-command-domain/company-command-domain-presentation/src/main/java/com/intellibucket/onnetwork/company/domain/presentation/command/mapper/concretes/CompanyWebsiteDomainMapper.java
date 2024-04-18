@@ -33,7 +33,7 @@ public class CompanyWebsiteDomainMapper implements AbstractCompanyWebsiteDomainM
                                         CompanyWebsiteCommand companyWebsiteChangedCommand) {
         return WebsiteRoot.Builder.builder()
                 .uuid(oldWebsiteRoot.getRootID())
-                .version(Version.ONE)
+                .version(oldWebsiteRoot.getVersion())
                 .processStatus(ProcessStatus.COMPLETED)
                 .rowStatus(RowStatus.ACTIVE)
                 .companyID(oldWebsiteRoot.getCompanyID())

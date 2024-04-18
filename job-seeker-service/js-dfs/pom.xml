@@ -11,7 +11,35 @@
 
     <groupId>az.rock.flyjob.js</groupId>
     <artifactId>js-dfs</artifactId>
+    <packaging>jar</packaging>
 
+    <name>js-dfs</name>
+    <dependencies>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>az.rock.lib</groupId>
+            <artifactId>rock-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>az.rock.lib</groupId>
+            <artifactId>rock-util</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>az.rock.flyjob.js</groupId>
+            <artifactId>js-domain-presentation</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
