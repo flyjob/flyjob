@@ -1,0 +1,21 @@
+
+h
+java:S1854 "FRemove this useless assignment to local variable "courseCreatedEvent".(†İµ®ùÿÿÿÿ8”ş¸ï1
+Y
+java:S1481 "7Remove this unused "courseCreatedEvent" local variable.(†İµ®ùÿÿÿÿ8šş¸ï1
+h
+java:S1854%"FRemove this useless assignment to local variable "courseUpdatedEvent".(Ê°˜ûûÿÿÿÿ8›ş¸ï1
+Y
+java:S1481%"7Remove this unused "courseUpdatedEvent" local variable.(Ê°˜ûûÿÿÿÿ8Ÿş¸ï1
+b
+java:S1854*"ERemove this useless assignment to local variable "courseDeleteEvent".(³º‰ü8 ş¸ï1
+S
+java:S1481*"6Remove this unused "courseDeleteEvent" local variable.(³º‰ü8¢ş¸ï1
+b
+java:S18540"@Remove this useless assignment to local variable "reorderEvent".(×¼ÁÊüÿÿÿÿ8£ş¸ï1
+S
+java:S14810"1Remove this unused "reorderEvent" local variable.(×¼ÁÊüÿÿÿÿ8¥ş¸ï1
+f
+java:S18546"DRemove this useless assignment to local variable "certificateEvent".(İµ’Ãûÿÿÿÿ8¦ş¸ï1
+W
+java:S14816"5Remove this unused "certificateEvent" local variable.(İµ’Ãûÿÿÿÿ8­ş¸ï1

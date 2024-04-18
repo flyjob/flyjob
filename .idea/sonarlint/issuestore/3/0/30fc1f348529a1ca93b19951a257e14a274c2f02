@@ -1,0 +1,21 @@
+
+[
+java:S1854&"9Remove this useless assignment to local variable "event".(ìà­Îûÿÿÿÿ8Ûüêà1
+L
+java:S1481&"*Remove this unused "event" local variable.(ìà­Îûÿÿÿÿ8İüêà1
+[
+java:S1854+"9Remove this useless assignment to local variable "event".(ËäÔëÿÿÿÿÿ8Şüêà1
+L
+java:S1481+"*Remove this unused "event" local variable.(ËäÔëÿÿÿÿÿ8ßüêà1
+V
+java:S18540"9Remove this useless assignment to local variable "event".(°ôƒŠ8ßüêà1
+G
+java:S14810"*Remove this unused "event" local variable.(°ôƒŠ8àüêà1
+[
+java:S18545"9Remove this useless assignment to local variable "event".(¦•ñ›üÿÿÿÿ8°…à1
+L
+java:S14815"*Remove this unused "event" local variable.(¦•ñ›üÿÿÿÿ8áüêà1
+_
+java:S1128"=Remove this unused import 'az.rock.lib.annotation.InputPort'.(Ãöª¾øÿÿÿÿ8âüêà1
+e
+java:S1068"HRemove this unused "companyEmailCommandRepositoryAdapter" private field.(˜œ™¹8âüêà1

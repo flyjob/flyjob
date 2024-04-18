@@ -1,0 +1,6 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™“§
+‘
+java:S1128"tRemove this unused import 'com.intellibucket.onnetwork.company.dataAccess.command.model.entity.company.EmailEntity'.(ã‘½€8áË©şİ1
+½
+java:S1128"ŸRemove this unused import 'com.intellibucket.onnetwork.company.dataAccess.command.repository.abstracts.command.AbstractCustomCompanyEmailCommandJPARepository'.(²”Í8áË©şİ1

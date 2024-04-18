@@ -1,0 +1,7 @@
+
+a	java:S112§"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(´‘ª¢ýÿÿÿÿ
+B
+java:S1481¬"+Remove this unused "isOpen" local variable.(‚­ôÿ
+8
+java:S2326·"R is not used in the method.(Çé÷ºþÿÿÿÿ

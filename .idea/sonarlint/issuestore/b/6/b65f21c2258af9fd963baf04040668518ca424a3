@@ -1,0 +1,15 @@
+
+l
+java:S1104«"PMake uuid a static final constant or non-public and provide accessors if needed.(Íãòıÿÿÿÿ
+j
+java:S1104¬"SMake version a static final constant or non-public and provide accessors if needed.(¯“³
+p
+java:S1104­"YMake processStatus a static final constant or non-public and provide accessors if needed.(•âËó
+q
+java:S1104®"UMake rowStatus a static final constant or non-public and provide accessors if needed.(Ï¯¤ùÿÿÿÿ
+n
+java:S1104¯"WMake createdDate a static final constant or non-public and provide accessors if needed.(ÉíÌ
+s
+java:S1104°"\Make lastModifiedDate a static final constant or non-public and provide accessors if needed.(Ş¥ãâ
+@
+java:S2160"+Override the "equals" method in this class.(—¥¨^

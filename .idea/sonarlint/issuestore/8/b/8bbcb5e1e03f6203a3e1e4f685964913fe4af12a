@@ -1,0 +1,9 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ıË†ıÿÿÿÿ
+E
+java:S1068"*Remove this unused "userId" private field.(›¢À½ıÿÿÿÿ
+A
+java:S1068	"+Remove this unused "message" private field.(Úæê»
+E
+java:S1068
+"/Remove this unused "stackTraces" private field.(óùÉ¾

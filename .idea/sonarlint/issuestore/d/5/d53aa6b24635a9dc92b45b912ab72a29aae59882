@@ -1,0 +1,8 @@
+
+[	java:S1124"FDefine and throw a dedicated exception instead of using a generic one.(âñÆÛ
+C
+java:S54112"(Use a primitive boolean expression here.(–Ø¡—ûÿÿÿÿ
+^
+java:S25832"CChange this condition so that it does not always evaluate to "true"(–Ø¡—ûÿÿÿÿ
+Z
+java:S1128"?Remove this unused import 'az.rock.lib.domain.id.auth.EmailID'.(¡„øùÿÿÿÿ

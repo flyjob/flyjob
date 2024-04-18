@@ -1,0 +1,11 @@
+
+a
+java:S1854"FRemove this useless assignment to local variable "blockRelationEvent".(ìÌûşÿÿÿÿ
+R
+java:S1481"7Remove this unused "blockRelationEvent" local variable.(ìÌûşÿÿÿÿ
+c
+java:S1854 "HRemove this useless assignment to local variable "unBlockRelationEvent".(Ÿ¾¥Îûÿÿÿÿ
+T
+java:S1481 "9Remove this unused "unBlockRelationEvent" local variable.(Ÿ¾¥Îûÿÿÿÿ
+W
+java:S1068"ARemove this unused "blockRelationMessagePublisher" private field.(Œóæ

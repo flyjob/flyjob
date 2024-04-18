@@ -1,0 +1,15 @@
+
+\
+java:S1854&"GRemove this useless assignment to local variable "followRelationEvent".(Ù´çk
+M
+java:S1481&"8Remove this unused "followRelationEvent" local variable.(Ù´çk
+_
+java:S1854,"IRemove this useless assignment to local variable "unfollowRelationEvent".(¨öÍ‡
+P
+java:S1481,":Remove this unused "unfollowRelationEvent" local variable.(¨öÍ‡
+b
+java:S18541"GRemove this useless assignment to local variable "removeRelationEvent".(ÅÍƒÑÿÿÿÿÿ
+S
+java:S14811"8Remove this unused "removeRelationEvent" local variable.(ÅÍƒÑÿÿÿÿÿ
+P
+java:S1068":Remove this unused "followMessagePublisher" private field.(ÔÚ”¼

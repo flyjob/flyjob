@@ -1,0 +1,15 @@
+
+V
+java:S1854"9Remove this useless assignment to local variable "event".(Ì£ñÛ8¸şêà1
+G
+java:S1481"*Remove this unused "event" local variable.(Ì£ñÛ8»şêà1
+V
+java:S1854"9Remove this useless assignment to local variable "event".(£÷Š8»şêà1
+G
+java:S1481"*Remove this unused "event" local variable.(£÷Š8½şêà1
+[
+java:S1854#"9Remove this useless assignment to local variable "event".(ìõ¹Âûÿÿÿÿ8äñë…à1
+L
+java:S1481#"*Remove this unused "event" local variable.(ìõ¹Âûÿÿÿÿ8¿şêà1
+³
+java:S1128"•Remove this unused import 'com.intellibucket.onnetwork.company.domain.presentation.command.dto.request.company.website.CompanyWebsiteCreatedCommand'.(æöØ˜8äŸ¢à1

@@ -1,0 +1,29 @@
+
+O
+java:S1854<"9Remove this useless assignment to local variable "event".(òšï¶
+@
+java:S1481<"*Remove this unused "event" local variable.(òšï¶
+O
+java:S1854A"9Remove this useless assignment to local variable "event".(áîõš
+@
+java:S1481A"*Remove this unused "event" local variable.(áîõš
+T
+java:S1854F"9Remove this useless assignment to local variable "event".(˜Ä³æøÿÿÿÿ
+E
+java:S1481F"*Remove this unused "event" local variable.(˜Ä³æøÿÿÿÿ
+O
+java:S1854K"9Remove this useless assignment to local variable "event".(§¡ù
+@
+java:S1481K"*Remove this unused "event" local variable.(§¡ù
+T
+java:S1854P"9Remove this useless assignment to local variable "event".(‹¡í‹ùÿÿÿÿ
+E
+java:S1481P"*Remove this unused "event" local variable.(‹¡í‹ùÿÿÿÿ
+O
+java:S1854U"9Remove this useless assignment to local variable "event".(ƒ…Á€
+@
+java:S1481U"*Remove this unused "event" local variable.(ƒ…Á€
+O
+java:S1854Z"9Remove this useless assignment to local variable "event".(È¿¶û
+@
+java:S1481Z"*Remove this unused "event" local variable.(È¿¶û

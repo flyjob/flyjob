@@ -1,0 +1,12 @@
+
+h	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8‹ı¡à1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ã¾Á’8ı¡à1
+I
+java:S1481£"+Remove this unused "isOpen" local variable.(‚­ôÿ8Øı¡à1
+?
+java:S2326®"R is not used in the method.(Çé÷ºşÿÿÿÿ8Úı¡à1
+n
+java:S1128
+"QRemove this unused import 'org.springframework.transaction.annotation.Isolation'.(±§ÂÔ8Ìö¢à1
+u
+java:S1128"SRemove this unused import 'org.springframework.transaction.annotation.Propagation'.(èª¡Çûÿÿÿÿ8·”ı¢à1

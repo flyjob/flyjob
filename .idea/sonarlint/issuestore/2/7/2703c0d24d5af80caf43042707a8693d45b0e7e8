@@ -1,0 +1,9 @@
+
+C
+java:S5411$"(Use a primitive boolean expression here.(ÕÐ³ýÿÿÿÿ
+q
+java:S2159+"VRemove this call to "equals"; comparisons between unrelated types always return false.(×Žûÿÿÿÿ
+T
+java:S1128">Remove this unused import 'az.rock.lib.domain.id.auth.UserID'.(«•¹ÿ
+J
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëÝüÿÿÿÿ

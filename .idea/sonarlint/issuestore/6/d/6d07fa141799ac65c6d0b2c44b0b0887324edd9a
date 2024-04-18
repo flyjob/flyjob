@@ -1,0 +1,11 @@
+
+h	java:S112¦"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÈÄ‡‚å1
+h	java:S112®"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÈÄ‡‚å1
+}
+java:S3655C"`Call "optionalInterest.isPresent()" or "!optionalInterest.isEmpty()" before accessing the value.(Ûç‹ä8üêËŠå1
+V
+java:S1854Q";Remove this useless assignment to local variable "newRoot".(Çâğåüÿÿÿÿ
+G
+java:S1481Q",Remove this unused "newRoot" local variable.(Çâğåüÿÿÿÿ
+¿
+java:S1130›"›Remove the declaration of thrown exception 'az.rock.flyjob.js.domain.core.exception.interest.InterestOverLimit', as it cannot be thrown from method's body.(¡ƒÑùÿÿÿÿ8„Å‡‚å1

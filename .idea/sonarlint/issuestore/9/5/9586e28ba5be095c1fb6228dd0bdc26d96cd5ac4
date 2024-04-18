@@ -1,0 +1,8 @@
+
+F
+java:S2160
+"+Override the "equals" method in this class.(Á¥¿þúÿÿÿÿ
+c	java:S119
+"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(Á¥¿þúÿÿÿÿ
+P
+java:S1161":Add the "@Override" annotation above this method signature(ðÂ›Š

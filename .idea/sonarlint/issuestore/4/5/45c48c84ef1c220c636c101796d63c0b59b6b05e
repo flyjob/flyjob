@@ -1,0 +1,17 @@
+
+[
+java:S1155E">Use isEmpty() to check whether the collection is empty or not.(‹–†×8”¯ƒà1
+[
+java:S1155N">Use isEmpty() to check whether the collection is empty or not.(§ÏŒ¤8š¯ƒà1
+`
+java:S1155W">Use isEmpty() to check whether the collection is empty or not.(õºòæıÿÿÿÿ8¯ƒà1
+‰
+java:S1128"gRemove this unused import 'az.rock.auth.domain.presentation.exception.AuthDomainPresentationException'.(êØ­×øÿÿÿÿ8šÆæ¯İ1
+x
+java:S1128"VRemove this unused import 'az.rock.flyjob.auth.model.root.network.FollowRelationRoot'.(½Ê¯Ìıÿÿÿÿ8›Ææ¯İ1
+k
+java:S1128"IRemove this unused import 'az.rock.flyjob.auth.model.root.user.UserRoot'.(æÒˆéÿÿÿÿÿ8œÆæ¯İ1
+[
+java:S1128">Remove this unused import 'az.rock.lib.domain.id.auth.UserID'.(«•¹ÿ8œÆæ¯İ1
+[
+java:S1068">Remove this unused "userQueryRepositoryAdapter" private field.(õ¬¤8Ææ¯İ1

@@ -1,0 +1,9 @@
+
+^
+java:S6355	"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+J
+java:S1133
+"5Do not forget to remove this deprecated code someday.(§„øA
+=
+java:S1123
+"(Add the missing @deprecated Javadoc tag.(§„øA
