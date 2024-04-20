@@ -5,6 +5,7 @@ import az.rock.flyjob.js.dataaccess.mapper.concretes.PageableDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.model.batis.model.ExperienceComposeExample;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ExperienceEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.ExperienceBatisRepository;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractExperienceQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ExperienceRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.ExperienceCriteria;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractExperienceQueryRepositoryAdapter;
@@ -25,14 +26,15 @@ public class ExperienceQueryRepositoryAdapter implements AbstractExperienceQuery
     private final PageableDataAccessMapper pageableDataAccessMapper;
 
     private final ExperienceDataAccessMapper experienceDataAccessMapper;
-    private final AbstractExperienceQueryRepositoryAdapter experienceQueryRepositoryAdapter;
+    private  final AbstractExperienceQueryJPARepository experienceQueryJPARepository;
 
 
-    public ExperienceQueryRepositoryAdapter(ExperienceBatisRepository experienceBatisRepository, PageableDataAccessMapper pageableDataAccessMapper, ExperienceDataAccessMapper experienceDataAccessMapper, AbstractExperienceQueryRepositoryAdapter experienceQueryRepositoryAdapter) {
+    public ExperienceQueryRepositoryAdapter(ExperienceBatisRepository experienceBatisRepository, PageableDataAccessMapper pageableDataAccessMapper, ExperienceDataAccessMapper experienceDataAccessMapper, AbstractExperienceQueryRepositoryAdapter experienceQueryRepositoryAdapter, AbstractExperienceQueryJPARepository experienceQueryJPARepository) {
         this.experienceBatisRepository = experienceBatisRepository;
         this.pageableDataAccessMapper = pageableDataAccessMapper;
         this.experienceDataAccessMapper = experienceDataAccessMapper;
-        this.experienceQueryRepositoryAdapter = experienceQueryRepositoryAdapter;
+
+        this.experienceQueryJPARepository = experienceQueryJPARepository;
     }
 
     @Override
@@ -58,9 +60,9 @@ public class ExperienceQueryRepositoryAdapter implements AbstractExperienceQuery
 
     @Override
     public Optional<ExperienceRoot> findByResumeAndUuidAndRowStatusTrue(ResumeID resumeID, UUID experienceId) {
-        var entity = this.experienceQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeID, experienceId);
+        var entity = this.experienceQueryJPARepository.findByIdAndResumeIdAndRowStatusActive(resumeID.getRootID(),experienceId);
         if (entity.isEmpty()) return Optional.empty();
-        return this.experienceDataAccessMapper.toRoot(entity);
+        return this.experienceDataAccessMapper.toRoot(entity.get());
     }
 
     @Override

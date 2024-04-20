@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractExperience
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractExperienceCommandRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractExperienceQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
+import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.payload.event.command.create.ExperienceMergeEvent;
 import com.intellibucket.lib.payload.event.command.delete.ExperienceDeleteEvent;
@@ -43,7 +44,8 @@ public class ExperienceCommandHandler implements AbstractExperienceCommandHandle
     @Override
     public ExperienceMergeEvent update(UpdateRequest<ExperienceCommandModel> request) {
         var resumeId=this.securityContextHolder.availableResumeID();
-//        var experienceDb=this.experienceQueryRepositoryAdapter.findById(request.)
+        var experienceDb=this.experienceQueryRepositoryAdapter
+                .findByResumeAndUuidAndRowStatusTrue(ResumeID.of(resumeId.getRootID()),request.getTargetId());
                 return null;
     }
 
