@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts;
+package az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts;
 
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
