@@ -100,7 +100,6 @@ public class ExperienceCommandHandler implements AbstractExperienceCommandHandle
             experienceRoot.changeOrderNumber(orderCounter++);
         }
         experienceCommandRepositoryAdapter.updateAll(experiences);
-
         return ExperienceMergeEvent.of(ExperiencePayload.Builder
                 .builder()
                 .id(request.getTargetId())
