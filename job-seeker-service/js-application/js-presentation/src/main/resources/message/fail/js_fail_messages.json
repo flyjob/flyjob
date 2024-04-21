@@ -82,10 +82,10 @@
   },
   {
     "code": "F0000000023",
-    "az": "Təcrübə tapılmadı",
-    "en": "Experience not found",
-    "ru": "Опыт не найден",
-    "tr": "Deneyim bulunamadı",
+    "az": "Təcrübə tapılmadı.",
+    "en": "Experience not found.",
+    "ru": "Опыт не найден.",
+    "tr": "Deneyim bulunamadı.",
     "hasRegex": false,
     "regex": ""
   }
