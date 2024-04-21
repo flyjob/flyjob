@@ -15,6 +15,7 @@ import az.rock.lib.valueObject.SimplePageableRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,7 +30,10 @@ public class ExperienceQueryRepositoryAdapter implements AbstractExperienceQuery
     private  final AbstractExperienceQueryJPARepository experienceQueryJPARepository;
 
 
-    public ExperienceQueryRepositoryAdapter(ExperienceBatisRepository experienceBatisRepository, PageableDataAccessMapper pageableDataAccessMapper, ExperienceDataAccessMapper experienceDataAccessMapper, AbstractExperienceQueryRepositoryAdapter experienceQueryRepositoryAdapter, AbstractExperienceQueryJPARepository experienceQueryJPARepository) {
+    public ExperienceQueryRepositoryAdapter(ExperienceBatisRepository experienceBatisRepository,
+                                            PageableDataAccessMapper pageableDataAccessMapper,
+                                            ExperienceDataAccessMapper experienceDataAccessMapper,
+                                            AbstractExperienceQueryJPARepository experienceQueryJPARepository) {
         this.experienceBatisRepository = experienceBatisRepository;
         this.pageableDataAccessMapper = pageableDataAccessMapper;
         this.experienceDataAccessMapper = experienceDataAccessMapper;
@@ -67,7 +71,11 @@ public class ExperienceQueryRepositoryAdapter implements AbstractExperienceQuery
 
     @Override
     public Optional<ExperienceRoot> findOwnByID(ResumeID parentID, ExperienceID rootId) {
-        return AbstractExperienceQueryRepositoryAdapter.super.findOwnByID(parentID, rootId);
+        if (Objects.nonNull(parentID) && Objects.nonNull(rootId)){
+            var optionalExperience = this.experienceQueryJPARepository.findByOwnId(parentID.getAbsoluteID(),rootId.getAbsoluteID());
+            if (optionalExperience.isPresent()) return this.experienceDataAccessMapper.toRoot(optionalExperience.get());
+        }
+        return Optional.empty();
     }
 
     @Override

@@ -79,6 +79,14 @@
     "tr": "Daha fazla ilgi alanı ekleyemezsiniz.",
     "hasRegex": false,
     "regex": ""
+  },
+  {
+    "code": "F0000000010",
+    "az": "Təcrübə tapılmadı",
+    "en": "Experience not found",
+    "ru": "Опыт не найден",
+    "tr": "Deneyim bulunamadı",
+    "hasRegex": false,
+    "regex": ""
   }
-
 ]

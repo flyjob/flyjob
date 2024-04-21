@@ -4,6 +4,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.AbstractComma
 import az.rock.lib.valueObject.WorkingTimeLineType;
 import az.rock.lib.valueObject.WorkingType;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -15,8 +16,10 @@ public class ExperienceCommandModel extends AbstractCommandModel {
     private WorkingType workingType;
     private WorkingTimeLineType workingTimeLine;
     private String description;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private Integer orderNumber;
+
 
     public ExperienceCommandModel(String employer
             , String link
@@ -25,8 +28,9 @@ public class ExperienceCommandModel extends AbstractCommandModel {
             , WorkingType workingType
             , WorkingTimeLineType workingTimeLine
             , String description
-            , ZonedDateTime startDate
-            , ZonedDateTime endDate) {
+            , Integer orderNumber
+            , LocalDate startDate
+            , LocalDate endDate) {
         this.employer = employer;
         this.link = link;
         this.jobTitle = jobTitle;
@@ -35,6 +39,7 @@ public class ExperienceCommandModel extends AbstractCommandModel {
         this.workingTimeLine = workingTimeLine;
         this.description = description;
         this.startDate = startDate;
+        this.orderNumber = orderNumber;
         this.endDate = endDate;
     }
 
@@ -66,11 +71,15 @@ public class ExperienceCommandModel extends AbstractCommandModel {
         return description;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
     }
 }

@@ -42,8 +42,8 @@ public class    ExperienceDataAccessMapper implements AbstractExperienceDataAcce
                         .workingType(safetyResumeEntity.getWorkingType())
                         .workingTimeType(safetyResumeEntity.getWorkingTimeType())
                         .description(safetyResumeEntity.getDescription())
-                        .startDate(GDateTime.toZonedDateTime(safetyResumeEntity.getStartDate()))
-                        .endDate(GDateTime.toZonedDateTime(safetyResumeEntity.getEndDate()))
+                        .startDate(safetyResumeEntity.getStartDate())
+                        .endDate(safetyResumeEntity.getEndDate())
                         .build()
         );
     }
@@ -70,10 +70,10 @@ public class    ExperienceDataAccessMapper implements AbstractExperienceDataAcce
                         .jobTitle(safetyCourseRoot.getLink())
                         .cityId(safetyCourseRoot.getCityId())
                         .workingTimeType(safetyCourseRoot.getWorkingTimeType())
-                        .workingTimeType(safetyCourseRoot.getWorkingTimeType())
+                        .workingType(safetyCourseRoot.getWorkingType())
                         .description(safetyCourseRoot.getDescription())
-                        .startDate(GDateTime.toTimestamp(safetyCourseRoot.getStartDate()))
-                        .endDate(GDateTime.toTimestamp(safetyCourseRoot.getEndDate()))
+                        .startDate(safetyCourseRoot.getStartDate())
+                        .endDate(safetyCourseRoot.getEndDate())
                         .build()
         );
     }
@@ -101,8 +101,8 @@ public class    ExperienceDataAccessMapper implements AbstractExperienceDataAcce
                         .workingType(WorkingType.valueOf(safetyCompose.getWorkingType()))
                         .workingTimeType(WorkingTimeLineType.valueOf(safetyCompose.getWorkingTimeType()))
                         .description(safetyCompose.getDescription())
-                        .startDate(GDateTime.toZonedDateTime(safetyCompose.getStartDate()))
-                        .endDate(GDateTime.toZonedDateTime(safetyCompose.getEndDate()))
+                        .startDate(safetyCompose.getStartDate())
+                        .endDate(safetyCompose.getEndDate())
                         .build()
         );
     }

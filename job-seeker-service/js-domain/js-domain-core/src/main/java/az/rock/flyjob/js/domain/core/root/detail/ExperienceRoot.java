@@ -5,6 +5,7 @@ import az.rock.lib.domain.id.js.ExperienceID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.*;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -20,8 +21,8 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
     private WorkingType workingType;
     private WorkingTimeLineType workingTimeLine;
     private String description;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     private ExperienceRoot(Builder builder) {
         super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
@@ -39,9 +40,47 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         this.endDate = builder.endDate;
     }
 
+    public ExperienceRoot changeOrderNumber(Integer orderNumber){
+        this.orderNumber=orderNumber;
+        return this;
+    }
 
-
-
+    public ExperienceRoot changeEmployer(String employer){
+        this.employer=employer;
+        return this;
+    }
+    public ExperienceRoot changeLink(String link){
+        this.link=link;
+        return this;
+    }
+    public ExperienceRoot changeJobTitle(String jobTitle){
+        this.jobTitle=jobTitle;
+        return this;
+    }
+    public ExperienceRoot changeCityId(UUID cityId){
+        this.cityId=cityId;
+        return this;
+    }
+    public  ExperienceRoot changeWorkingType(WorkingType workingType){
+        this.workingType=workingType;
+        return this;
+    }
+    public ExperienceRoot changeWorkingTimeLineType(WorkingTimeLineType workingTimeLineType){
+        this.workingTimeLine=workingTimeLineType;
+        return this;
+    }
+    public ExperienceRoot changeStartDate(LocalDate startDate){
+        this.startDate=startDate;
+        return this;
+    }
+    public ExperienceRoot changeEndDate(LocalDate endDate){
+        this.startDate=endDate;
+        return this;
+    }
+    public ExperienceRoot changeDescription(String description){
+        this.description=description;
+        return  this;
+    }
     public ResumeID getResume() {
         return resume;
     }
@@ -78,11 +117,11 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         return description;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -108,8 +147,8 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
         private WorkingType workingType;
         private WorkingTimeLineType workingTimeLine;
         private String description;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
 
         private Builder() {
         }
@@ -198,12 +237,12 @@ public class ExperienceRoot extends AggregateRoot<ExperienceID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }
