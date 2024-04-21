@@ -5,6 +5,7 @@ import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -42,10 +43,8 @@ public class ExperienceCompose {
 
     private String description;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp startDate;
+    private LocalDate startDate;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp endDate;
+    private LocalDate endDate;
 
 }

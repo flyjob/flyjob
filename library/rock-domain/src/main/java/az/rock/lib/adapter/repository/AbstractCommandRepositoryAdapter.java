@@ -1,11 +1,13 @@
 package az.rock.lib.adapter.repository;
 
 import az.rock.lib.annotation.DomainOutputPort;
+import az.rock.lib.domain.RootID;
 import az.rock.lib.jexception.UnsupportedOperationJException;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @DomainOutputPort
 public interface AbstractCommandRepositoryAdapter<R> {
@@ -18,7 +20,6 @@ public interface AbstractCommandRepositoryAdapter<R> {
     default void delete(R root){
         throw new UnsupportedOperationJException("Delete");
     }
-
 
     default void updateAll(List<R> emailRoots){
         throw new UnsupportedOperationJException("Update All");

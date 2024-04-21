@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -52,11 +53,9 @@ public class ExperienceEntity extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp startDate;
+    private LocalDate startDate;
 
-    @Temporal(value = TemporalType.DATE)
-    private Timestamp endDate;
+    private LocalDate endDate;
 
     private ExperienceEntity(Builder builder) {
         setResume(builder.resume);
@@ -91,8 +90,8 @@ public class ExperienceEntity extends BaseEntity {
         private WorkingType workingType;
         private WorkingTimeLineType workingTimeType;
         private String description;
-        private Timestamp startDate;
-        private Timestamp endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private UUID uuid;
         private Long version;
         private ProcessStatus processStatus;
@@ -157,12 +156,12 @@ public class ExperienceEntity extends BaseEntity {
             return this;
         }
 
-        public Builder startDate(Timestamp val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(Timestamp val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }

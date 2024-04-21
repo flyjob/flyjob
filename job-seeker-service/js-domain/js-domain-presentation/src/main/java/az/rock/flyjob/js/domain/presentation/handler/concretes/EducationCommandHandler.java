@@ -103,6 +103,4 @@ public class EducationCommandHandler implements AbstractEducationCommandHandler<
                         .id(request.getTargetId())
                         .build());
     }
-
-
 }
