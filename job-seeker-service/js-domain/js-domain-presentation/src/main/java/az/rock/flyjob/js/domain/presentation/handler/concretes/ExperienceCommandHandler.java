@@ -77,7 +77,7 @@ public class ExperienceCommandHandler implements AbstractExperienceCommandHandle
         var resumeId = this.securityContextHolder.availableResumeID();
         var experiences = this.experienceQueryRepositoryAdapter.findAllByPID(resumeId);
         this.experienceCommandRepositoryAdapter.deleteAll(experiences);
-         return null;
+         return ExperienceDeleteEvent.of(resumeId.getRootID());
     }
 
     @Override
