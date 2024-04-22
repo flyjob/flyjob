@@ -28,6 +28,6 @@ public interface AbstractContactQueryJPARepository extends JpaRepository<Contact
     Optional<ContactEntity> findById(@Param("contactId") UUID contactId);
 
     @Query("SELECT e FROM ContactEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' order by e.orderNumber")
-    List<ContactEntity> findAll(@Param("resumeID") UUID resumeID);
+    List<ContactEntity> findAllByPID(@Param("resumeID") UUID resumeID);
 
 }

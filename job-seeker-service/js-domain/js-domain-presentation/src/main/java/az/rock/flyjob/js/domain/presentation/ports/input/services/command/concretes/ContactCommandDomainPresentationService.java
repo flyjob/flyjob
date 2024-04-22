@@ -1,12 +1,12 @@
 package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
-import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractContactCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractContactCommandDomainPresentationService;
-import az.rock.lib.domain.id.js.ResumeID;
+import az.rock.lib.jexception.JRuntimeException;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -23,28 +23,52 @@ public class ContactCommandDomainPresentationService implements AbstractContactC
 
     @Override
     public void create(CreateRequest<ContactCommandModel> request) {
-        var courseCreatedEvent = abstractContactCommandHandler.createContact(request);
+        try{
+            this.abstractContactCommandHandler.createContact(request);
+        }
+        catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void update(UpdateRequest<ContactCommandModel> request) {
-        var courseUpdatedEvent = abstractContactCommandHandler.updateContact(request);
+        try{
+            this.abstractContactCommandHandler.updateContact(request);
+        }
+        catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void delete(UUID contactId) {
-        var contactDeleteEvent = abstractContactCommandHandler.deleteContact(contactId);
+        try{
+            this.abstractContactCommandHandler.deleteContact(contactId);
+        }
+        catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
     public void deleteAll() {
-        var contactDeleteEvent = abstractContactCommandHandler.deleteAllContact();
+        try{
+            this.abstractContactCommandHandler.deleteAllContact();
+        }
+        catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
     @Override
-    public void reorder(ReorderRequest<ContactCommandModel> request) {
-        var contactDeleteEvent = abstractContactCommandHandler.reOrderContact(request);
-
+    public void reorder(ReorderCommandModel request) {
+        try{
+            this.abstractContactCommandHandler.reOrderContact(request);
+        }
+        catch (Exception e){
+            throw new JRuntimeException(e.getMessage(),e);
+        }
     }
 
 }

@@ -22,5 +22,5 @@ public interface ContactCommandPrivateSpec {
 
      ResponseEntity<JSuccessResponse> deleteAll();
 
-    ResponseEntity<JSuccessResponse> reorder(ReorderRequest<ContactCommandModel> request);
+    ResponseEntity<JSuccessResponse> reorder(ReorderCommandModel request);
 }

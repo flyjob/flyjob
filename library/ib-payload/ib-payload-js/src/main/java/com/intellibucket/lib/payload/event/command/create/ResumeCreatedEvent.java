@@ -1,7 +1,7 @@
-package com.intellibucket.lib.payload.event.create;
+package com.intellibucket.lib.payload.event.command.create;
 
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.payload.ResumeCreatedPayload;
+import com.intellibucket.lib.payload.payload.command.ResumeCreatedPayload;
 
 
 public class ResumeCreatedEvent extends AbstractSuccessDomainEvent<ResumeCreatedPayload> {
