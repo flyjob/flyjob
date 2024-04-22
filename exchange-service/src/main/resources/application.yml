@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: ${PROFILE:pre-develop}
+  config:
+    fail-fast: true
+    retry:
+      maxAttempts: 200
+      maxInterval: 10000
+    import: configserver:http://62.72.45.66:8012
+  application:
+    name: exchange-service
+  jpa:
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+      hibernate:
+    open-in-view: false
+  mybatis:
+    mapper-locations: classpath*:/**/*-mapper.xml
+
+
+server:
+  servlet:
+    context-path: /exchange-context
+
+logging:
+  level:
+    org.springframework.transaction.interceptor: TRACE
+

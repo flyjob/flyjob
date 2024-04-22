@@ -1,18 +1,20 @@
 package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractInterestDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.InterestEntity;
-import az.rock.flyjob.js.dataaccess.model.entity.resume.main.InformationEntity;
 import az.rock.flyjob.js.domain.core.root.detail.InterestRoot;
-import az.rock.lib.domain.id.auth.PhoneNumberID;
-import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneId;
 import java.util.Optional;
 
 @Component
@@ -35,7 +37,6 @@ public class InterestDataAccessMapper implements AbstractInterestDataAccessMappe
                         entity.getLastModifiedDate()
                 ))
                 .accessModifier(entity.getAccessModifier())
-                .resume(ResumeID.of(entity.getResume().getUuid()))
                 .name(entity.getName())
                         .description(entity.getDescription())
                 .orderNumber(entity.getOrderNumber())
@@ -79,4 +80,29 @@ public class InterestDataAccessMapper implements AbstractInterestDataAccessMappe
             );
 
         }
+
+    @Override
+    public Optional<InterestRoot> toRoot(InterestCompose compose) {
+        var optionalEntity = Optional.ofNullable(compose);
+        if (optionalEntity.isEmpty()) return Optional.empty();
+        return Optional.of(InterestRoot.Builder
+                .builder()
+                .resume(ResumeID.of(compose.getResumeUuid()))
+                .id(InterestID.of(compose.getUuid()))
+                .version(Version.of(compose.getVersion()))
+                .rowStatus(RowStatus.valueOf(compose.getRowStatus()))
+                .processStatus(ProcessStatus.valueOf(compose.getProcessStatus()))
+                .createdDate(
+                        compose.getCreatedDate().toInstant().atZone(ZoneId.systemDefault())
+                )
+                .lastModifiedDate(compose.getModificationDate().toInstant().atZone(ZoneId.systemDefault())
+                )
+                .accessModifier(AccessModifier.valueOf(compose.getAccessModifier()))
+                .name(compose.getName())
+                .description(compose.getDescription())
+                .orderNumber(compose.getOrderNumber())
+                .isHobby(compose.getIsHobby())
+                .build()
+        );
+    }
 }

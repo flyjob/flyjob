@@ -5,8 +5,10 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
-import az.rock.lib.valueObject.*;
-import com.intellibucket.lib.payload.payload.CourseFilePayload;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.Version;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

@@ -1,0 +1,1 @@
+package com.intellibucket.onnetwork.email.domain.core;

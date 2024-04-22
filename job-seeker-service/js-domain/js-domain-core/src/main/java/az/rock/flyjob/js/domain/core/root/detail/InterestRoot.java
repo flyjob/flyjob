@@ -95,7 +95,7 @@ public class InterestRoot extends AggregateRoot<InterestID> {
     public static final class Builder {
 
         private InterestID id;
-        private Version version;
+        private Long version;
         private ProcessStatus processStatus;
         private RowStatus rowStatus;
         private ZonedDateTime createdDate;
@@ -121,7 +121,12 @@ public class InterestRoot extends AggregateRoot<InterestID> {
             return this;
         }
 
-        public Builder version(Version val) {
+        public Builder version(Version version) {
+            this.version = version.value();
+            return this;
+        }
+
+        public Builder version(Long val) {
             version = val;
             return this;
         }
