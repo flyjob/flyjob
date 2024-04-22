@@ -20,7 +20,7 @@ public interface AbstractExperienceQueryJPARepository extends JpaRepository<Expe
     Optional<ExperienceEntity> findById(@Param("experienceId") UUID experienceId);
 
     @Query("SELECT e FROM ExperienceEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' order by e.orderNumber")
-    List<ExperienceEntity> findAllByResume(@Param("resumeID") UUID resumeID);
+    List<ExperienceEntity> findAllByPID(@Param("resumeID") UUID resumeID);
 
     @Query("SELECT e FROM ExperienceEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' AND e.uuid = :experienceId ")
     Optional<ExperienceEntity> findByOwnId(@Param("resumeID") UUID resumeID,@Param("experienceId") UUID experienceId);
