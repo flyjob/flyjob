@@ -1,13 +1,12 @@
-package az.rock.flyjob.js.domain.presentation.handler.concretes;
+package az.rock.flyjob.js.domain.presentation.handler.query.concretes;
 
 import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
-import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleMyCourseResponseModel;
-import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseQueryHandler;
+import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractCourseQueryHandler;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.CourseID;
@@ -15,11 +14,8 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
-import com.intellibucket.lib.payload.event.query.CourseFetchEvent;
-import com.intellibucket.lib.payload.payload.query.CourseFetchPayload;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
