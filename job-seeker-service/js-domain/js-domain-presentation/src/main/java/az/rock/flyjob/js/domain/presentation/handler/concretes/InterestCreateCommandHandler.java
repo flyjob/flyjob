@@ -16,11 +16,11 @@ import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHol
 import az.rock.lib.domain.id.js.InterestID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
-import com.intellibucket.lib.payload.event.create.InterestCreateEvent;
-import com.intellibucket.lib.payload.event.update.InterestDeleteEvent;
-import com.intellibucket.lib.payload.event.update.InterestReorderEvent;
-import com.intellibucket.lib.payload.event.update.InterestUpdateEvent;
-import com.intellibucket.lib.payload.payload.InterestCreatePayload;
+import com.intellibucket.lib.payload.event.command.create.InterestCreateEvent;
+import com.intellibucket.lib.payload.event.command.update.InterestDeleteEvent;
+import com.intellibucket.lib.payload.event.command.update.InterestReorderEvent;
+import com.intellibucket.lib.payload.event.command.update.InterestUpdateEvent;
+import com.intellibucket.lib.payload.payload.command.InterestCreatePayload;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

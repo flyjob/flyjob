@@ -5,8 +5,8 @@ import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractResumeDoma
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractResumeCommandRepositoryAdapter;
 import az.rock.lib.jexception.JRuntimeException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.event.create.ResumeCreatedEvent;
-import com.intellibucket.lib.payload.payload.ResumeCreatedPayload;
+import com.intellibucket.lib.payload.event.command.create.ResumeCreatedEvent;
+import com.intellibucket.lib.payload.payload.command.ResumeCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import org.springframework.stereotype.Component;
 

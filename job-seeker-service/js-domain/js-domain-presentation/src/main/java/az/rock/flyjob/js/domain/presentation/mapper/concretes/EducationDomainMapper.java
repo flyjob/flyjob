@@ -9,7 +9,7 @@ import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
-import com.intellibucket.lib.payload.payload.EducationPayload;
+import com.intellibucket.lib.payload.payload.command.EducationPayload;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

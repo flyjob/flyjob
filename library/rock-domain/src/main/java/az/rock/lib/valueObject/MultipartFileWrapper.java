@@ -7,7 +7,7 @@ public final class MultipartFileWrapper {
 
     private String originalFileName;
     private String absolutePath;
-    private ContentType contentType;
+    private FileContentType contentType;
     private InputStream content;
     private String charset;
     private Long size;
@@ -41,7 +41,7 @@ public final class MultipartFileWrapper {
                 .concat(absolutePath);
     }
 
-    public ContentType getContentType() {
+    public FileContentType getContentType() {
         return contentType;
     }
 
@@ -69,7 +69,7 @@ public final class MultipartFileWrapper {
     public static final class Builder {
         private String originalFileName;
         private String absolutePath;
-        private ContentType contentType;
+        private FileContentType contentType;
         private InputStream content;
         private String charset;
         private Long size;
@@ -93,7 +93,7 @@ public final class MultipartFileWrapper {
             return this;
         }
 
-        public Builder contentType(ContentType val) {
+        public Builder contentType(FileContentType val) {
             contentType = val;
             return this;
         }

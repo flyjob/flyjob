@@ -1,18 +1,21 @@
 package az.rock.flyjob.js.dataaccess.adapter.query;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractPageableDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.batis.model.CourseComposeExample;
+import az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis.CourseBatisRepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractCourseQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.CourseCriteria;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractCourseQueryRepositoryAdapter;
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.SimplePageableRequest;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -20,11 +23,16 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
 
     private final AbstractCourseQueryJPARepository courseQueryJPARepository;
 
+    private final CourseBatisRepository courseQueryBatisRepository;
     private final AbstractCourseDataAccessMapper courseDataAccessMapper;
 
-    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, AbstractCourseDataAccessMapper courseDataAccessMapper) {
+    private final AbstractPageableDataAccessMapper pageableDataAccessMapper;
+
+    public CourseQueryRepositoryAdapter(AbstractCourseQueryJPARepository courseQueryJPARepository, CourseBatisRepository courseQueryBatisRepository, AbstractCourseDataAccessMapper courseDataAccessMapper, AbstractPageableDataAccessMapper pageableDataAccessMapper) {
         this.courseQueryJPARepository = courseQueryJPARepository;
+        this.courseQueryBatisRepository = courseQueryBatisRepository;
         this.courseDataAccessMapper = courseDataAccessMapper;
+        this.pageableDataAccessMapper = pageableDataAccessMapper;
     }
 
     @Override
@@ -53,4 +61,27 @@ public class CourseQueryRepositoryAdapter implements AbstractCourseQueryReposito
     public Boolean isInLimit(Long limit,ResumeID resumeId) {
         return courseQueryJPARepository.isInLimit(limit,resumeId.getRootID());
     }
+
+    @Override
+    public List<CourseRoot> fetchAllCourses(CourseCriteria criteria, SimplePageableRequest pageableRequest) {
+        var pageable = pageableDataAccessMapper.toBatisPageable(pageableRequest).changeLimit(pageableRequest.getSize()+1);
+        var courseComposeExample = CourseComposeExample.of(criteria,"order_number",pageable);
+        return courseQueryBatisRepository.selectByExample(courseComposeExample)
+                .stream()
+                .map(courseDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    @Override
+    public Optional<CourseRoot> fetchCourseById(CourseCriteria criteria) {
+        var courseComposeExample = CourseComposeExample.of(criteria);
+        return Optional.ofNullable(courseQueryBatisRepository.selectFirstByExample(courseComposeExample))
+                .map(courseDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get);
+    }
+
+
 }

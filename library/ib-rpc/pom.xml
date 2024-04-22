@@ -16,6 +16,7 @@
     <modules>
         <module>ib-auth-proto</module>
         <module>ib-dfs-proto</module>
+        <module>ib-exchange-proto</module>
     </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
