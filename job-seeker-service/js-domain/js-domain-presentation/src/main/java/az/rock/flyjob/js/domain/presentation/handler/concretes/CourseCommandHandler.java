@@ -8,6 +8,7 @@ import az.rock.flyjob.js.domain.core.root.detail.CourseRoot;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.CourseCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseCommandHandler;
+import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseQueryHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractCourseDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.dfs.AbstractFileStorageAdapter;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractCourseCommandRepositoryAdapter;
@@ -16,12 +17,12 @@ import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHol
 import az.rock.lib.domain.id.js.CourseID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.MultipartFileWrapper;
-import com.intellibucket.lib.payload.event.create.CourseCertificateUploadedEvent;
-import com.intellibucket.lib.payload.event.create.CourseMergeEvent;
-import com.intellibucket.lib.payload.event.delete.CourseDeleteEvent;
-import com.intellibucket.lib.payload.payload.CourseDeletedPayload;
-import com.intellibucket.lib.payload.payload.CourseFilePayload;
-import com.intellibucket.lib.payload.payload.CourseMergePayload;
+import com.intellibucket.lib.payload.event.command.create.CourseCertificateUploadedEvent;
+import com.intellibucket.lib.payload.event.command.create.CourseMergeEvent;
+import com.intellibucket.lib.payload.event.command.delete.CourseDeleteEvent;
+import com.intellibucket.lib.payload.payload.command.CourseDeletedPayload;
+import com.intellibucket.lib.payload.payload.command.CourseFilePayload;
+import com.intellibucket.lib.payload.payload.command.CourseMergePayload;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;

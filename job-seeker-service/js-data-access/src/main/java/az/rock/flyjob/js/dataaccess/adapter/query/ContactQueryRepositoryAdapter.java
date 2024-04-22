@@ -59,7 +59,7 @@ public class ContactQueryRepositoryAdapter implements AbstractContactQueryReposi
 
     @Override
     public List<ContactRoot> findAllByPID(ResumeID parentID) {
-        var contactEntityList = contactQueryJPARepository.findAll(parentID.getAbsoluteID());
+        var contactEntityList = contactQueryJPARepository.findAllByPID(parentID.getAbsoluteID());
         return contactEntityList.stream()
                 .map(this.contactMapper::toRoot)
                 .filter(Optional::isPresent)

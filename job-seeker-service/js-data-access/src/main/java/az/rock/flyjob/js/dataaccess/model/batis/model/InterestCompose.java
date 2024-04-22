@@ -30,4 +30,6 @@ public class InterestCompose {
     private String name;
 
     private String description;
+
+
 }

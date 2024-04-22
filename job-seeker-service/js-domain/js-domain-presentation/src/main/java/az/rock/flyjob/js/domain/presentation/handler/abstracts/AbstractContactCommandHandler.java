@@ -4,8 +4,9 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.lib.domain.id.js.ResumeID;
-import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
+import com.intellibucket.lib.payload.event.command.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
@@ -24,6 +25,6 @@ public interface AbstractContactCommandHandler {
     ContactDeleteEvent deleteContact(UUID uid);
     ContactDeleteEvent deleteAllContact();
 
-    ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel);
+    ContactReorderEvent reOrderContact(ReorderCommandModel commandModel);
 
 }

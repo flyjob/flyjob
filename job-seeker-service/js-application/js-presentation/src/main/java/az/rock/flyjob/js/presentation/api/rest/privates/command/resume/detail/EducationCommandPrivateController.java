@@ -22,6 +22,7 @@ public class EducationCommandPrivateController implements EducationCommandPrivat
 
     public EducationCommandPrivateController(AbstractEducationCommandDomainPresentationService abstractEducationCommandDomainPresentationService) {
         this.abstractEducationCommandDomainPresentationService = abstractEducationCommandDomainPresentationService;
+
     }
 
     @Override

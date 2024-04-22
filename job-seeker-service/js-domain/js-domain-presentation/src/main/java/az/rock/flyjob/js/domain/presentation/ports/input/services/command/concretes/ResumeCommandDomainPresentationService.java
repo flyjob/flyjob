@@ -3,7 +3,7 @@ package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concr
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractResumeCreateCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractResumeCommandDomainPresentationService;
 import com.intellibucket.lib.payload.event.abstracts.AbstractSuccessDomainEvent;
-import com.intellibucket.lib.payload.payload.ResumeCreatedPayload;
+import com.intellibucket.lib.payload.payload.command.ResumeCreatedPayload;
 import com.intellibucket.lib.payload.payload.reg.JobSeekerRegistrationPayload;
 import org.springframework.stereotype.Component;
 

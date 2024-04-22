@@ -7,6 +7,8 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.ReorderRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ContactCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReferenceCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.exception.UnknownSystemException;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractContactCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractContactCommandDomainMapper;
@@ -15,7 +17,7 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.Abstr
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.domain.id.js.ContactID;
 import az.rock.lib.domain.id.js.ResumeID;
-import com.intellibucket.lib.payload.event.create.ContactCreatedEvent;
+import com.intellibucket.lib.payload.event.command.create.ContactCreatedEvent;
 import com.intellibucket.lib.payload.event.delete.ContactDeleteEvent;
 import com.intellibucket.lib.payload.event.reorder.ContactReorderEvent;
 import com.intellibucket.lib.payload.event.update.ContactUpdateEvent;
@@ -33,18 +35,18 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     private final AbstractContactQueryRepositoryAdapter abstractContactQueryRepositoryAdapter;
     private final AbstractContactCommandDomainMapper contactCommandDomainMapper;
     private final AbstractSecurityContextHolder contextHolder;
-    private final AbstractContactDomainService domainService;
+    private final AbstractContactDomainService contactDomainService;
 
     public ContactCommandPresentationHandler(AbstractContactCommandRepositoryAdapter abstractContactCommandRepositoryAdapter,
                                              AbstractContactQueryRepositoryAdapter contactQueryRepositoryAdapter,
                                              AbstractContactCommandDomainMapper contactCommandDomainMapper,
                                              AbstractSecurityContextHolder contextHolder,
-                                             AbstractContactDomainService domainService) {
+                                             AbstractContactDomainService contactDomainService) {
         this.abstractContactCommandRepositoryAdapter = abstractContactCommandRepositoryAdapter;
         this.abstractContactQueryRepositoryAdapter = contactQueryRepositoryAdapter;
         this.contactCommandDomainMapper = contactCommandDomainMapper;
         this.contextHolder = contextHolder;
-        this.domainService = domainService;
+        this.contactDomainService = contactDomainService;
     }
 
     private ContactPayload toPayload(ContactRoot contactRoot) {
@@ -69,7 +71,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
         var currentResumeId = this.contextHolder.availableResumeID();
         var allSavedContacts = this.abstractContactQueryRepositoryAdapter.findAllByPID(currentResumeId);
         var contactRoot = this.contactCommandDomainMapper.toNewRoot(createRequest.getModel(), currentResumeId);
-        var validateContact = this.domainService.validateContactDuplication(allSavedContacts, contactRoot);
+        var validateContact = this.contactDomainService.validateContactDuplication(allSavedContacts, contactRoot);
         var optionalContactRoot = this.abstractContactCommandRepositoryAdapter.create(validateContact);
         if (optionalContactRoot.isEmpty())
             throw new UnknownSystemException();
@@ -109,14 +111,14 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
     }
 
     @Override
-    public ContactReorderEvent reOrderContact(ReorderRequest<ContactCommandModel> commandModel) {
+    public ContactReorderEvent reOrderContact(ReorderCommandModel commandModel) {
 
         var contactList = this.abstractContactQueryRepositoryAdapter.findAllByPID(contextHolder.availableResumeID());
         var contact = contactList.stream()
                 .filter(c -> c.getRootID().getRootID().toString()
                         .equals(commandModel.getTargetId().toString()))
                 .findFirst().orElseThrow(ContactNotFoundException::new);
-        var reOrderNumber = commandModel.getModel().getOrderNumber();
+        var reOrderNumber = commandModel.getOrderNumber();
         if (reOrderNumber > contact.getOrderNumber()) ++reOrderNumber;
         contact.changeOrderNumber(reOrderNumber);
         contactList.stream()
@@ -130,7 +132,7 @@ public class ContactCommandPresentationHandler implements AbstractContactCommand
 
         }
         abstractContactCommandRepositoryAdapter.updateAll(contactList);
-        return ContactReorderEvent.of(ContactPayload.Builder.builder().build());
+        return ContactReorderEvent.of(ContactPayload.Builder.builder().id(commandModel.getTargetId()).build());
     }
 
 }

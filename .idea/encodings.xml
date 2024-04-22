@@ -92,11 +92,16 @@
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/currency-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/currency-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/document-processor-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/document-processor-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/email-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/exchange-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file-system-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file-system-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-container/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-container/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/image-processor-service/ip-dfs/src/main/java" charset="UTF-8" />
@@ -156,6 +161,8 @@
     <file url="file://$PROJECT_DIR$/library/ib-rpc/authorization-proto/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-rpc/ib-auth-proto/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-rpc/ib-dfs-proto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/ib-exchange-proto/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/ib-rpc/ib-exchange-proto/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-rpc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-rpc/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/ib-security/src/main/java" charset="UTF-8" />
@@ -193,9 +200,13 @@
     <file url="file://$PROJECT_DIR$/rapid-log-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rapid-log-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/report-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/report-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resume-analytic-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resume-analytic-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sdp-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sdp-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sound-processor-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sound-processor-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/stream-service/src/main/java" charset="UTF-8" />
@@ -204,6 +215,7 @@
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-analytic-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vacancy-analytic-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-container/src/main/java" charset="UTF-8" />
@@ -213,6 +225,8 @@
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-messaging/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vacancy-sync-service/vacancy-sync-messaging/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/video-processor-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/video-processor-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/video-streaming-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/video-streaming-service/src/main/resources" charset="UTF-8" />
   </component>
 </project>

@@ -14,10 +14,10 @@ import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.Abstr
 import az.rock.flyjob.js.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.lib.jexception.NoActiveRowException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.event.create.EducationCreatedEvent;
-import com.intellibucket.lib.payload.event.delete.EducationDeletedEvent;
-import com.intellibucket.lib.payload.event.update.EducationUpdatedEvent;
-import com.intellibucket.lib.payload.payload.EducationPayload;
+import com.intellibucket.lib.payload.event.command.create.EducationCreatedEvent;
+import com.intellibucket.lib.payload.event.command.delete.EducationDeletedEvent;
+import com.intellibucket.lib.payload.event.command.update.EducationUpdatedEvent;
+import com.intellibucket.lib.payload.payload.command.EducationPayload;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

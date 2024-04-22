@@ -22,6 +22,5 @@ public interface CourseQueryPrivateSpec {
 
     ResponseEntity<JSuccessDataResponse<SimplePageableResponse<SimpleAnyCourseResponseModel>>> queryAllAnySimpleCourses(UUID targetResumeId, SimplePageableRequest pageableRequest);
 
-
     ResponseEntity<JSuccessDataResponse<AnyCourseResponseModel>> findAnyCourseById(UUID id);
 }

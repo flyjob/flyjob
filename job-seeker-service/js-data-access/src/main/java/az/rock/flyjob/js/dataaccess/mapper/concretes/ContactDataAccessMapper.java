@@ -39,9 +39,6 @@ public class ContactDataAccessMapper implements AbstractContactDataAccessMapper 
 
     @Override
     public Optional<ContactEntity> toEntity(ContactRoot root) {
-
-
-        System.out.printf("-----------with rootid -----"+root.getRootID());
         return Optional.of(ContactEntity.Builder
                 .builder()
                 .uuid(root.getRootID().getAbsoluteID())

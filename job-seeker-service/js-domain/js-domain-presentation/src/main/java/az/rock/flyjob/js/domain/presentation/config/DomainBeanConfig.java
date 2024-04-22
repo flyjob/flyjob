@@ -14,25 +14,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DomainBeanConfig {
 
-
     @Bean
-    public AbstractInterestDomainService interestDomainService() {
+    AbstractInterestDomainService interestDomainService() {
         return new InterestDomainService();
     }
 
     @Bean
-    public AbstractSkillDomainService skillDomainService(){
+    public AbstractSkillDomainService skillDomainService() {
         return new SkillDomainService();
     }
 
     @Bean
-    public AbstractResumeDomainService resumeDomainService(){
-        return new ResumeDomainService();
-    }
-
+    public AbstractContactDomainService contactDomainService() {return new ContactDomainService();}
 
     @Bean
-    public AbstractContactDomainService contactDomainService(){
-        return new ContactDomainService();
+    public AbstractResumeDomainService resumeDomainService() {
+        return new ResumeDomainService();
     }
 }
