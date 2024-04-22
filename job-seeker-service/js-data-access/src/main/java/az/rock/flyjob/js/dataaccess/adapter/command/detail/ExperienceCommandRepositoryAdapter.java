@@ -55,12 +55,17 @@ public class ExperienceCommandRepositoryAdapter implements AbstractExperienceCom
 
     @Override
     public void inActive(ExperienceRoot root) {
-        AbstractExperienceCommandRepositoryAdapter.super.inActive(root);
+        var entity=this.experienceDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.experienceCustomCommandJPARepository::inActive);
     }
 
     @Override
     public void deleteAll(List<ExperienceRoot> roots) {
-        AbstractExperienceCommandRepositoryAdapter.super.deleteAll(roots);
+        roots.stream()
+                .map(this.experienceDataAccessMapper::toEntity)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .forEach(this.experienceCustomCommandJPARepository::inActive);
     }
 
     @Override

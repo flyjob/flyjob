@@ -68,7 +68,7 @@ public class ExperienceCommandHandler implements AbstractExperienceCommandHandle
     public ExperienceDeleteEvent delete(UUID uuid) {
         var resumeId = this.securityContextHolder.availableResumeID();
         var experienceRoot = this.experienceQueryRepositoryAdapter.findOwnByID(resumeId, ExperienceID.of(uuid));
-        this.experienceCommandRepositoryAdapter.delete(experienceRoot.get());
+        this.experienceCommandRepositoryAdapter.inActive(experienceRoot.get());
         return ExperienceDeleteEvent.of(uuid);
     }
 

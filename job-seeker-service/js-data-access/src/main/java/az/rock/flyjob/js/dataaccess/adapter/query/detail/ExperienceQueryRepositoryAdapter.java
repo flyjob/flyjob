@@ -90,6 +90,9 @@ public class ExperienceQueryRepositoryAdapter implements AbstractExperienceQuery
 
     @Override
     public List<ExperienceRoot> findAllByPID(ResumeID parentID) {
-        return AbstractExperienceQueryRepositoryAdapter.super.findAllByPID(parentID);
+         return this.experienceQueryJPARepository.findAllByPID(parentID.getAbsoluteID()).stream()
+         .map(experienceDataAccessMapper::toRoot)
+        .filter(Optional::isPresent)
+        .map(Optional::get).toList();
     }
 }

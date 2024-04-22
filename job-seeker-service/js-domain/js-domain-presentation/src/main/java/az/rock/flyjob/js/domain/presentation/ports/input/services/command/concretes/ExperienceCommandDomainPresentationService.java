@@ -52,7 +52,11 @@ public class ExperienceCommandDomainPresentationService implements AbstractExper
 
     @Override
     public void deleteAll() {
-
+        try {
+            this.experienceCommandHandler.deleteAll();
+        } catch (Exception e) {
+            throw new JRuntimeException(e.getMessage(), e);
+        }
     }
 
     @Override
