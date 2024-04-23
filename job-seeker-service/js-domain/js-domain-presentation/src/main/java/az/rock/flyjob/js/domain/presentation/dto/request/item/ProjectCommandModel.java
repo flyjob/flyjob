@@ -11,4 +11,28 @@ public class ProjectCommandModel extends AbstractCommandModel {
     private ZonedDateTime startDate;
     private ZonedDateTime endDate;
     private String description;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public ZonedDateTime getStartDate() {
+        return startDate;
+    }
+
+    public ZonedDateTime getEndDate() {
+        return endDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
