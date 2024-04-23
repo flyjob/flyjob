@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.dataaccess.adapter.command.detail;
 
+import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractProjectDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractProjectCustomCommandJPARepository;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractProjectQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ProjectRoot;
@@ -15,14 +16,19 @@ import java.util.Optional;
 public class ProjectCommandRepositoryAdapter implements AbstractProjectCommandRepositoryAdapter {
 
     private final AbstractProjectCustomCommandJPARepository projectCustomCommandJPARepository;
+    private final AbstractProjectDataAccessMapper projectDataAccessMapper;
 
-    public ProjectCommandRepositoryAdapter(AbstractProjectCustomCommandJPARepository projectCustomCommandJPARepository) {;
+    public ProjectCommandRepositoryAdapter(AbstractProjectCustomCommandJPARepository projectCustomCommandJPARepository, AbstractProjectDataAccessMapper projectDataAccessMapper) {
+        this.projectDataAccessMapper = projectDataAccessMapper;
         this.projectCustomCommandJPARepository = projectCustomCommandJPARepository;
     }
 
     @Override
     public Optional<ProjectRoot> create(ProjectRoot root) {
-        return Optional.empty();
+        var entity = this.projectDataAccessMapper.toEntity(root);
+        if (entity.isEmpty()) return Optional.empty();
+        var savedEntity = this.projectCustomCommandJPARepository.persist(entity.get());
+        return this.projectDataAccessMapper.toRoot(savedEntity);
     }
 
     @Override
