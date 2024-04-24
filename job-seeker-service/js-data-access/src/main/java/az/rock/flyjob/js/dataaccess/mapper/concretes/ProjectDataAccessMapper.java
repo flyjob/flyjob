@@ -49,6 +49,7 @@ public class ProjectDataAccessMapper implements AbstractProjectDataAccessMapper 
                 .title(root.getTitle())
                 .subtitle(root.getSubtitle())
                 .startDate(root.getStartDate())
+                .endDate(root.getEndDate())
                 .orderNumber(root.getOrderNumber())
                 .description(root.getDescription())
                 .build());

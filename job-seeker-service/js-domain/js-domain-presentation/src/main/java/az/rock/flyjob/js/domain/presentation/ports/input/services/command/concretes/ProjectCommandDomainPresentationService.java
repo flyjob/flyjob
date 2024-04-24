@@ -25,16 +25,16 @@ public class ProjectCommandDomainPresentationService implements AbstractProjectC
 
     @Override
     public void update(UpdateRequest<ProjectCommandModel> request) {
-
+     projectCommandHandler.update(request);
     }
 
     @Override
     public void delete(UUID projectId) {
-
+     projectCommandHandler.delete(projectId);
     }
 
     @Override
     public void reorder(ReorderCommandModel request) {
-
+     projectCommandHandler.reorder(request);
     }
 }

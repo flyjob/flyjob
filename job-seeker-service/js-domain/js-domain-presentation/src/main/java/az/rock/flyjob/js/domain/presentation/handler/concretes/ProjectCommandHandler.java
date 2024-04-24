@@ -3,6 +3,7 @@ package az.rock.flyjob.js.domain.presentation.handler.concretes;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.CreateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ProjectCommandModel;
+import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractProjectCommandHandler;
 import az.rock.flyjob.js.domain.presentation.mapper.abstracts.AbstractProjectDomainMapper;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.command.AbstractProjectCommandRepositoryAdapter;
@@ -61,7 +62,7 @@ public class ProjectCommandHandler implements AbstractProjectCommandHandler<Abst
     }
 
     @Override
-    public ProjectMergeEvent reorder(ProjectCommandModel commandModel) {
+    public ProjectMergeEvent reorder(ReorderCommandModel commandModel) {
         return null;
     }
 }
