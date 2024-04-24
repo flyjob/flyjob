@@ -27,6 +27,8 @@ public class ProjectCustomCommandJPARepository implements AbstractProjectCustomC
 
     @Override
     public <S extends ProjectEntity> S merge(S entity) {
+        var resumeEntity = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
+        entity.setResume(resumeEntity);
         return this.entityManager.merge(entity);
     }
 }

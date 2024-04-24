@@ -51,6 +51,7 @@ public class ProjectCommandHandler implements AbstractProjectCommandHandler<Abst
 
     @Override
     public ProjectDeleteEvent delete(UUID id) {
+
         return null;
     }
 
