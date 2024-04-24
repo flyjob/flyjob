@@ -23,7 +23,7 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
     private String description;
 
     private ProjectRoot(Builder builder) {
-        super(builder.id,builder.version,  builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
+        super(builder.id, builder.version, builder.processStatus, builder.rowStatus, builder.createdDate, builder.lastModifiedDate);
         this.accessModifier = builder.accessModifier;
         this.resume = builder.resume;
         this.orderNumber = builder.orderNumber;
@@ -34,6 +34,37 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
         this.endDate = builder.endDate;
         this.description = builder.description;
     }
+
+    public ProjectRoot changeTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ProjectRoot changeSubTitle(String subtitle) {
+        this.subtitle = subtitle;
+        return this;
+    }
+
+    public ProjectRoot changeLink(String link) {
+        this.link = link;
+        return this;
+    }
+
+    public ProjectRoot changeDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public ProjectRoot changeStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public ProjectRoot changeEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+        return this;
+    }
+
 
     public ResumeID getResume() {
         return resume;
@@ -131,8 +162,8 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
             return this;
         }
 
-        public Builder accessModifier(AccessModifier accessModifier){
-            this.accessModifier  = accessModifier;
+        public Builder accessModifier(AccessModifier accessModifier) {
+            this.accessModifier = accessModifier;
             return this;
         }
 

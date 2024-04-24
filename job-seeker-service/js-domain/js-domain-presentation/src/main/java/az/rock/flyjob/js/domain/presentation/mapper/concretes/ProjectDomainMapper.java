@@ -49,7 +49,12 @@ public class ProjectDomainMapper implements AbstractProjectDomainMapper {
 
     @Override
     public ProjectRoot toExistRoot(ProjectRoot projectRoot, ProjectCommandModel projectCommandModel) {
-
-        return null;
+        return projectRoot
+                .changeTitle(projectCommandModel.getTitle())
+                .changeStartDate(projectCommandModel.getStartDate())
+                .changeEndDate(projectCommandModel.getEndDate())
+                .changeDescription(projectCommandModel.getDescription())
+                .changeSubTitle(projectCommandModel.getSubtitle())
+                .changeLink(projectCommandModel.getLink());
     }
 }
