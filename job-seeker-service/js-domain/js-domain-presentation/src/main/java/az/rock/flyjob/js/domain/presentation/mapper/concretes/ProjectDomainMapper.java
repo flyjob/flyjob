@@ -8,6 +8,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
+import az.rock.lib.valueObject.Version;
 import com.intellibucket.lib.payload.payload.command.ProjectPayload;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +29,9 @@ public class ProjectDomainMapper implements AbstractProjectDomainMapper {
                 .description(projectCommandModel.getDescription())
                 .link(projectCommandModel.getLink())
                 .subtitle(projectCommandModel.getSubtitle())
-                .createdDate(projectCommandModel.getEndDate())
                 .endDate(projectCommandModel.getEndDate())
+                .startDate(projectCommandModel.getStartDate())
+                .version(Version.ONE)
                 .title(projectCommandModel.getTitle())
                 .build();
     }

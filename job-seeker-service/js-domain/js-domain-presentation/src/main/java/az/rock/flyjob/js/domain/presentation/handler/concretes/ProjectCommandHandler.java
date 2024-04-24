@@ -23,7 +23,7 @@ public class ProjectCommandHandler implements AbstractProjectCommandHandler<Abst
     private final AbstractSecurityContextHolder securityContextHolder;
     private final AbstractProjectCommandRepositoryAdapter projectCommandRepositoryAdapter;
     private final AbstractProjectQueryRepositoryAdapter projectQueryRepositoryAdapter;
-   private final AbstractProjectDomainMapper projectDomainMapper;
+    private final AbstractProjectDomainMapper projectDomainMapper;
 
     public ProjectCommandHandler(AbstractSecurityContextHolder securityContextHolder
             , AbstractProjectCommandRepositoryAdapter projectCommandRepositoryAdapter
@@ -37,10 +37,10 @@ public class ProjectCommandHandler implements AbstractProjectCommandHandler<Abst
 
     @Override
     public AbstractDomainEvent<ProjectPayload> create(CreateRequest<ProjectCommandModel> request) {
-        var resumeId=this.securityContextHolder.availableResumeID();
-        var projectRoot=this.projectDomainMapper.toNewRoot(resumeId,request.getModel());
-        var optionalProjectRoot=this.projectCommandRepositoryAdapter.create(projectRoot);
-        var payload=this.projectDomainMapper.toPayload(optionalProjectRoot.get());
+        var resumeId = this.securityContextHolder.availableResumeID();
+        var projectRoot = this.projectDomainMapper.toNewRoot(resumeId, request.getModel());
+        var optionalProjectRoot = this.projectCommandRepositoryAdapter.create(projectRoot);
+        var payload = this.projectDomainMapper.toPayload(optionalProjectRoot.get());
         return ProjectMergeEvent.of(payload);
     }
 

@@ -1,5 +1,6 @@
 package az.rock.flyjob.js.dataaccess.repository.concretes.command.custom.detail;
 
+import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.ProjectEntity;
 import az.rock.flyjob.js.dataaccess.repository.abstracts.command.custom.detail.AbstractProjectCustomCommandJPARepository;
 import jakarta.persistence.EntityManager;
@@ -18,6 +19,8 @@ public class ProjectCustomCommandJPARepository implements AbstractProjectCustomC
 
     @Override
     public <S extends ProjectEntity> S persist(S entity) {
+        var resumeEntity = this.entityManager.getReference(ResumeEntity.class, entity.getResume().getUuid());
+        entity.setResume(resumeEntity);
         this.entityManager.persist(entity);
         return entity;
     }

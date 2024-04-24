@@ -2,14 +2,15 @@ package az.rock.flyjob.js.domain.presentation.dto.request.item;
 
 import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.AbstractCommandModel;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 public class ProjectCommandModel extends AbstractCommandModel {
     private String title;
     private String subtitle;
     private String link;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
 
     public String getTitle() {
@@ -24,11 +25,11 @@ public class ProjectCommandModel extends AbstractCommandModel {
         return link;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
