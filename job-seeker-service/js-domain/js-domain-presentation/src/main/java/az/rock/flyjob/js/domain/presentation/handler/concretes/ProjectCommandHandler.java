@@ -46,7 +46,12 @@ public class ProjectCommandHandler implements AbstractProjectCommandHandler<Abst
 
     @Override
     public ProjectMergeEvent update(UpdateRequest<ProjectCommandModel> request) {
-        return null;
+        var resumeId = this.securityContextHolder.availableResumeID();
+        var projectRoot = this.projectQueryRepositoryAdapter.findByResumeAndUuidAndRowStatusTrue(resumeId, request.getTargetId());
+        var updatedRoot = this.projectDomainMapper.toExistRoot(projectRoot.get(), request.getModel());
+        var optionalProjectRoot = this.projectCommandRepositoryAdapter.create(updatedRoot);
+        var payload = this.projectDomainMapper.toPayload(optionalProjectRoot.get());
+        return ProjectMergeEvent.of(payload);
     }
 
     @Override
