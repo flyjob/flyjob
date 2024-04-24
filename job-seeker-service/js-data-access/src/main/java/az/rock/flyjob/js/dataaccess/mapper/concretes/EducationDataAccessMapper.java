@@ -66,7 +66,4 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
                 .degree(root.getDegree())
                 .build());
     }
-
-
-
 }

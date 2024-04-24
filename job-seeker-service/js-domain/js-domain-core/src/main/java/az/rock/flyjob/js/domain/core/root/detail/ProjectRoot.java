@@ -8,6 +8,7 @@ import az.rock.lib.valueObject.ProcessStatus;
 import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 public class ProjectRoot extends AggregateRoot<ProjectID> {
@@ -17,8 +18,8 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
     private String title;
     private String subtitle;
     private String link;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String description;
 
     private ProjectRoot(Builder builder) {
@@ -54,11 +55,11 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
         return link;
     }
 
-    public ZonedDateTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public ZonedDateTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -84,8 +85,8 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
         private String title;
         private String subtitle;
         private String link;
-        private ZonedDateTime startDate;
-        private ZonedDateTime endDate;
+        private LocalDate startDate;
+        private LocalDate endDate;
         private String description;
 
         private Builder() {
@@ -155,12 +156,12 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
             return this;
         }
 
-        public Builder startDate(ZonedDateTime val) {
+        public Builder startDate(LocalDate val) {
             startDate = val;
             return this;
         }
 
-        public Builder endDate(ZonedDateTime val) {
+        public Builder endDate(LocalDate val) {
             endDate = val;
             return this;
         }
