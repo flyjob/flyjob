@@ -22,6 +22,8 @@ public class ProjectDataAccessMapper implements AbstractProjectDataAccessMapper 
                 .builder()
                 .link(entity.getLink())
                 .subtitle(entity.getSubtitle())
+                .processStatus(entity.getProcessStatus())
+                .accessModifier(entity.getAccessModifier())
                 .title(entity.getTitle())
                 .createdDate(GDateTime.toZonedDateTime(entity.getCreatedDate()))
                 .description(entity.getDescription())
