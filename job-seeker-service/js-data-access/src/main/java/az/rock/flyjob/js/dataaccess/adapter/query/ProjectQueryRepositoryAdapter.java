@@ -4,6 +4,7 @@ import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractProjectDataAccessMa
 import az.rock.flyjob.js.dataaccess.repository.abstracts.query.jpa.AbstractProjectQueryJPARepository;
 import az.rock.flyjob.js.domain.core.root.detail.ProjectRoot;
 import az.rock.flyjob.js.domain.presentation.ports.output.repository.query.AbstractProjectQueryRepositoryAdapter;
+import az.rock.lib.domain.id.js.ProjectID;
 import az.rock.lib.domain.id.js.ResumeID;
 import org.springframework.stereotype.Component;
 
@@ -29,23 +30,30 @@ public class ProjectQueryRepositoryAdapter implements AbstractProjectQueryReposi
         return this.projectDataAccessMapper.toRoot(entity.get());
     }
 
+
     @Override
-    public Optional findOwnByID(Object parentID, Object rootId) {
+    public Optional<ProjectRoot> findOwnByID(ResumeID parentID, ProjectID rootId) {
         return AbstractProjectQueryRepositoryAdapter.super.findOwnByID(parentID, rootId);
     }
 
     @Override
-    public Optional findById(Object rootId) {
+    public Optional<ProjectRoot> findById(ProjectID rootId) {
         return Optional.empty();
     }
 
     @Override
-    public Optional findByPID(Object parentID) {
+    public Optional<ProjectRoot> findByPID(ResumeID parentID) {
         return AbstractProjectQueryRepositoryAdapter.super.findByPID(parentID);
     }
 
     @Override
-    public List findAllByPID(Object parentID) {
-        return AbstractProjectQueryRepositoryAdapter.super.findAllByPID(parentID);
+    public List<ProjectRoot> findAllByPID(ResumeID parentID) {
+        var projectEntityList = projectQueryJPARepository.findAll();
+        return projectEntityList
+                .stream()
+                .map(this.projectDataAccessMapper::toRoot)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }

@@ -64,7 +64,10 @@ public class ProjectRoot extends AggregateRoot<ProjectID> {
         this.endDate = endDate;
         return this;
     }
-
+   public ProjectRoot changeOrderNumber(Integer orderNumber){
+        this.orderNumber=orderNumber;
+        return this;
+   }
 
     public ResumeID getResume() {
         return resume;

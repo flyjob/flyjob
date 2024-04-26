@@ -5,8 +5,6 @@ import az.rock.flyjob.js.domain.presentation.dto.request.abstracts.UpdateRequest
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ProjectCommandModel;
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
-import com.intellibucket.lib.payload.event.command.create.ProjectMergeEvent;
-import com.intellibucket.lib.payload.event.command.delete.ProjectDeleteEvent;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

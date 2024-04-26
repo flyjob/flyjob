@@ -51,8 +51,8 @@ public class ProjectCommandRepositoryAdapter implements AbstractProjectCommandRe
 
     @Override
     public void inActive(ProjectRoot root) {
-        AbstractProjectCommandRepositoryAdapter.super.inActive(root);
-    }
+        var entity = this.projectDataAccessMapper.toEntity(root);
+        entity.ifPresent(this.projectCustomCommandJPARepository::delete);    }
 
     @Override
     public void deleteAll(List<ProjectRoot> projectRoots) {

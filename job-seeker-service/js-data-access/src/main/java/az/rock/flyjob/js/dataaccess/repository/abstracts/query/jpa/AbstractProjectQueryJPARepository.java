@@ -20,5 +20,5 @@ public interface AbstractProjectQueryJPARepository extends JpaRepository<Project
     Optional<ProjectEntity> findById(@Param("projectId") UUID projectId);
 
     @Query("SELECT e FROM ProjectEntity e WHERE e.resume.uuid = :resumeID AND e.rowStatus = 'ACTIVE' order by e.orderNumber")
-    List<ProjectEntity> findAll(@Param("resumeID") UUID resumeID);
+    List<ProjectEntity> findAllByPID(@Param("resumeID") UUID resumeID);
 }
