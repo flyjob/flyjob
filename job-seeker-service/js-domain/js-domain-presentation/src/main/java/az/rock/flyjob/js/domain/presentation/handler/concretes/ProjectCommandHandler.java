@@ -77,7 +77,7 @@ public class ProjectCommandHandler implements AbstractProjectCommandHandler<Abst
         if (commandModel.getOrderNumber() > project.get().getOrderNumber()) ++reOrderNumber;
         project.get().changeOrderNumber(reOrderNumber)  ;
         projects.stream()
-                .filter(e -> e.getOrderNumber() >= project.get().getOrderNumber() && !e.equals(e))
+                .filter(e -> e.getOrderNumber() >= project.get().getOrderNumber() && e.equals(e))
                 .forEach(e -> e.changeOrderNumber(e.getOrderNumber() + 1));
         int orderCounter = 1;
         for (ProjectRoot projectRoot : projects.stream()
