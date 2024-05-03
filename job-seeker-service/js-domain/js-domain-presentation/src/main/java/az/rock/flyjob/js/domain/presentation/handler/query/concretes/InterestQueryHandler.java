@@ -108,7 +108,5 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
                 .id(id)
                 .accessModifier(modifier)
                 .build();
-
-
     }
 }

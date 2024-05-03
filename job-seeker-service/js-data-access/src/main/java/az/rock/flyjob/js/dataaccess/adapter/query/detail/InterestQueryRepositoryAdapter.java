@@ -80,8 +80,6 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
                     .filter(Optional::isPresent)
                     .map(Optional::get)
                     .toList();
-
-
         }
         return List.of();
     }

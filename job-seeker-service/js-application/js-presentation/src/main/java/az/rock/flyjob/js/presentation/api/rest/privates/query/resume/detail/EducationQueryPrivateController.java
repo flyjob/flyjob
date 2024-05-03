@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-public class EducationQueryPrivateController implements EducationQueryPrivateSpec {
+public class
+EducationQueryPrivateController implements EducationQueryPrivateSpec {
 
 
     @Override
