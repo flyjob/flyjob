@@ -1,20 +1,16 @@
 package az.rock.auth.domain.presentation.ports.input.service.query.concretes.user;
 
 import az.rock.auth.domain.presentation.dto.response.user.*;
+import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user.AbstractUserQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.publisher.AbstractNotificationMessagePublisher;
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserProfileQueryRepositoryAdapter;
-import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
-import az.rock.auth.domain.presentation.exception.AuthDomainPresentationException;
-import az.rock.auth.domain.presentation.ports.input.service.query.abstracts.user.AbstractUserQueryDomainPresentation;
 import az.rock.auth.domain.presentation.ports.output.repository.query.user.AbstractUserQueryRepositoryAdapter;
+import az.rock.auth.domain.presentation.security.AbstractSecurityContextHolder;
 import az.rock.flyjob.auth.exception.user.MyFollowersNotFoundException;
 import az.rock.flyjob.auth.exception.user.MyNetworksNotFoundException;
 import az.rock.flyjob.auth.exception.user.MyUserProfileNotFoundException;
 import az.rock.flyjob.auth.exception.user.UserProfileNotFoundException;
 import az.rock.flyjob.auth.model.query.AnyProfileQueryRecord;
-import az.rock.flyjob.auth.model.root.network.FollowRelationRoot;
-import az.rock.flyjob.auth.model.root.user.UserRoot;
-import az.rock.lib.domain.id.auth.UserID;
 import az.rock.lib.valueObject.common.PageableRequest;
 import com.intellibucket.lib.fj.notificatin.api.notifications.ViewedProfileNotification;
 import org.springframework.stereotype.Service;
@@ -55,11 +51,10 @@ public class UserQueryPrivateDomainPresentation implements AbstractUserQueryDoma
     public AnyUserProfileResponse anyProfile(UUID userID) {
         var currentUser = this.securityContextHolder.availableUser();
         Optional<AnyProfileQueryRecord> optionalUserProfile = this.userProfileQueryRepositoryAdapter.findAnyProfile(currentUser.getAbsoluteID(), userID);
-        if (optionalUserProfile.isPresent()){
+        if (optionalUserProfile.isPresent()) {
             this.notificationMessagePublisher.send(ViewedProfileNotification.of(currentUser.getAbsoluteID(), userID));
             return AnyUserProfileResponse.of(optionalUserProfile.get());
-        }
-        else throw new UserProfileNotFoundException();
+        } else throw new UserProfileNotFoundException();
     }
 
     @Override

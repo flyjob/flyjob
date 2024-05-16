@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public interface AbstractEducationCommandHandler<E extends AbstractDomainEvent<?>>  {
+public interface AbstractEducationCommandHandler<E extends AbstractDomainEvent<?>> {
 
     E create(CreateRequest<EducationCommandModel> request) throws EducationDomainException;
 

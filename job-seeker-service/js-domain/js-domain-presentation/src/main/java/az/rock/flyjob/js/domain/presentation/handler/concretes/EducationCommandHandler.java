@@ -18,7 +18,6 @@ import com.intellibucket.lib.payload.event.command.create.EducationCreatedEvent;
 import com.intellibucket.lib.payload.event.command.delete.EducationDeletedEvent;
 import com.intellibucket.lib.payload.event.command.update.EducationUpdatedEvent;
 import com.intellibucket.lib.payload.payload.command.EducationPayload;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -27,7 +26,6 @@ import java.util.UUID;
 
 
 @Component
-@Slf4j
 public class EducationCommandHandler implements AbstractEducationCommandHandler<AbstractDomainEvent<?>> {
 
     private final AbstractSecurityContextHolder securityContextHolder;

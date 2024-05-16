@@ -17,19 +17,22 @@ import java.util.Optional;
 import java.util.UUID;
 
 @DomainOutputPort
-public interface AbstractCourseQueryRepositoryAdapter{
+public interface AbstractCourseQueryRepositoryAdapter {
 
     Boolean existsByEquality(CourseRoot root);
 
-    Optional<CourseRoot> findById(CourseID courseID,ResumeID resumeID,List<AccessModifier> accessModifiers);
+    Optional<CourseRoot> findById(CourseID courseID, ResumeID resumeID, List<AccessModifier> accessModifiers);
 
-    List<CourseRoot> findAllByResume(ResumeID resumeID,List<AccessModifier> accessModifiers);
+    List<CourseRoot> findAllByResume(ResumeID resumeID, List<AccessModifier> accessModifiers);
 
-    Boolean isInLimit(Long limit,ResumeID resumeId);
+
+
+   Boolean isInLimit(Long limit,ResumeID resumeId);
 
     List<CourseRoot> fetchAllCourses(CourseCriteria criteria,SimplePageableRequest pageableRequest);
 
     Optional<CourseRoot> fetchCourseById(CourseCriteria criteria);
+
 
 
 }

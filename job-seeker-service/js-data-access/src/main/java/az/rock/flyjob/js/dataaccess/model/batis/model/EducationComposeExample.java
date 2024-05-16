@@ -1,9 +1,12 @@
 package az.rock.flyjob.js.dataaccess.model.batis.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import az.rock.flyjob.js.domain.presentation.dto.criteria.EducationCriteria;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
+import com.intellibucket.lib.fj.dataaccess.BatisPageable;
+
+import java.util.*;
 
 @SuppressWarnings("all")
 public class EducationComposeExample {
@@ -13,24 +16,55 @@ public class EducationComposeExample {
 
     protected List<Criteria> oredCriteria;
 
+    private BatisPageable pageable;
+
+
     public EducationComposeExample() {
         oredCriteria = new ArrayList<>();
     }
 
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
+    public static EducationComposeExample of(EducationCriteria educationCriteria, String orderByClause, BatisPageable pageable) {
+        var educationComposeExample = of(educationCriteria);
+        educationComposeExample.setOrderByClause(orderByClause);
+        educationComposeExample.setPageable(pageable);
+        return educationComposeExample;
+    }
+
+    public static EducationComposeExample of(EducationCriteria educationCriteria) {
+        var educationComposeExample = new EducationComposeExample();
+        var criteria = educationComposeExample.createCriteria();
+        if (Objects.nonNull(educationCriteria.getResumeID())) criteria.andResumeUuidEqualTo(educationCriteria.getResumeID());
+        if (Objects.nonNull(educationCriteria.getEducationId())) criteria.andUuidEqualTo(educationCriteria.getEducationId());
+        if (Objects.nonNull(educationCriteria.getAccessModifiers()))
+            criteria.andAccessModifierIn(educationCriteria.getAccessModifiers().stream().map(AccessModifier::name).toList());
+        criteria
+                .andRowStatusEqualTo(RowStatus.ACTIVE.name())
+                .andProcessStatusEqualTo(ProcessStatus.COMPLETED.name());
+        return educationComposeExample;
+    }
+
+    public BatisPageable getPageable() {
+        return this.pageable;
+    }
+
+    public void setPageable(BatisPageable batisPageable) {
+        this.pageable = batisPageable;
     }
 
     public String getOrderByClause() {
         return orderByClause;
     }
 
-    public void setDistinct(boolean distinct) {
-        this.distinct = distinct;
+    public void setOrderByClause(String orderByClause) {
+        this.orderByClause = orderByClause;
     }
 
     public boolean isDistinct() {
         return distinct;
+    }
+
+    public void setDistinct(boolean distinct) {
+        this.distinct = distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -40,6 +74,7 @@ public class EducationComposeExample {
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
     }
+
 
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
@@ -1317,38 +1352,6 @@ public class EducationComposeExample {
 
         private String typeHandler;
 
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
-        }
-
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -1383,6 +1386,38 @@ public class EducationComposeExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
+        }
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
         }
     }
 }

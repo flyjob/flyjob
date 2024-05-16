@@ -7,8 +7,8 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandMode
 import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractEducationCommandHandler;
 import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractEducationCommandDomainPresentationService;
 import az.rock.lib.annotation.InputPort;
-import az.rock.lib.jexception.JRuntimeException;
 import com.intellibucket.lib.payload.event.abstracts.AbstractDomainEvent;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -24,38 +24,26 @@ public class EducationCommandDomainPresentationService implements AbstractEducat
     }
 
     @Override
+    @SneakyThrows
     public void create(CreateRequest<EducationCommandModel> request) {
-        try {
-            this.abstractEducationCommandHandler.create(request);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(),e);
-        }
+        this.abstractEducationCommandHandler.create(request);
     }
 
     @Override
+    @SneakyThrows
     public void update(UpdateRequest<EducationCommandModel> request) {
-        try {
-            this.abstractEducationCommandHandler.update(request);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(),e);
-        }
+        this.abstractEducationCommandHandler.update(request);
     }
 
     @Override
+    @SneakyThrows
     public void delete(UUID educationId) {
-        try {
-            this.abstractEducationCommandHandler.delete(educationId);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(),e);
-        }
+        this.abstractEducationCommandHandler.delete(educationId);
     }
 
     @Override
+    @SneakyThrows
     public void reorder(ReorderCommandModel request) {
-        try {
-            this.abstractEducationCommandHandler.reorder(request);
-        } catch (Exception e) {
-            throw new JRuntimeException(e.getMessage(),e);
-        }
+        this.abstractEducationCommandHandler.reorder(request);
     }
 }
