@@ -1,7 +1,11 @@
 package az.rock.lib.valueObject;
 
+
+import com.intellibucket.ws.validation.annotation.Interval;
+
 public class SimplePageableRequest {
     private int page;
+    @Interval(min = 1,max = 100)
     private int size;
 
     public SimplePageableRequest(int page, int size) {
