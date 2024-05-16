@@ -190,5 +190,4 @@ public interface CustomCommandJPARepository<T extends BaseEntity> {
             session.setJdbcBatchSize(originalSessionBatchSize);
         }
     }
-
 }

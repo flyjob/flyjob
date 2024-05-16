@@ -19,7 +19,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
                 "az.rock.flyjob.js.messaging"})
 @ServletComponentScan
 @EntityScan(basePackages = {"az.rock.flyjob.js.dataaccess.model.entity"})
-@MapperScan(value = {"az/rock/flyjob/js/dataaccess/repository/abstracts/query/batis"})
+@MapperScan(value = {"az.rock.flyjob.js.dataaccess.repository.abstracts.query.batis"})
 public class JobSeekerApplication {
     public static void main(String[] args) {
         SpringApplication.run(JobSeekerApplication.class,args);

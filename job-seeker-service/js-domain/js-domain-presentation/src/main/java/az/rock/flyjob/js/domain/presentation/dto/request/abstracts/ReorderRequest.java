@@ -2,17 +2,17 @@ package az.rock.flyjob.js.domain.presentation.dto.request.abstracts;
 
 import java.util.UUID;
 
-public class UpdateRequest <T extends AbstractCommandModel>{
+public class ReorderRequest <T extends AbstractCommandModel>{
+
     private UUID targetId;
     private T model;
 
-
-    public UpdateRequest(UUID targetId, T model) {
+    public ReorderRequest(UUID targetId, T model) {
         this.targetId = targetId;
         this.model = model;
     }
 
-    public UpdateRequest() {
+    public ReorderRequest() {
     }
 
 
@@ -31,5 +31,4 @@ public class UpdateRequest <T extends AbstractCommandModel>{
     public void setTargetId(UUID targetId) {
         this.targetId = targetId;
     }
-
 }
