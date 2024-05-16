@@ -22,6 +22,8 @@ public class AwardCustomCommandJPARepository implements AbstractAwardCustomComma
         return entity;
     }
 
+
+
     @Override
     public <S extends AwardEntity> S merge(S entity) {
         return this.entityManager.merge(entity);

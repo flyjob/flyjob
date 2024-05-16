@@ -1,11 +1,11 @@
-package az.rock.flyjob.js.domain.presentation.ports.input.services.command.concretes;
+package az.rock.flyjob.js.domain.presentation.ports.input.services.query.concretes;
 
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleMyCourseResponseModel;
-import az.rock.flyjob.js.domain.presentation.handler.abstracts.AbstractCourseQueryHandler;
-import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseQueryDomainPresentationService;
+import az.rock.flyjob.js.domain.presentation.handler.query.abstracts.AbstractCourseQueryHandler;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractCourseQueryDomainPresentationService;
 import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import lombok.SneakyThrows;

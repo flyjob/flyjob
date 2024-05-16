@@ -31,4 +31,5 @@ public class UpdateRequest <T extends AbstractCommandModel>{
     public void setTargetId(UUID targetId) {
         this.targetId = targetId;
     }
+
 }

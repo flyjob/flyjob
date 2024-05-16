@@ -16,13 +16,14 @@ import az.rock.lib.valueObject.SimplePageableRequest;
 import az.rock.lib.valueObject.SimplePageableResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class InterestQueryHandler implements AbstractInterestQueryHandler {
     private final List<AccessModifier> modifierList = List.of(AccessModifier.values());
-
     private final AbstractSecurityContextHolder contextHolder;
     private final AbstractInterestQueryRepositoryAdapter interestQueryRepositoryAdapter;
 
@@ -36,12 +37,11 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     public SimplePageableResponse<AnyInterestResponseModel> findAllAnyInterests(UUID targetResumeId, SimplePageableRequest pageableRequest) throws Exception {
         final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
         var allAnyInterestsRoot = this.interestQueryRepositoryAdapter.fetchAllAnyInterests(criteria, pageableRequest);
-        if (!allAnyInterestsRoot.isEmpty()) {
-            var allAnyInterest = allAnyInterestsRoot.stream()
-                    .map(AnyInterestResponseModel::of)
-                    .toList();
-            return SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(), allAnyInterest);
-        } else throw new InterestNotFound();
+        var allAnyInterest = allAnyInterestsRoot.stream()
+                .map(AnyInterestResponseModel::of)
+                .collect(Collectors.toList());
+        return convertResponse(allAnyInterest, pageableRequest);
+
     }
 
 
@@ -49,14 +49,11 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
     public SimplePageableResponse<SimpleAnyInterestResponseModel> findAllAnySimpleInterest(UUID targetResumeId, SimplePageableRequest pageableRequest) throws Exception {
         final InterestCriteria criteria = toCriteria(ResumeID.of(targetResumeId), null, modifierList);
         var allAnySimpleInterest = this.interestQueryRepositoryAdapter.fetchAllAnySimpleInterest(criteria, pageableRequest);
-        if (!allAnySimpleInterest.isEmpty()) {
             var allAnyInterest = allAnySimpleInterest.stream()
                     .map(SimpleAnyInterestResponseModel::of)
-                    .toList();
+                    .collect(Collectors.toList());
+            return convertResponse(allAnyInterest, pageableRequest);
 
-            return SimplePageableResponse.ofNoMore(pageableRequest.getSize(), pageableRequest.getPage(), allAnyInterest);
-
-        } else throw new InterestNotFound();
     }
 
     @Override
@@ -83,9 +80,8 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
         var resumeID = this.contextHolder.availableResumeID();
         var interestCriteria = toCriteria(resumeID, null, null);
         var myInterest = this.interestQueryRepositoryAdapter.queryAllMyInterests(interestCriteria, pageableRequest).stream()
-                .map(MyInterestResponseModel::of)
-                .toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(), null, myInterest);
+                .map(MyInterestResponseModel::of).collect(Collectors.toList());
+        return convertResponse(myInterest, pageableRequest);
     }
 
     @Override
@@ -94,8 +90,8 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
         var interestCriteria = toCriteria(resumeID, null, null);
         var myInterest = this.interestQueryRepositoryAdapter.queryAllMySimpleInterests(interestCriteria, pageableRequest).stream()
                 .map(SimpleMyInterestResponseModel::of)
-                .toList();
-        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(), null, myInterest);
+                .collect(Collectors.toList());
+        return convertResponse(myInterest, pageableRequest);
     }
 
 
@@ -109,6 +105,14 @@ public class InterestQueryHandler implements AbstractInterestQueryHandler {
                 .accessModifier(modifier)
                 .build();
 
+    }
+
+    public SimplePageableResponse convertResponse(List list, SimplePageableRequest pageableRequest) {
+        boolean hasMore = list.size() > pageableRequest.getSize();
+        if (hasMore){
+            list.remove(list.size()-1);
+        }
+        return SimplePageableResponse.of(pageableRequest.getSize(), pageableRequest.getPage(), hasMore, list);
 
     }
 }
