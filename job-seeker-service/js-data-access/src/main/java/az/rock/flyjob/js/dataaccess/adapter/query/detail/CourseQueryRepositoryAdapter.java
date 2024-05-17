@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.dataaccess.adapter.query;
+package az.rock.flyjob.js.dataaccess.adapter.query.detail;
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractCourseDataAccessMapper;
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractPageableDataAccessMapper;

@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Compose
 public class BaseCompose {
+
     private UUID uuid;
 
     private Long version;

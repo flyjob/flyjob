@@ -18,4 +18,6 @@ public class PhoneNumberID  extends RootID<UUID> implements IdReference<UUID> {
     public static PhoneNumberID of(UUID value) {
         return new PhoneNumberID(value);
     }
+
+
 }

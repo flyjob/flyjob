@@ -22,8 +22,6 @@ public class AuthCommandPublicController implements AuthCommandPublicControllerS
         this.userDomainPresentationService = userDomainPresentationService;
     }
 
-
-
     @Override
     @GetMapping(value = "/live")
     public ResponseEntity<JSuccessResponse> live() {

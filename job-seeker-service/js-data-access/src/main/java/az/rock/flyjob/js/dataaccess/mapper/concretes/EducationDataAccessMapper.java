@@ -2,16 +2,23 @@ package az.rock.flyjob.js.dataaccess.mapper.concretes;
 
 
 import az.rock.flyjob.js.dataaccess.mapper.abstracts.AbstractEducationDataAccessMapper;
+import az.rock.flyjob.js.dataaccess.model.batis.model.EducationCompose;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.ResumeEntity;
 import az.rock.flyjob.js.dataaccess.model.entity.resume.details.EducationEntity;
 import az.rock.flyjob.js.domain.core.root.detail.EducationRoot;
 import az.rock.lib.domain.id.js.EducationID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.util.GDateTime;
+import az.rock.lib.valueObject.AccessModifier;
+import az.rock.lib.valueObject.ProcessStatus;
+import az.rock.lib.valueObject.RowStatus;
 import az.rock.lib.valueObject.Version;
+import az.rock.lib.valueObject.js.EducationDegree;
+import az.rock.lib.valueObject.js.EducationState;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class EducationDataAccessMapper implements AbstractEducationDataAccessMapper {
@@ -67,6 +74,31 @@ public class EducationDataAccessMapper implements AbstractEducationDataAccessMap
                 .build());
     }
 
+
+    @Override
+    public Optional<EducationRoot> composeToRoot(EducationCompose educationCompose) {
+        var optionalEducationCompose = Optional.ofNullable(educationCompose);
+        return optionalEducationCompose.map(compose -> EducationRoot.Builder.builder()
+                .uuid(EducationID.of(compose.getUuid()))
+                .resume(ResumeID.of(compose.getResumeUuid()))
+                .version(Version.of(compose.getVersion()))
+                .rowStatus(RowStatus.valueOf(compose.getRowStatus()))
+                .processStatus(ProcessStatus.of(compose.getProcessStatus()))
+                .createdDate(GDateTime.of(compose.getCreatedDate()))
+                .lastModifiedDate(GDateTime.of(compose.getModificationDate()))
+                .accessModifier(AccessModifier.valueOf(compose.getAccessModifier()))
+                .cityId((UUID) compose.getCityId())
+                .establishmentUUID((UUID) compose.getEstablishmentUuid())
+                .establishmentName(compose.getEstablishmentName())
+                .orderNumber(compose.getOrderNumber())
+                .startDate(GDateTime.convertToLocalDate(compose.getStartDate()))
+                .endDate(GDateTime.convertToLocalDate(compose.getEndDate()))
+                .description(compose.getDescription())
+                .link(compose.getLink())
+                .state(EducationState.valueOf(compose.getState()))
+                .degree(EducationDegree.valueOf(compose.getDegree()))
+                .build());
+    }
 
 
 }

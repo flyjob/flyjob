@@ -21,11 +21,11 @@ public class ContactID extends RootID<UUID> implements IdReference<UUID> {
         return new ContactID(value);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) return false;
-        if (this == o) return true;
-        if (!(o instanceof ContactID)) return false;
-        return this.getAbsoluteID().equals(((ContactID)o).getAbsoluteID());
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (o == null) return false;
+//        if (this == o) return true;
+//        if (!(o instanceof ContactID)) return false;
+//        return this.getAbsoluteID().equals(((ContactID)o).getAbsoluteID());
+//    }
 }
