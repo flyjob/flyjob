@@ -53,7 +53,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<InterestRoot> fetchAllAnySimpleInterest(InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
         var interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request));
+        interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request).changeLimit(request.getSize()+1));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
@@ -71,7 +71,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
     @Override
     public List<InterestRoot> fetchAllAnyInterests(InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
         InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-        interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request));
+        interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request).changeLimit(request.getSize()+1));
 
         final List<InterestCompose> interestComposes = this.batisRepository.selectByExample(interestComposeExample);
         if (!interestComposes.isEmpty()) {
@@ -101,7 +101,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         @Override
         public List<InterestRoot> queryAllMyInterests (InterestCriteria criteria, SimplePageableRequest request) throws InterestOverLimit {
             InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-            interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request));
+            interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request).changeLimit(request.getSize()+1));
 
             return batisRepository.selectByExample(interestComposeExample)
                     .stream()
@@ -116,7 +116,7 @@ public class InterestQueryRepositoryAdapter implements AbstractInterestQueryRepo
         public List<InterestRoot> queryAllMySimpleInterests (InterestCriteria criteria, SimplePageableRequest request) throws
         InterestOverLimit {
             InterestComposeExample interestComposeExample = InterestComposeExample.of(criteria);
-            interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request));
+            interestComposeExample.addPageable(pageableDataAccessMapper.toBatisPageable(request).changeLimit(request.getSize()+1));
 
             return batisRepository.selectByExample(interestComposeExample)
                     .stream()

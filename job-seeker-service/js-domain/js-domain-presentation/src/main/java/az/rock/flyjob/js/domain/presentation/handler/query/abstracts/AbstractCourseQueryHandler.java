@@ -1,4 +1,4 @@
-package az.rock.flyjob.js.domain.presentation.handler.abstracts;
+package az.rock.flyjob.js.domain.presentation.handler.query.abstracts;
 
 import az.rock.flyjob.js.domain.core.exception.course.CourseNotFoundException;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;

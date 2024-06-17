@@ -6,6 +6,7 @@ import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.*;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 
 public class ContactRoot extends AggregateRoot<ContactID> {
@@ -16,9 +17,19 @@ public class ContactRoot extends AggregateRoot<ContactID> {
     private ContactLiveType liveType;
     private String data;
 
+
     @Override
     public boolean equals(Object o) {
-        return super.equals(o);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ContactRoot that = (ContactRoot) o;
+        return Objects.equals(resume, that.resume) && formatType == that.formatType && liveType == that.liveType && Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), resume, formatType, liveType, data);
     }
 
     private ContactRoot(Builder builder) {
@@ -33,6 +44,26 @@ public class ContactRoot extends AggregateRoot<ContactID> {
 
     public ResumeID getResume() {
         return resume;
+    }
+
+    public ContactRoot changeOrderNumber(Integer orderNumber){
+        this.orderNumber=orderNumber;
+        return this;
+    }
+    public ContactRoot changeData(String data){
+        this.data=data;
+        return this;
+    }
+    public ContactRoot changeFormatType(ContactFormatType formatType){
+        this.formatType=formatType;
+        return this;
+    }
+    public ContactRoot changeLiveType(ContactLiveType contactLiveType){
+        this.liveType=contactLiveType;
+        return this;
+    }
+    public Boolean isValid() {
+        return Objects.nonNull(this.formatType) && Objects.nonNull(this.data) && Objects.nonNull(this.liveType);
     }
 
     public Integer getOrderNumber() {
@@ -72,6 +103,7 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         private ContactLiveType liveType;
         private String data;
 
+
         private Builder() {
         }
 
@@ -87,6 +119,106 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         public Builder version(Version val) {
             version = val;
             return this;
+        }
+        public Builder version(Long val) {
+            version =  Version.of(val);
+            return this;
+        }
+
+        public ContactID getId() {
+            return id;
+        }
+
+        public void setId(ContactID id) {
+            this.id = id;
+        }
+
+        public Version getVersion() {
+            return version;
+        }
+
+        public void setVersion(Version version) {
+            this.version = version;
+        }
+
+        public ProcessStatus getProcessStatus() {
+            return processStatus;
+        }
+
+        public void setProcessStatus(ProcessStatus processStatus) {
+            this.processStatus = processStatus;
+        }
+
+        public RowStatus getRowStatus() {
+            return rowStatus;
+        }
+
+        public void setRowStatus(RowStatus rowStatus) {
+            this.rowStatus = rowStatus;
+        }
+
+        public ZonedDateTime getCreatedDate() {
+            return createdDate;
+        }
+
+        public void setCreatedDate(ZonedDateTime createdDate) {
+            this.createdDate = createdDate;
+        }
+
+        public ZonedDateTime getLastModifiedDate() {
+            return lastModifiedDate;
+        }
+
+        public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+            this.lastModifiedDate = lastModifiedDate;
+        }
+
+        public ResumeID getResume() {
+            return resume;
+        }
+
+        public void setResume(ResumeID resume) {
+            this.resume = resume;
+        }
+
+        public AccessModifier getAccessModifier() {
+            return accessModifier;
+        }
+
+        public void setAccessModifier(AccessModifier accessModifier) {
+            this.accessModifier = accessModifier;
+        }
+
+        public Integer getOrderNumber() {
+            return orderNumber;
+        }
+
+        public void setOrderNumber(Integer orderNumber) {
+            this.orderNumber = orderNumber;
+        }
+
+        public ContactFormatType getFormatType() {
+            return formatType;
+        }
+
+        public void setFormatType(ContactFormatType formatType) {
+            this.formatType = formatType;
+        }
+
+        public ContactLiveType getLiveType() {
+            return liveType;
+        }
+
+        public void setLiveType(ContactLiveType liveType) {
+            this.liveType = liveType;
+        }
+
+        public String getData() {
+            return data;
+        }
+
+        public void setData(String data) {
+            this.data = data;
         }
 
         public Builder processStatus(ProcessStatus val) {
@@ -144,5 +276,7 @@ public class ContactRoot extends AggregateRoot<ContactID> {
         public ContactRoot build() {
             return new ContactRoot(this);
         }
+
+
     }
 }

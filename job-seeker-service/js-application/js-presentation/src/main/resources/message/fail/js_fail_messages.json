@@ -82,6 +82,15 @@
   },
   {
     "code": "F0000000010",
+    "az": "Dəyər müəyyən edilmiş diapazonda olmalıdır.",
+    "en": "The value must be within the specified range.",
+    "ru": "Значение должно находиться в указанном диапазоне.",
+    "tr": "Değer belirtilen aralıkta olmalıdır.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
+    "code": "F0000000011",
     "az": "Məzmun tapılmadı.",
     "en": "Summary not found.",
     "ru": "Сводка не найдена.",
@@ -91,7 +100,7 @@
   },
 
   {
-    "code": "F0000000011",
+    "code": "F0000000012",
     "az": "Məzmun artıq mövcuddur.",
     "en": "Summary already exist.",
     "ru": "Сводка уже существует.",

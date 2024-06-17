@@ -6,6 +6,7 @@ import az.rock.flyjob.js.domain.presentation.dto.request.item.EducationCommandMo
 import az.rock.flyjob.js.domain.presentation.dto.request.item.ReorderCommandModel;
 
 import java.util.UUID;
+
 public interface AbstractEducationCommandDomainPresentationService {
     void create(CreateRequest<EducationCommandModel> request);
 

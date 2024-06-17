@@ -103,6 +103,30 @@
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
+        <if test="pageable != null">
+            OFFSET #{pageable.offset} ROWS
+            FETCH NEXT #{pageable.limit} ROWS ONLY
+        </if>
+    </select>
+
+    <select id="selectFirstByExample" parameterType="az.rock.flyjob.js.dataaccess.model.batis.model.EducationComposeExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from resume.educations
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="pageable != null">
+            OFFSET #{pageable.offset} ROWS
+            FETCH NEXT #{pageable.limit} ROWS ONLY
+        </if>
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
         select

@@ -1,10 +1,10 @@
-package az.rock.flyjob.js.presentation.api.rest.privates.query;
+package az.rock.flyjob.js.presentation.api.rest.privates.query.resume.detail;
 
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.AnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.MyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleAnyCourseResponseModel;
 import az.rock.flyjob.js.domain.presentation.dto.response.resume.course.simple.SimpleMyCourseResponseModel;
-import az.rock.flyjob.js.domain.presentation.ports.input.services.command.abstracts.AbstractCourseQueryDomainPresentationService;
+import az.rock.flyjob.js.domain.presentation.ports.input.services.query.abstracts.AbstractCourseQueryDomainPresentationService;
 import az.rock.flyjob.js.spec.privates.query.resume.detail.CourseQueryPrivateSpec;
 import az.rock.lib.jresponse.response.success.JSuccessDataResponse;
 import az.rock.lib.valueObject.SimplePageableRequest;

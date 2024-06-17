@@ -2,6 +2,7 @@ package az.rock.flyjob.js.dataaccess.model.batis.model;
 
 import lombok.Data;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,9 +16,9 @@ public class CourseCompose {
 
     private String rowStatus;
 
-    private Date createdDate;
+    private Timestamp createdDate;
 
-    private Date modificationDate;
+    private Timestamp modificationDate;
 
     private UUID resumeUuid;
 

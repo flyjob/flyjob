@@ -37,5 +37,4 @@ public class PhoneNumberDomainMapper implements AbstractPhoneNumberDomainMapper 
                 .type(request.getType())
                 .build();
     }
-
 }
