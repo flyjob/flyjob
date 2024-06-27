@@ -81,6 +81,15 @@
     "regex": ""
   },
   {
+    "code": "F0000000023",
+    "az": "Təcrübə tapılmadı.",
+    "en": "Experience not found.",
+    "ru": "Опыт не найден.",
+    "tr": "Deneyim bulunamadı.",
+    "hasRegex": false,
+    "regex": ""
+  },
+  {
     "code": "F0000000010",
     "az": "Dəyər müəyyən edilmiş diapazonda olmalıdır.",
     "en": "The value must be within the specified range.",

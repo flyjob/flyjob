@@ -1,30 +1,30 @@
 package az.rock.flyjob.js.domain.presentation.dto.criteria;
 
-import az.rock.lib.domain.id.js.CourseID;
+import az.rock.lib.domain.id.js.ExperienceID;
 import az.rock.lib.domain.id.js.ResumeID;
 import az.rock.lib.valueObject.AccessModifier;
 
 import java.util.List;
 
-public class CourseCriteria {
-    private CourseID id;
+public class ExperienceCriteria {
+    private ExperienceID id;
     private ResumeID resumeID;
     private List<AccessModifier> accessModifiers;
 
-    public CourseCriteria() {
+    public ExperienceCriteria() {
     }
 
-    private CourseCriteria(Builder builder) {
+    private ExperienceCriteria(Builder builder) {
         setId(builder.id);
         setResumeID(builder.resumeID);
         setAccessModifiers(builder.accessModifiers);
     }
 
-    public CourseID getId() {
+    public ExperienceID getId() {
         return id;
     }
 
-    public void setId(CourseID id) {
+    public void setId(ExperienceID id) {
         this.id = id;
     }
 
@@ -44,9 +44,8 @@ public class CourseCriteria {
         this.accessModifiers = accessModifiers;
     }
 
-
     public static final class Builder {
-        private CourseID id;
+        private ExperienceID id;
         private ResumeID resumeID;
         private List<AccessModifier> accessModifiers;
 
@@ -57,7 +56,7 @@ public class CourseCriteria {
             return new Builder();
         }
 
-        public Builder id(CourseID val) {
+        public Builder id(ExperienceID val) {
             id = val;
             return this;
         }
@@ -72,8 +71,8 @@ public class CourseCriteria {
             return this;
         }
 
-        public CourseCriteria build() {
-            return new CourseCriteria(this);
+        public ExperienceCriteria build() {
+            return new ExperienceCriteria(this);
         }
     }
 }

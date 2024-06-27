@@ -48,6 +48,10 @@
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.InterestCompose" alias="InterestCompose"/>
         <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.InterestComposeExample"
                    alias="InterestComposeExample"/>
+
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.ExperienceCompose" alias="ExperienceCompose"/>
+        <typeAlias type="az.rock.flyjob.js.dataaccess.model.batis.model.ExperienceComposeExample"
+                   alias="ExperienceComposeExample"/>
     </typeAliases>
 
     <typeHandlers>
@@ -71,6 +75,7 @@
         <mapper resource="mapper/CourseBatisRepository.xml"/>
         <mapper resource="mapper/InterestBatisRepository.xml"/>
         <mapper resource="mapper/EducationBatisRepository.xml"/>
+        <mapper resource="mapper/ExperienceBatisRepository.xml"/>
     </mappers>
 
 </configuration>
