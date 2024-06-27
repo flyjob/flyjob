@@ -8,4 +8,12 @@ import java.util.UUID;
 public class SimpleContext {
     private UUID targetId;
     private String context;
+
+    public UUID getTargetId() {
+        return targetId;
+    }
+
+    public String getContext() {
+        return context;
+    }
 }
